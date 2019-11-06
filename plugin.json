@@ -1,0 +1,23 @@
+{
+  "slug": "NonlinearCircuits",
+  "name": "Nonlinear Circuits",
+  "version": "1.0.0",
+  "license": "CC0-1.0",
+  "author": "Michael Hetrick",
+  "authorEmail": "",
+  "authorUrl": "https://mhetrick.com",
+  "pluginUrl": "https://github.com/mhetrick/hetrickcv",
+  "manualUrl": "https://github.com/mhetrick/hetrickcv/blob/master/README.md",
+  "sourceUrl": "https://github.com/mhetrick/hetrickcv",
+  "donateUrl": "https://paypal.me/MHetrick",
+  "modules": [
+    {
+      "slug": "DoubleNeuron",
+      "name": "Double Neuron",
+      "description": "Two Neurons and Two Difference Rectifiers",
+      "tags": [
+        "Sequencer"
+      ]
+    }
+  ]
+}
