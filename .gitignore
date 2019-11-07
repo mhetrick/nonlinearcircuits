@@ -2,3 +2,4 @@ build/
 dist/
 plugin.dylib
 plugin.dll
+*.zip
