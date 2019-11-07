@@ -119,7 +119,7 @@ jobs:
   - task: GitHubRelease@0
     displayName: "Update Github Release"
     inputs:
-      gitHubConnection: mhetrick
+      gitHubConnection: nonlinear
       repositoryName: mhetrick/nonlinearcircuits
       action: edit
       tag: Nightly
