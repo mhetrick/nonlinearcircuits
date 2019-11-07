@@ -20,6 +20,8 @@ The Diff-Rect (Difference Rectifier) is another creative mixer. The two "+" inpu
 
 If this seems complicated, just experiment! These modules were designed for fun, not for rigorous analysis.
 
+![Double Neuron](./neuron.png)
+
 ### Coming Soon
 - BOOLs
 - Squid Axon
