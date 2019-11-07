@@ -1,10 +1,10 @@
 # Nonlinear Circuits
 These are ports of the incredible Nonlinear Circuits Eurorack modules for [VCV Rack](https://vcvrack.com/). Many of these ports were originally made for Euro Reakt for Reaktor 6, and were created by analyzing real hardware builds.
 
-Modules by [Nonlinear Circuits](http://nonlinearcircuits.blogspot.com/) are typically smaller modules that focus on surprises through simple interaction. They are highly recommended as starter DIY Eurorack builds.
+Modules by [Nonlinear Circuits](https://www.nonlinearcircuits.com/) are typically smaller modules that focus on surprises through simple interaction. They are highly recommended as starter DIY Eurorack builds.
 
 ## Credits
-- Original Design: [Andrew Fitch](http://nonlinearcircuits.blogspot.com/)
+- Original Design: [Andrew Fitch](https://www.nonlinearcircuits.com/)
 - Code: [Michael Hetrick](https://mhetrick.com/)
 - Double Neuron Panel: [Papernoise](https://www.papernoise.net/) (Hannes Pasqualini)
 - Panel Porting: Jason Wehmhoener
