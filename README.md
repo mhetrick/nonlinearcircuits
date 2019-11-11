@@ -26,9 +26,13 @@ If this seems complicated, just experiment! These modules were designed for fun,
 
 ![Double Neuron](./neuron.png)
 
+### Squid Axon
+This is a three channel mixer connected to a shift register of sorts. Unlike most shift registers, OUT 1 holds its value until OUT 4 has received its value. There are two feedback controls. OUT 4 is normalled to IN 3, so if nothing is connected to IN 3, it is a feedback input. The other feedback control is nonlinear and always available. This feedback path runs through a diode simulator, so it behaves much differently than the other feedback control.
+
+To use: plug any signal into the CLOCK input. Whenever this signals goes above 1V, a clock will fire. Plug any other signals into IN 1 and IN 2. Keep IN 3 unplugged if you want to use the regular FEEDBACK control.
+
 ### Coming Soon
 - BOOLs
-- Squid Axon
 - 8-Bit Cipher
 - Divine CMOS
 - BOOLs

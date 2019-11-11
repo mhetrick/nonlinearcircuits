@@ -39,7 +39,7 @@ struct SquidAxon : Module {
 	float outs[4] = {0.0f, 0.0f, 0.0f, 0.0f};
 	float linearFeedback = 0.0f;
 	float nonlinearFeedback = 0.0f;
-	dsp::SchmittTrigger clockIn;
+	NLCTrigger clockIn;
 
 	float squidDiode(const float _input)
 	{

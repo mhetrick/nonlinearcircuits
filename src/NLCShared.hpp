@@ -3,6 +3,37 @@
 #include "rack.hpp"
 #include "engine/Engine.hpp"
 
+//modified SchmittTrigger with no hysteresis.
+struct NLCTrigger 
+{
+	bool state = true;
+
+	void reset() {
+		state = true;
+	}
+
+	bool process(float in) {
+		if (state) {
+			// HIGH to LOW
+			if (in < 1.f) {
+				state = false;
+			}
+		}
+		else {
+			// LOW to HIGH
+			if (in >= 1.f) {
+				state = true;
+				return true;
+			}
+		}
+		return false;
+	}
+
+	bool isHigh() {
+		return state;
+	}
+};
+
 class NLCNeuron
 {
 public:
