@@ -8,6 +8,7 @@ void init(rack::Plugin *p) {
 	pluginInstance = p;
 
 	p->addModel(modelDoubleNeuron);
+	p->addModel(modelSquidAxon);
 	// Any other pluginInstance initialization may go here.
 	// As an alternative, consider lazy-loading assets and lookup tables within this file or the individual module files to reduce startup times of Rack.
 }

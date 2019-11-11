@@ -8,3 +8,4 @@ using namespace rack;
 extern Plugin *pluginInstance;
 
 extern Model *modelDoubleNeuron;
+extern Model *modelSquidAxon;
