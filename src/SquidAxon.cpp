@@ -100,7 +100,7 @@ struct SquidAxon : Module {
 struct SquidAxonWidget : ModuleWidget {
 	SquidAxonWidget(SquidAxon* module) {
 		setModule(module);
-		setPanel(APP->window->loadSvg(asset::plugin(pluginInstance, "res/AxonClassic.svg")));
+		setPanel(APP->window->loadSvg(asset::plugin(pluginInstance, "res/squid-axon-original-panel.svg")));
 
 		addChild(createWidget<ScrewSilver>(Vec(RACK_GRID_WIDTH, 0)));
 		//addChild(createWidget<ScrewSilver>(Vec(box.size.x - 2 * RACK_GRID_WIDTH, 0)));
@@ -110,19 +110,19 @@ struct SquidAxonWidget : ModuleWidget {
 		//const float panelHeight = 128.5f;
 		//const float panelWidth = 5.08*8;
 
-		const float knobHeight = 15.0f;
+		const float knobHeight = 18.3f;
 
-		addParam(createParam<Davies1900hWhiteKnob>(mm2px(Vec(5.0f, knobHeight)), module, SquidAxon::NLFEEDBACK_PARAM));
-		addParam(createParam<Davies1900hWhiteKnob>(mm2px(Vec(20.0f, knobHeight)), module, SquidAxon::IN3FEEDBACK_PARAM));
+		addParam(createParam<Davies1900hBlackKnob>(mm2px(Vec(3.8f, knobHeight)), module, SquidAxon::NLFEEDBACK_PARAM));
+		addParam(createParam<Davies1900hBlackKnob>(mm2px(Vec(24.3f, knobHeight)), module, SquidAxon::IN3FEEDBACK_PARAM));
 
-		const float jackSpace =  9.0f;
-		const float jackX1 = 3.0f;
+		const float jackSpace =  10.05f;
+		const float jackX1 = 1.15f;
 		const float jackX2 = jackX1 + jackSpace;
 		const float jackX3 = jackX2 + jackSpace;
 		const float jackX4 = jackX3 + jackSpace;
 
-		const float inputHeight = 70.0f;
-		const float outputHeight = inputHeight + 15;
+		const float inputHeight = 78.7f;
+		const float outputHeight = inputHeight + 15.8;
 
 		addInput(createInput<PJ301MPort>(mm2px(Vec(jackX1, inputHeight)), module, SquidAxon::CLOCK_INPUT));
 		addInput(createInput<PJ301MPort>(mm2px(Vec(jackX2, inputHeight)), module, SquidAxon::IN1_INPUT));

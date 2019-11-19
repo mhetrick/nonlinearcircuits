@@ -21,9 +21,9 @@
     {
       "slug": "SquidAxon",
       "name": "Squid Axon",
-      "description": "Two Neurons and Two Difference Rectifiers. Panel by Papernoise.",
+      "description": "Mixer, Shift Register, and Feedback. ",
       "tags": [
-        "Mixer", "Noise", "Utility", "Random", "Hardware Clone", "Dual"
+        "Mixer", "Random", "Hardware Clone"
       ]
     }
   ]
