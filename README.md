@@ -35,7 +35,6 @@ To use: plug any signal into the CLOCK input. Whenever this signals goes above 1
 - BOOLs
 - 8-Bit Cipher
 - Divine CMOS
-- BOOLs
 - Numberwang
 - Segue
 - Let’s Splosh
