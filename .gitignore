@@ -3,3 +3,4 @@ dist/
 plugin.dylib
 plugin.dll
 *.zip
+.DS_Store

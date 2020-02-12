@@ -11,6 +11,14 @@
   "sourceUrl": "https://github.com/mhetrick/nonlinearcircuits",
   "modules": [
     {
+      "slug": "BOOLs",
+      "name": "BOOLs",
+      "description": "Four binary logic jumblers. Panel by Papernoise.",
+      "tags": [
+        "Logic", "Hardware Clone", "Quad"
+      ]
+    },
+    {
       "slug": "DoubleNeuron",
       "name": "Double Neuron",
       "description": "Two Neurons and Two Difference Rectifiers. Panel by Papernoise.",
