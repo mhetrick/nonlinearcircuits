@@ -68,7 +68,17 @@ struct BOOLs : Module {
 	bool ins[4] = {false, false, false, false};
 	bool outBools[4] = {false, false, false, false};
 	float outs[4] = {0.0f, 0.0f, 0.0f, 0.0f};
+
+	float stepValue = 0.0f;
+
+	const float gateScale = 5.0f;
+	const float step1val = 0.0364f;
+	const float step2val = 0.0729f;
+	const float step3val = 0.1458f;
+	const float step4val = 0.2915f;
+
 	NLCTrigger clockIn;
+	dsp::SlewLimiter slewLimiter;
 
 	bool (*logicFunction1)(bool, bool) = &boolsOR;
 	bool (*logicFunction2)(bool, bool) = &boolsOR;
@@ -85,20 +95,24 @@ struct BOOLs : Module {
 
 	void applyLogic()
 	{
-		outs[0] = logicFunction1(ins[0], ins[1]);
-		outs[1] = logicFunction2(ins[1], ins[2]);
-		outs[2] = logicFunction3(ins[2], ins[3]);
-		outs[3] = logicFunction4(ins[3], ins[0]);
+		outBools[0] = logicFunction1(ins[0], ins[1]);
+		outBools[1] = logicFunction2(ins[1], ins[2]);
+		outBools[2] = logicFunction3(ins[2], ins[3]);
+		outBools[3] = logicFunction4(ins[3], ins[0]);
 	}
 
 	void setOutputValues()
 	{
 		for (int i = 0; i < 4; i++)
 		{
-			outs[i] = outBools[i] ? 5.0f : 0.0f;
+			outs[i] = outBools[i] ? gateScale : 0.0f;
 		}
 
-		//TODO: set stepped and slewed here
+		stepValue = 0.0f;
+		stepValue += outs[0] * step1val;
+		stepValue += outs[1] * step2val;
+		stepValue += outs[2] * step3val;
+		stepValue += outs[3] * step4val;
 	}
 
 	void fullBOOLsProcess()
@@ -119,7 +133,11 @@ struct BOOLs : Module {
 		}
 		else fullBOOLsProcess();
 
-		//TODO: update slew here
+		const auto slewParam = params[SLEW_PARAM].getValue() * params[SLEW_PARAM].getValue();
+		slewLimiter.setRiseFall(slewParam, slewParam);
+
+		outputs[STEP_OUTPUT].setVoltage(stepValue);
+		outputs[SLEW_OUTPUT].setVoltage(slewLimiter.process(1.0f, stepValue));
 
 		for (int i = 0; i < 4; i++)
 		{
