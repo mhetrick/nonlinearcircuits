@@ -87,10 +87,10 @@ struct BOOLs : Module {
 	NLCTrigger clockIn;
 	dsp::SlewLimiter slewLimiter;
 
-	bool (*logicFunction1)(bool, bool) = &boolsOR;
-	bool (*logicFunction2)(bool, bool) = &boolsOR;
-	bool (*logicFunction3)(bool, bool) = &boolsOR;
-	bool (*logicFunction4)(bool, bool) = &boolsOR;
+	bool (*logicFunction1)(bool, bool) = &boolsXOR;
+	bool (*logicFunction2)(bool, bool) = &boolsXOR;
+	bool (*logicFunction3)(bool, bool) = &boolsXOR;
+	bool (*logicFunction4)(bool, bool) = &boolsXOR;
 
 	void acquireInputs()
 	{
