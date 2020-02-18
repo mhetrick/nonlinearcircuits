@@ -56,6 +56,10 @@ struct BOOLs : Module {
 		NUM_OUTPUTS
 	};
 	enum LightIds {
+		OUT1_LIGHT,
+		OUT2_LIGHT,
+		OUT3_LIGHT,
+		OUT4_LIGHT,
 		NUM_LIGHTS
 	};
 
@@ -72,10 +76,12 @@ struct BOOLs : Module {
 	float stepValue = 0.0f;
 
 	const float gateScale = 5.0f;
-	const float step1val = 0.0364f;
-	const float step2val = 0.0729f;
-	const float step3val = 0.1458f;
-	const float step4val = 0.2915f;
+	const float gateUnscale = 1.0f/gateScale;
+	const float stepScale = 3.0f;
+	const float step1val = 0.0364f * stepScale;
+	const float step2val = 0.0729f * stepScale;
+	const float step3val = 0.1458f * stepScale;
+	const float step4val = 0.2915f * stepScale;
 
 	NLCTrigger clockIn;
 	dsp::SlewLimiter slewLimiter;
@@ -109,10 +115,10 @@ struct BOOLs : Module {
 		}
 
 		stepValue = 0.0f;
-		stepValue += outs[0] * step1val;
-		stepValue += outs[1] * step2val;
-		stepValue += outs[2] * step3val;
-		stepValue += outs[3] * step4val;
+		stepValue += (outs[0] * step1val);
+		stepValue += (outs[1] * step2val);
+		stepValue += (outs[2] * step3val);
+		stepValue += (outs[3] * step4val);
 	}
 
 	void fullBOOLsProcess()
@@ -133,15 +139,17 @@ struct BOOLs : Module {
 		}
 		else fullBOOLsProcess();
 
-		const auto slewParam = params[SLEW_PARAM].getValue() * params[SLEW_PARAM].getValue();
-		slewLimiter.setRiseFall(slewParam, slewParam);
+		const auto slewParam = params[SLEW_PARAM].getValue();
+		const auto slewHz = (1.0f - (slewParam*slewParam)) * (400.0f) + 1.0f;
+		slewLimiter.setRiseFall(slewHz, slewHz);
 
 		outputs[STEP_OUTPUT].setVoltage(stepValue);
-		outputs[SLEW_OUTPUT].setVoltage(slewLimiter.process(1.0f, stepValue));
+		outputs[SLEW_OUTPUT].setVoltage(slewLimiter.process(args.sampleTime, stepValue));
 
 		for (int i = 0; i < 4; i++)
 		{
 			outputs[i].setVoltage(outs[i]);
+			lights[i].setSmoothBrightness(outs[i] * gateUnscale, args.sampleTime);
 		}
 		
 	}
@@ -151,7 +159,7 @@ struct BOOLs : Module {
 struct BOOLsWidget : ModuleWidget {
 	BOOLsWidget(BOOLs* module) {
 		setModule(module);
-		setPanel(APP->window->loadSvg(asset::plugin(pluginInstance, "res/BOOLs.svg")));
+		setPanel(APP->window->loadSvg(asset::plugin(pluginInstance, "res/BOOLs2.svg")));
 
 		addChild(createWidget<ScrewSilver>(Vec(RACK_GRID_WIDTH, 0)));
 		//addChild(createWidget<ScrewSilver>(Vec(box.size.x - 2 * RACK_GRID_WIDTH, 0)));
@@ -160,7 +168,7 @@ struct BOOLsWidget : ModuleWidget {
 
 		
 
-		const float jackSpace =  12.65f;
+		const float jackSpace =  12.68f;
 		const float inJacks = 4.25f;
 		const float outJacks = 17.3f;
 
@@ -185,6 +193,14 @@ struct BOOLsWidget : ModuleWidget {
 		const float bottomJacksHeight = 107.0f;
 		addOutput(createOutput<PJ301MPort>(mm2px(Vec(inJacks, bottomJacksHeight)), module, BOOLs::SLEW_OUTPUT));
 		addOutput(createOutput<PJ301MPort>(mm2px(Vec(outJacks, bottomJacksHeight)), module, BOOLs::STEP_OUTPUT));
+
+		////////LIGHTS/////////
+		const float lightX = outJacks + 9.5;
+		const float lightOffset = -0.10;
+		addChild(createLight<SmallLight<GreenLight>>(mm2px(Vec(lightX, jack1 + lightOffset)), module, BOOLs::OUT1_LIGHT));
+		addChild(createLight<SmallLight<GreenLight>>(mm2px(Vec(lightX, jack2 + lightOffset)), module, BOOLs::OUT2_LIGHT));
+		addChild(createLight<SmallLight<GreenLight>>(mm2px(Vec(lightX, jack3 + lightOffset)), module, BOOLs::OUT3_LIGHT));
+		addChild(createLight<SmallLight<GreenLight>>(mm2px(Vec(lightX, jack4 + lightOffset)), module, BOOLs::OUT4_LIGHT));
 	}
 };
 
