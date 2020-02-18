@@ -74,6 +74,7 @@ struct BOOLs : Module {
 	float outs[4] = {0.0f, 0.0f, 0.0f, 0.0f};
 
 	float stepValue = 0.0f;
+	float lastSlew = -1.0f;
 
 	const float gateScale = 5.0f;
 	const float gateUnscale = 1.0f/gateScale;
@@ -140,8 +141,13 @@ struct BOOLs : Module {
 		else fullBOOLsProcess();
 
 		const auto slewParam = params[SLEW_PARAM].getValue();
-		const auto slewHz = (1.0f - (slewParam*slewParam)) * (400.0f) + 1.0f;
-		slewLimiter.setRiseFall(slewHz, slewHz);
+		if (lastSlew != slewParam)
+		{
+			lastSlew = slewParam;
+			const float scaledSlew = slewParam > 0.001f ? std::pow(slewParam, 0.25f) : 0.0f;
+			const auto slewHz = (1.0f - scaledSlew) * (18000.0f) + 1.0f;
+			slewLimiter.setRiseFall(slewHz, slewHz);
+		}
 
 		outputs[STEP_OUTPUT].setVoltage(stepValue);
 		outputs[SLEW_OUTPUT].setVoltage(slewLimiter.process(args.sampleTime, stepValue));
