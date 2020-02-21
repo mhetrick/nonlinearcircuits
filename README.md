@@ -8,8 +8,8 @@ Recommended viewing: [Interview with Nonlinear Circuits by Music Thing Modular](
 ## Credits
 - Original Design: [Andrew Fitch](https://www.nonlinearcircuits.com/)
 - Code: [Michael Hetrick](https://mhetrick.com/)
-- Double Neuron Panel: [Papernoise](https://www.papernoise.net/) (Hannes Pasqualini)
-- Panel Porting: Jason Wehmhoener
+- Double Neuron and BOOLs Panels: [Papernoise](https://www.papernoise.net/) (Hannes Pasqualini)
+- Squid Axon panel: Jason Wehmhoener
 
 ## Modules
 
@@ -31,8 +31,20 @@ This is a three channel mixer connected to a shift register of sorts. Unlike mos
 
 To use: plug any signal into the CLOCK input. Whenever this signals goes above 1V, a clock will fire. Plug any other signals into IN 1 and IN 2. Keep IN 3 unplugged if you want to use the regular FEEDBACK control.
 
-### Coming Soon
-- BOOLs
+![Squid Axon](./squid.png)
+
+### BOOLs
+This is a four channel logic jumbler. The most common way to use this would be to plug 4 gates into the 4 inputs and derive logical combinations on the outputs. However, the inputs accept any signal (audio, LFOs, envelopes, you name it) and will decide that they are active if their value is above 1 volt.
+
+On top of the logic jumbling, the four output channels are used to create a 4-bit stepped output at the STEP jack. This output also appears at the SLEW jack, but with a variable amount of smoothing set by the SLEW control.
+
+Finally, if a cable is plugged into the SAMPLE input, the four output gates will only change upon the reception of a trigger here. This is useful for enforcing a more rigid tempo upon the outputs.
+
+Right-click on the panel to select the active logic mode: OR, AND, XOR, NOR, NAND, XNOR
+
+![BOOLs](./bools.png)
+
+### Future Additions
 - 8-Bit Cipher
 - Divine CMOS
 - Numberwang
@@ -46,3 +58,5 @@ To use: plug any signal into the CLOCK input. Whenever this signals goes above 1
 - Statues
 - 4Seq
 - Single Neuron/Diff-Rect
+
+If you would like to contribute panel ports, I have the code ready-ish for the modules above. Contact me if you are interested.
