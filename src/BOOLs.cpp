@@ -63,6 +63,16 @@ struct BOOLs : Module {
 		NUM_LIGHTS
 	};
 
+	enum LogicMode
+	{
+		BOOLS_OR,
+		BOOLS_AND,
+		BOOLS_XOR,
+		BOOLS_NOR,
+		BOOLS_NAND,
+		BOOLS_XNOR
+	};
+
 	BOOLs() {
 		config(NUM_PARAMS, NUM_INPUTS, NUM_OUTPUTS, NUM_LIGHTS);
 
@@ -87,10 +97,62 @@ struct BOOLs : Module {
 	NLCTrigger clockIn;
 	dsp::SlewLimiter slewLimiter;
 
-	bool (*logicFunction1)(bool, bool) = &boolsXOR;
-	bool (*logicFunction2)(bool, bool) = &boolsXOR;
-	bool (*logicFunction3)(bool, bool) = &boolsXOR;
-	bool (*logicFunction4)(bool, bool) = &boolsXOR;
+	LogicMode currentMode = BOOLS_XOR;
+	bool (*logicFunction)(bool, bool) = &boolsXOR;
+
+	//TODO: Maybe add ability to set different modes for each channel...
+	//bool (*logicFunction1)(bool, bool) = &boolsXOR;
+	//bool (*logicFunction2)(bool, bool) = &boolsXOR;
+	//bool (*logicFunction3)(bool, bool) = &boolsXOR;
+	//bool (*logicFunction4)(bool, bool) = &boolsXOR;
+
+	json_t *dataToJson() override 
+    {
+		json_t *rootJ = json_object();
+        json_object_set_new(rootJ, "logicmode", json_integer(currentMode));
+		return rootJ;
+	}
+    void dataFromJson(json_t *rootJ) override 
+    {
+		json_t *modeJ = json_object_get(rootJ, "logicmode");
+		if (modeJ)
+		{
+			setLogicMode(json_integer_value(modeJ));
+		}
+	}
+
+	LogicMode getLogicMode()
+	{
+		return currentMode;
+	}
+
+	void setLogicMode(int _mode)
+	{
+		currentMode = (LogicMode)_mode;
+		switch(_mode)
+		{
+			case BOOLS_OR: logicFunction = &boolsOR;
+			break;
+
+			case BOOLS_AND: logicFunction = &boolsAND;
+			break;
+
+			case BOOLS_XOR: logicFunction = &boolsXOR;
+			break;
+
+			case BOOLS_NOR: logicFunction = &boolsNOR;
+			break;
+
+			case BOOLS_NAND: logicFunction = &boolsNAND;
+			break;
+
+			case BOOLS_XNOR: logicFunction = &boolsXNOR;
+			break;
+
+			default: logicFunction = &boolsXOR;
+			break;
+		}
+	}
 
 	void acquireInputs()
 	{
@@ -102,10 +164,10 @@ struct BOOLs : Module {
 
 	void applyLogic()
 	{
-		outBools[0] = logicFunction1(ins[0], ins[1]);
-		outBools[1] = logicFunction2(ins[1], ins[2]);
-		outBools[2] = logicFunction3(ins[2], ins[3]);
-		outBools[3] = logicFunction4(ins[3], ins[0]);
+		outBools[0] = logicFunction(ins[0], ins[1]);
+		outBools[1] = logicFunction(ins[1], ins[2]);
+		outBools[2] = logicFunction(ins[2], ins[3]);
+		outBools[3] = logicFunction(ins[3], ins[0]);
 	}
 
 	void setOutputValues()
@@ -168,11 +230,7 @@ struct BOOLsWidget : ModuleWidget {
 		setPanel(APP->window->loadSvg(asset::plugin(pluginInstance, "res/BOOLs2.svg")));
 
 		addChild(createWidget<ScrewSilver>(Vec(RACK_GRID_WIDTH, 0)));
-		//addChild(createWidget<ScrewSilver>(Vec(box.size.x - 2 * RACK_GRID_WIDTH, 0)));
 		addChild(createWidget<ScrewSilver>(Vec(RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
-		//addChild(createWidget<ScrewSilver>(Vec(box.size.x - 2 * RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
-
-		
 
 		const float jackSpace =  12.68f;
 		const float inJacks = 4.25f;
@@ -208,7 +266,37 @@ struct BOOLsWidget : ModuleWidget {
 		addChild(createLight<SmallLight<GreenLight>>(mm2px(Vec(lightX, jack3 + lightOffset)), module, BOOLs::OUT3_LIGHT));
 		addChild(createLight<SmallLight<GreenLight>>(mm2px(Vec(lightX, jack4 + lightOffset)), module, BOOLs::OUT4_LIGHT));
 	}
+
+	void appendContextMenu(Menu *menu) override 
+	{
+		BOOLs *bools = dynamic_cast<BOOLs*>(module);
+		assert(bools);
+
+		struct BOOLsLogicModeMenuItem : MenuItem 
+		{
+			BOOLs *bools;
+			BOOLs::LogicMode mode;
+			void onAction(const event::Action &e) override
+			{
+				bools->setLogicMode(mode);
+			}
+			void step() override {
+				rightText = (bools->getLogicMode() == mode) ? "✔" : "";
+				MenuItem::step();
+			}
+		};
+
+		menu->addChild(construct<MenuLabel>());
+		menu->addChild(construct<MenuLabel>(&MenuLabel::text, "Logic Mode"));
+		menu->addChild(construct<BOOLsLogicModeMenuItem>(&MenuItem::text, "OR", &BOOLsLogicModeMenuItem::bools, bools, &BOOLsLogicModeMenuItem::mode, BOOLs::LogicMode::BOOLS_OR));
+		menu->addChild(construct<BOOLsLogicModeMenuItem>(&MenuItem::text, "AND", &BOOLsLogicModeMenuItem::bools, bools, &BOOLsLogicModeMenuItem::mode, BOOLs::LogicMode::BOOLS_AND));
+		menu->addChild(construct<BOOLsLogicModeMenuItem>(&MenuItem::text, "XOR", &BOOLsLogicModeMenuItem::bools, bools, &BOOLsLogicModeMenuItem::mode, BOOLs::LogicMode::BOOLS_XOR));
+		menu->addChild(construct<BOOLsLogicModeMenuItem>(&MenuItem::text, "NOR", &BOOLsLogicModeMenuItem::bools, bools, &BOOLsLogicModeMenuItem::mode, BOOLs::LogicMode::BOOLS_NOR));
+		menu->addChild(construct<BOOLsLogicModeMenuItem>(&MenuItem::text, "NAND", &BOOLsLogicModeMenuItem::bools, bools, &BOOLsLogicModeMenuItem::mode, BOOLs::LogicMode::BOOLS_NAND));
+		menu->addChild(construct<BOOLsLogicModeMenuItem>(&MenuItem::text, "XNOR", &BOOLsLogicModeMenuItem::bools, bools, &BOOLsLogicModeMenuItem::mode, BOOLs::LogicMode::BOOLS_XNOR));
+	}
 };
+
 
 
 Model* modelBOOLs = createModel<BOOLs, BOOLsWidget>("BOOLs");
