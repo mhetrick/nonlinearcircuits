@@ -27,6 +27,14 @@
       ]
     },
     {
+      "slug": "LetsSplosh",
+      "name": "Let's Splosh",
+      "description": "Four inputs run into lots of Difference Rectifiers for many output variations. Panel by Papernoise.",
+      "tags": [
+        "Mixer", "Noise", "Utility", "Random", "Hardware Clone", "Quad"
+      ]
+    },
+    {
       "slug": "SquidAxon",
       "name": "Squid Axon",
       "description": "Mixer, Shift Register, and Feedback. ",
