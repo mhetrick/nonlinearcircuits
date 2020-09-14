@@ -44,12 +44,16 @@ Right-click on the panel to select the active logic mode: OR, AND, XOR, NOR, NAN
 
 ![BOOLs](./bools.png)
 
+### Let's Splosh
+This is a 4-input, 16-output master of signal jumbling. Essentially, four inputs are used in 8 different Diff-Rects (see the description under the Neuron above). The left half of the module contains the positive outputs, while the right half is negative. Try throwing in four LFOs of different frequencies as a starter patch. It's a lot of fun!
+
+![Let's Splosh](./splosh.png)
+
 ### Future Additions
 - 8-Bit Cipher
 - Divine CMOS
 - Numberwang
 - Segue
-- Let’s Splosh
 - GENiE
 - 1050 MixSeq
 - 32:1
