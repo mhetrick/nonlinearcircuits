@@ -7,6 +7,7 @@ Plugin *pluginInstance;
 void init(rack::Plugin *p) {
 	pluginInstance = p;
 
+	p->addModel(model4Seq);
 	p->addModel(modelBOOLs);
 	p->addModel(modelDoubleNeuron);
 	p->addModel(modelLetsSplosh);

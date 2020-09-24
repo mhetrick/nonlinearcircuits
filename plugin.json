@@ -11,6 +11,14 @@
   "sourceUrl": "https://github.com/mhetrick/nonlinearcircuits",
   "modules": [
     {
+      "slug": "4Seq",
+      "name": "4Seq",
+      "description": "Dual sequencer and clock divider. Panel by Jürgen Krehan.",
+      "tags": [
+        "Sequencer", "Hardware Clone", "Clock Modulator"
+      ]
+    },
+    {
       "slug": "BOOLs",
       "name": "BOOLs",
       "description": "Four binary logic jumblers. Panel by Papernoise.",
@@ -37,7 +45,7 @@
     {
       "slug": "SquidAxon",
       "name": "Squid Axon",
-      "description": "Mixer, Shift Register, and Feedback. ",
+      "description": "Mixer, Shift Register, and Feedback. Panel by Jason Wehmhoener.",
       "tags": [
         "Mixer", "Random", "Hardware Clone"
       ]

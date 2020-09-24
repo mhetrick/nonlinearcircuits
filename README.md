@@ -8,8 +8,9 @@ Recommended viewing: [Interview with Nonlinear Circuits by Music Thing Modular](
 ## Credits
 - Original Design: [Andrew Fitch](https://www.nonlinearcircuits.com/)
 - Code: [Michael Hetrick](https://mhetrick.com/)
-- Double Neuron and BOOLs Panels: [Papernoise](https://www.papernoise.net/) (Hannes Pasqualini)
+- Double Neuron, Let's Splosh!, and BOOLs Panels: [Papernoise](https://www.papernoise.net/) (Hannes Pasqualini)
 - Squid Axon panel: Jason Wehmhoener
+- 4Seq panel: Jürgen Krehan
 
 ## Modules
 
@@ -49,6 +50,9 @@ This is a 4-input, 16-output master of signal jumbling. Essentially, four inputs
 
 ![Let's Splosh](./splosh.png)
 
+### 4Seq
+This is a simple sequencer with a deceiving amount of depth. There are two sequences: X and Y. Y is always the opposite step of X and counting in the opposite direction (so if X is step 0, Y is step 3; if X is step 1, Y is step 2). There is a gate input that reverses the count direction while the gate is above 1V. Finally, the bottom section is a clock divider that divides the incoming clock. Try plugging the clock divider's outputs into the direction input!
+
 ### Future Additions
 - 8-Bit Cipher
 - Divine CMOS
@@ -60,7 +64,6 @@ This is a 4-input, 16-output master of signal jumbling. Essentially, four inputs
 - Router
 - Divide and Conquer
 - Statues
-- 4Seq
 - Single Neuron/Diff-Rect
 
 If you would like to contribute panel ports, I have the code ready-ish for the modules above. Contact me if you are interested.
