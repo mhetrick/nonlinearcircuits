@@ -128,7 +128,7 @@ struct FourSeqWidget : ModuleWidget {
 
 		////////LIGHTS/////////
         const float divJacksX = 1.25f;
-        const float divJacksY = 95.0f;
+        const float divJacksY = 96.0f;
         float lightX = 4.5f;
         float lightY = 108.0f;
         int spacing = 10.0f;
