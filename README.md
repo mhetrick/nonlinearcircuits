@@ -56,6 +56,8 @@ This is a simple sequencer with a deceiving amount of depth. There are two seque
 ### GENiE
 If you thought the Double Neuron was crazy, this is essentially a triple Neuron pre-patched with a feedback network. The outputs of the three neurons are normalled to each other's inputs (as indicated on the panel). Those inputs have an additional IN control on top to control the gain. Because of the extreme amount of feedback, changing VCV's sampling rate can wildly alter the sound of this.
 
+![GENiE](./genie.png)
+
 ### Future Additions
 - 8-Bit Cipher
 - Divine CMOS
