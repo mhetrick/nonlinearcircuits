@@ -35,6 +35,14 @@
       ]
     },
     {
+      "slug": "GENiE",
+      "name": "GENiE",
+      "description": "Three Neurons tangled together in a feedback network of chaos. Panel by Jürgen Krehan.",
+      "tags": [
+        "Mixer", "Noise", "Utility", "Random", "Hardware Clone", "Dual"
+      ]
+    },
+    {
       "slug": "LetsSplosh",
       "name": "Let's Splosh",
       "description": "Four inputs run into lots of Difference Rectifiers for many output variations. Panel by Papernoise.",
