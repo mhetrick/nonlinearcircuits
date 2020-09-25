@@ -10,7 +10,7 @@ Recommended viewing: [Interview with Nonlinear Circuits by Music Thing Modular](
 - Code: [Michael Hetrick](https://mhetrick.com/)
 - Double Neuron, Let's Splosh!, and BOOLs Panels: [Papernoise](https://www.papernoise.net/) (Hannes Pasqualini)
 - Squid Axon panel: Jason Wehmhoener
-- 4Seq panel: Jürgen Krehan
+- 4Seq and GENiE panels: Jürgen Krehan
 
 ## Modules
 
@@ -53,12 +53,14 @@ This is a 4-input, 16-output master of signal jumbling. Essentially, four inputs
 ### 4Seq
 This is a simple sequencer with a deceiving amount of depth. There are two sequences: X and Y. Y is always the opposite step of X and counting in the opposite direction (so if X is step 0, Y is step 3; if X is step 1, Y is step 2). There is a gate input that reverses the count direction while the gate is above 1V. Finally, the bottom section is a clock divider that divides the incoming clock. Try plugging the clock divider's outputs into the direction input!
 
+### GENiE
+If you thought the Double Neuron was crazy, this is essentially a triple Neuron pre-patched with a feedback network. The outputs of the three neurons are normalled to each other's inputs (as indicated on the panel). Those inputs have an additional IN control on top to control the gain. Because of the extreme amount of feedback, changing VCV's sampling rate can wildly alter the sound of this.
+
 ### Future Additions
 - 8-Bit Cipher
 - Divine CMOS
 - Numberwang
 - Segue
-- GENiE
 - 1050 MixSeq
 - 32:1
 - Router
