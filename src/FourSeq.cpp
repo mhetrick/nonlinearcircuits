@@ -111,10 +111,10 @@ struct FourSeqWidget : ModuleWidget {
 
         const float leftSteps = 4.5f;
         const float rightSteps = 24.0f;
-		addParam(createParam<Davies1900hBlackKnob>(mm2px(Vec(leftSteps, 17.5f)), module, FourSeq::STEP1_PARAM));
-        addParam(createParam<Davies1900hBlackKnob>(mm2px(Vec(rightSteps, 25.0f)), module, FourSeq::STEP2_PARAM));
-        addParam(createParam<Davies1900hBlackKnob>(mm2px(Vec(leftSteps, 35.0f)), module, FourSeq::STEP3_PARAM));
-        addParam(createParam<Davies1900hBlackKnob>(mm2px(Vec(rightSteps, 42.5f)), module, FourSeq::STEP4_PARAM));
+		addParam(createParam<Davies1900hWhiteKnob>(mm2px(Vec(leftSteps, 17.5f)), module, FourSeq::STEP1_PARAM));
+        addParam(createParam<Davies1900hWhiteKnob>(mm2px(Vec(rightSteps, 25.0f)), module, FourSeq::STEP2_PARAM));
+        addParam(createParam<Davies1900hWhiteKnob>(mm2px(Vec(leftSteps, 35.0f)), module, FourSeq::STEP3_PARAM));
+        addParam(createParam<Davies1900hWhiteKnob>(mm2px(Vec(rightSteps, 42.5f)), module, FourSeq::STEP4_PARAM));
 
         const float inJacksX = 1.5f;
         const float inJacksY = 72.0f;

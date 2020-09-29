@@ -112,8 +112,8 @@ struct SquidAxonWidget : ModuleWidget {
 
 		const float knobHeight = 18.3f;
 
-		addParam(createParam<Davies1900hBlackKnob>(mm2px(Vec(3.8f, knobHeight)), module, SquidAxon::NLFEEDBACK_PARAM));
-		addParam(createParam<Davies1900hBlackKnob>(mm2px(Vec(24.3f, knobHeight)), module, SquidAxon::IN3FEEDBACK_PARAM));
+		addParam(createParam<Davies1900hWhiteKnob>(mm2px(Vec(3.8f, knobHeight)), module, SquidAxon::NLFEEDBACK_PARAM));
+		addParam(createParam<Davies1900hWhiteKnob>(mm2px(Vec(24.3f, knobHeight)), module, SquidAxon::IN3FEEDBACK_PARAM));
 
 		const float jackSpace =  10.05f;
 		const float jackX1 = 1.15f;
