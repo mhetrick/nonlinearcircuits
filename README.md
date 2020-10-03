@@ -69,5 +69,3 @@ If you thought the Double Neuron was crazy, this is essentially a triple Neuron 
 - Divide and Conquer
 - Statues
 - Single Neuron/Diff-Rect
-
-If you would like to contribute panel ports, I have the code ready-ish for the modules above. Contact me if you are interested.
