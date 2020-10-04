@@ -10,7 +10,7 @@ Recommended viewing: [Interview with Nonlinear Circuits by Music Thing Modular](
 - Code: [Michael Hetrick](https://mhetrick.com/)
 - Double Neuron, Let's Splosh!, and BOOLs Panels: [Papernoise](https://www.papernoise.net/) (Hannes Pasqualini)
 - Squid Axon panel: Jason Wehmhoener
-- 4Seq and GENiE panels: Jürgen Krehan
+- 4Seq, GENiE, Neuron, Statues panels: Jürgen Krehan
 
 ## Modules
 
@@ -58,6 +58,9 @@ If you thought the Double Neuron was crazy, this is essentially a triple Neuron 
 
 ![GENiE](./genie.png)
 
+### Statues
+This is a 1-in 8-out switch with two major twists. First, the output is determined by the state of three gate inputs. These gate inputs essentially create a 3-bit integer (1 through 8) to choose the output. Second, when an output becomes inactive, it holds its previous value. This can be a lot more useful than a switch where a modulation output is suddenly dropped to zero!
+
 ### Future Additions
 - 8-Bit Cipher
 - Divine CMOS
@@ -67,5 +70,4 @@ If you thought the Double Neuron was crazy, this is essentially a triple Neuron 
 - 32:1
 - Router
 - Divide and Conquer
-- Statues
-- Single Neuron/Diff-Rect
+

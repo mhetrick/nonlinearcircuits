@@ -39,7 +39,7 @@
       "name": "GENiE",
       "description": "Three Neurons tangled together in a feedback network of chaos. Panel by Jürgen Krehan.",
       "tags": [
-        "Mixer", "Noise", "Utility", "Random", "Hardware Clone", "Dual"
+        "Mixer", "Noise", "Utility", "Random", "Hardware Clone"
       ]
     },
     {
@@ -51,11 +51,27 @@
       ]
     },
     {
+      "slug": "Neuron",
+      "name": "Neuron",
+      "description": "3-input comparator and Difference Rectifier for creating unpredictable interactions. Panel by Jürgen Krehan.",
+      "tags": [
+        "Mixer", "Noise", "Utility", "Random", "Hardware Clone", "Dual"
+      ]
+    },
+    {
       "slug": "SquidAxon",
       "name": "Squid Axon",
       "description": "Mixer, Shift Register, and Feedback. Panel by Jason Wehmhoener.",
       "tags": [
         "Mixer", "Random", "Hardware Clone"
+      ]
+    },
+    {
+      "slug": "Statues",
+      "name": "Statues",
+      "description": "1->8 Signal switch using binary inputs. Panel by Jürgen Krehan.",
+      "tags": [
+        "Logic", "Hardware Clone"
       ]
     }
   ]
