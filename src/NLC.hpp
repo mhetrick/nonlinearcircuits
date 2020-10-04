@@ -13,5 +13,6 @@ extern Model *modelDoubleNeuron;
 extern Model *modelGenie;
 extern Model *modelLetsSplosh;
 extern Model *modelNeuron;
+extern Model *modelNumberwang;
 extern Model *modelSquidAxon;
 extern Model *modelStatues;

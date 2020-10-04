@@ -13,6 +13,7 @@ void init(rack::Plugin *p) {
 	p->addModel(modelGenie);
 	p->addModel(modelLetsSplosh);
 	p->addModel(modelNeuron);
+	p->addModel(modelNumberwang);
 	p->addModel(modelSquidAxon);
 	p->addModel(modelStatues);
 	// Any other pluginInstance initialization may go here.

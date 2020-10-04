@@ -59,6 +59,14 @@
       ]
     },
     {
+      "slug": "Numberwang",
+      "name": "Numberwang",
+      "description": "Four gates make sixteen. That's Numberwang! Panel by Jürgen Krehan.",
+      "tags": [
+        "Logic", "Hardware Clone"
+      ]
+    },
+    {
       "slug": "SquidAxon",
       "name": "Squid Axon",
       "description": "Mixer, Shift Register, and Feedback. Panel by Jason Wehmhoener.",
