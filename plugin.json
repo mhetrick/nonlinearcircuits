@@ -13,7 +13,7 @@
     {
       "slug": "4Seq",
       "name": "4Seq",
-      "description": "Dual sequencer and clock divider. Panel by Jürgen Krehan.",
+      "description": "Dual sequencer and clock divider. Panel by jk.",
       "tags": [
         "Sequencer", "Hardware Clone", "Clock Modulator"
       ]
@@ -37,7 +37,7 @@
     {
       "slug": "GENiE",
       "name": "GENiE",
-      "description": "Three Neurons tangled together in a feedback network of chaos. Panel by Jürgen Krehan.",
+      "description": "Three Neurons tangled together in a feedback network of chaos. Panel by jk.",
       "tags": [
         "Mixer", "Noise", "Utility", "Random", "Hardware Clone"
       ]
@@ -53,7 +53,7 @@
     {
       "slug": "Neuron",
       "name": "Neuron",
-      "description": "3-input comparator and Difference Rectifier for creating unpredictable interactions. Panel by Jürgen Krehan.",
+      "description": "3-input comparator and Difference Rectifier for creating unpredictable interactions. Panel by jk.",
       "tags": [
         "Mixer", "Noise", "Utility", "Random", "Hardware Clone", "Dual"
       ]
@@ -61,7 +61,7 @@
     {
       "slug": "Numberwang",
       "name": "Numberwang",
-      "description": "Four gates make sixteen. That's Numberwang! Panel by Jürgen Krehan.",
+      "description": "Four gates make sixteen. That's Numberwang! Panel by jk.",
       "tags": [
         "Logic", "Hardware Clone"
       ]
@@ -77,7 +77,7 @@
     {
       "slug": "Statues",
       "name": "Statues",
-      "description": "1->8 Signal switch using binary inputs. Panel by Jürgen Krehan.",
+      "description": "1->8 Signal switch using binary inputs. Panel by jk.",
       "tags": [
         "Logic", "Hardware Clone"
       ]

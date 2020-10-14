@@ -10,7 +10,7 @@ Recommended viewing: [Interview with Nonlinear Circuits by Music Thing Modular](
 - Code: [Michael Hetrick](https://mhetrick.com/)
 - Double Neuron, Let's Splosh!, and BOOLs Panels: [Papernoise](https://www.papernoise.net/) (Hannes Pasqualini)
 - Squid Axon panel: Jason Wehmhoener
-- 4Seq, GENiE, Neuron, Statues, Numberwang panels: Jürgen Krehan
+- 4Seq, GENiE, Neuron, Statues, Numberwang panels: jk
 
 ## Modules
 
