@@ -43,6 +43,10 @@ public:
     {
         lastInput = _in1 + _in2 + _in3;
     }
+    void setInput(float _in)
+    {
+        lastInput = _in;
+    }
     
     float process()
     {
@@ -70,6 +74,15 @@ public:
     void setNegativeInputs(float _in1, float _in2)
     {
         lastNegativeInput = _in1 + _in2;
+    }
+
+    void setPositiveInput(float _in)
+    {
+        lastPositiveInput = _in;
+    }
+    void setNegativeInput(float _in)
+    {
+        lastPositiveInput = _in;
     }
 
     void process()

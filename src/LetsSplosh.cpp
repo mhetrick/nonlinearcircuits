@@ -89,8 +89,8 @@ struct LetsSplosh : Module {
             diffRects[i].process();
             outputs[i*2].setVoltage(diffRects[i].getPositiveOutput());
             outputs[i*2 + 1].setVoltage(diffRects[i].getNegativeOutput());
-            lights[i*2].setBrightnessSmooth(diffRects[i].getPositiveOutput());
-            lights[i*2 + 1].setBrightnessSmooth(diffRects[i].getNegativeOutput() * -1.0f);
+            lights[i*2].setBrightnessSmooth(diffRects[i].getPositiveOutput() * 0.2f);
+            lights[i*2 + 1].setBrightnessSmooth(diffRects[i].getNegativeOutput() * -0.2f);
         }
 	}
 };
@@ -118,6 +118,7 @@ struct LetsSploshWidget : ModuleWidget {
 
         const float out1Y = 13.0f;
         const float out2Y = 24.0f;
+        const float light2Y = out2Y + 6.5f;
 
         for (int i = 0; i < LetsSplosh::NUM_INPUTS; i++)
         {
@@ -133,8 +134,8 @@ struct LetsSploshWidget : ModuleWidget {
 
             addChild(createLight<SmallLight<GreenLight>>(mm2px(Vec(outPosX - 4.0f, out1Y + inYSpacing*i)), module, 4*i));
             addChild(createLight<SmallLight<RedLight>>(mm2px(Vec(outNegX + 10.0f, out1Y + inYSpacing*i)), module, 4*i + 1));
-            addChild(createLight<SmallLight<GreenLight>>(mm2px(Vec(outPosX - 4.0f, out2Y + inYSpacing*i)), module, 4*i + 2));
-            addChild(createLight<SmallLight<RedLight>>(mm2px(Vec(outNegX + 10.0f, out2Y + inYSpacing*i)), module, 4*i + 3));
+            addChild(createLight<SmallLight<GreenLight>>(mm2px(Vec(outPosX - 4.0f, light2Y + inYSpacing*i)), module, 4*i + 2));
+            addChild(createLight<SmallLight<RedLight>>(mm2px(Vec(outNegX + 10.0f, light2Y + inYSpacing*i)), module, 4*i + 3));
         }
         
 

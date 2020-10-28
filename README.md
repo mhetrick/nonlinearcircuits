@@ -8,8 +8,9 @@ Recommended viewing: [Interview with Nonlinear Circuits by Music Thing Modular](
 ## Credits
 - Original Design: [Andrew Fitch](https://www.nonlinearcircuits.com/)
 - Code: [Michael Hetrick](https://mhetrick.com/)
-- Double Neuron and BOOLs Panels: [Papernoise](https://www.papernoise.net/) (Hannes Pasqualini)
+- Double Neuron, Let's Splosh!, and BOOLs Panels: [Papernoise](https://www.papernoise.net/) (Hannes Pasqualini)
 - Squid Axon panel: Jason Wehmhoener
+- 4Seq, GENiE, Neuron, Statues, Numberwang panels: jk
 
 ## Modules
 
@@ -49,18 +50,32 @@ This is a 4-input, 16-output master of signal jumbling. Essentially, four inputs
 
 ![Let's Splosh](./splosh.png)
 
+### 4Seq
+This is a simple sequencer with a deceiving amount of depth. There are two sequences: X and Y. Y is always the opposite step of X and counting in the opposite direction (so if X is step 0, Y is step 3; if X is step 1, Y is step 2). There is a gate input that reverses the count direction while the gate is above 1V. Finally, the bottom section is a clock divider that divides the incoming clock. Try plugging the clock divider's outputs into the direction input!
+
+![4Seq](./4seq.png)
+
+### GENiE
+If you thought the Double Neuron was crazy, this is essentially a triple Neuron pre-patched with a feedback network. The outputs of the three neurons are normalled to each other's inputs (as indicated on the panel). Those inputs have an additional IN control on top to control the gain. Because of the extreme amount of feedback, changing VCV's sampling rate can wildly alter the sound of this.
+
+![GENiE](./genie.png)
+
+### Statues
+This is a 1-in 8-out switch with two major twists. First, the output is determined by the state of three gate inputs. These gate inputs essentially create a 3-bit integer (1 through 8) to choose the output. Second, when an output becomes inactive, it holds its previous value. This can be a lot more useful than a switch where a modulation output is suddenly dropped to zero!
+
+![Statues](./statues.png)
+
+### Numberwang
+Four gate inputs make 16 gate outputs. That's Numberwang!
+Each of the four gate outputs represents a bit in a 4-bit number (1-16). Depending on the values of the incoming gates, the corresponding output gate on the matrix will be active. Try plugging in four LFOs at different frequencies and watch the patterns.
+![Numberwang](./numberwang.png)
+
 ### Future Additions
 - 8-Bit Cipher
 - Divine CMOS
-- Numberwang
 - Segue
-- GENiE
 - 1050 MixSeq
 - 32:1
 - Router
 - Divide and Conquer
-- Statues
-- 4Seq
-- Single Neuron/Diff-Rect
 
-If you would like to contribute panel ports, I have the code ready-ish for the modules above. Contact me if you are interested.

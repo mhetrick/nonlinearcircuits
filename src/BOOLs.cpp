@@ -241,7 +241,7 @@ struct BOOLsWidget : ModuleWidget {
 		const float jack3 = jack2 + jackSpace;
 		const float jack4 = jack3 + jackSpace;
 
-		addParam(createParam<Davies1900hBlackKnob>(mm2px(Vec(9.2f, 15.0f)), module, BOOLs::SLEW_PARAM));
+		addParam(createParam<Davies1900hWhiteKnob>(mm2px(Vec(9.2f, 15.0f)), module, BOOLs::SLEW_PARAM));
 		addInput(createInput<PJ301MPort>(mm2px(Vec(10.7f, 37.0f)), module, BOOLs::SAMPLE_INPUT));
 
 		addInput(createInput<PJ301MPort>(mm2px(Vec(inJacks, jack1)), module, BOOLs::IN1_INPUT));
