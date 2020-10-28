@@ -22,6 +22,7 @@
       "slug": "BOOLs",
       "name": "BOOLs",
       "description": "Four binary logic jumblers. Panel by Papernoise.",
+      "manualUrl": "https://github.com/mhetrick/nonlinearcircuits#bools",
       "tags": [
         "Logic", "Hardware Clone", "Quad"
       ]
@@ -30,6 +31,7 @@
       "slug": "DoubleNeuron",
       "name": "Double Neuron",
       "description": "Two Neurons and Two Difference Rectifiers. Panel by Papernoise.",
+      "manualUrl": "https://github.com/mhetrick/nonlinearcircuits#double-neuron",
       "tags": [
         "Mixer", "Noise", "Utility", "Random", "Hardware Clone", "Dual"
       ]
@@ -46,6 +48,7 @@
       "slug": "LetsSplosh",
       "name": "Let's Splosh",
       "description": "Four inputs run into lots of Difference Rectifiers for many output variations. Panel by Papernoise.",
+      "manualUrl": "https://github.com/mhetrick/nonlinearcircuits#lets-splosh",
       "tags": [
         "Mixer", "Noise", "Utility", "Random", "Hardware Clone", "Quad"
       ]
@@ -70,6 +73,7 @@
       "slug": "SquidAxon",
       "name": "Squid Axon",
       "description": "Mixer, Shift Register, and Feedback. Panel by Jason Wehmhoener.",
+      "manualUrl": "https://github.com/mhetrick/nonlinearcircuits#squid-axon",      
       "tags": [
         "Mixer", "Random", "Hardware Clone"
       ]
