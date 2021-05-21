@@ -82,7 +82,7 @@ public:
     }
     void setNegativeInput(float _in)
     {
-        lastPositiveInput = _in;
+        lastNegativeInput = _in;
     }
 
     void process()
