@@ -49,8 +49,8 @@ struct Statues : Module {
         for (int i = 0; i < 8; i++)
         {
             outputs[i].setVoltage(outs[i]);
-            lights[i*2].setBrightnessSmooth(outs[i] * 0.2f);
-            lights[1 + i*2].setBrightnessSmooth(outs[i] * -0.2f);
+            lights[i*2].setSmoothBrightness(outs[i] * 0.2f, args.sampleTime);
+            lights[1 + i*2].setSmoothBrightness(outs[i] * -0.2f, args.sampleTime);
         }
 	}
 };

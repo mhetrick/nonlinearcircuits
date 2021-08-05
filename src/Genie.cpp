@@ -137,9 +137,9 @@ struct Genie : Module {
 		outputs[DIFFRECT_POS_OUTPUT].setVoltage(diffrect.getPositiveOutput());
 		outputs[DIFFRECT_NEG_OUTPUT].setVoltage(diffrect.getNegativeOutput());
 
-        lights[NEURON1_LIGHT].setBrightnessSmooth(neuron1Out);
-        lights[NEURON2_LIGHT].setBrightnessSmooth(neuron2Out);
-        lights[NEURON3_LIGHT].setBrightnessSmooth(neuron3Out);
+        lights[NEURON1_LIGHT].setSmoothBrightness(neuron1Out, args.sampleTime);
+        lights[NEURON2_LIGHT].setSmoothBrightness(neuron2Out, args.sampleTime);
+        lights[NEURON3_LIGHT].setSmoothBrightness(neuron3Out, args.sampleTime);
 	}
 };
 

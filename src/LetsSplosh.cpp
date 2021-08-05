@@ -89,8 +89,8 @@ struct LetsSplosh : Module {
             diffRects[i].process();
             outputs[i*2].setVoltage(diffRects[i].getPositiveOutput());
             outputs[i*2 + 1].setVoltage(diffRects[i].getNegativeOutput());
-            lights[i*2].setBrightnessSmooth(diffRects[i].getPositiveOutput() * 0.2f);
-            lights[i*2 + 1].setBrightnessSmooth(diffRects[i].getNegativeOutput() * -0.2f);
+            lights[i*2].setSmoothBrightness(diffRects[i].getPositiveOutput() * 0.2f, args.sampleTime);
+            lights[i*2 + 1].setSmoothBrightness(diffRects[i].getNegativeOutput() * -0.2f, args.sampleTime);
         }
 	}
 };

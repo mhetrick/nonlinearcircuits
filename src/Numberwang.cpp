@@ -62,7 +62,7 @@ struct Numberwang : Module {
         for (int i = 0; i < 16; i++)
         {   
             outputs[i].setVoltage(outs[i]);
-            lights[i].setBrightnessSmooth(outs[i] * 0.2);
+            lights[i].setSmoothBrightness(outs[i] * 0.2, args.sampleTime);
         }
 	}
 };

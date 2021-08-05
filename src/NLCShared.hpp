@@ -3,6 +3,10 @@
 #include "rack.hpp"
 #include "engine/Engine.hpp"
 
+
+float LERP(const float _amountOfA, const float _inA, const float _inB);
+
+
 //modified SchmittTrigger with no hysteresis.
 struct NLCTrigger 
 {

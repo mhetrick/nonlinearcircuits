@@ -91,7 +91,7 @@ struct FourSeq : Module {
         {
             steps[i] = params[i].getValue();
             outputs[i].setVoltage(divBools[i] ? 5.0f : 0.0f);
-            lights[i].setBrightnessSmooth(divBools[i] ? 5.0f : 0.0f);
+            lights[i].setSmoothBrightness(divBools[i] ? 5.0f : 0.0f, args.sampleTime);
         }
 
         outputs[X_OUTPUT].setVoltage(steps[xStep]);

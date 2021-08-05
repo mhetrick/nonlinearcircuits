@@ -60,7 +60,7 @@ struct SegueWidget : ModuleWidget { SegueWidget(Segue *module); };
 SegueWidget::SegueWidget(Segue *module)
 {
 	setModule(module);
-	box.size = Vec(6 * RACK_GRID_WIDTH, RACK_GRID_HEIGHT);
+	box.size = Vec(8 * RACK_GRID_WIDTH, RACK_GRID_HEIGHT);
 
 	{
 		auto *panel = new SvgPanel();
@@ -75,17 +75,17 @@ SegueWidget::SegueWidget(Segue *module)
 	addChild(createWidget<ScrewSilver>(Vec(box.size.x - 30, 365)));
 
 	//////PARAMS//////
-	addParam(createParam<Davies1900hBlackKnob>(Vec(27, 62), module, Segue::AMOUNT_PARAM));
-    addParam(createParam<Trimpot>(Vec(36, 112), module, Segue::SCALE_PARAM));
+	addParam(createParam<Davies1900hBlackKnob>(Vec(43, 116), module, Segue::AMOUNT_PARAM));
+    addParam(createParam<Trimpot>(Vec(48, 177), module, Segue::SCALE_PARAM));
 
 	//////INPUTS//////
-    addInput(createInput<PJ301MPort>(Vec(10, 235), module, Segue::LEFT_INPUT));
-    addInput(createInput<PJ301MPort>(Vec(55, 235), module, Segue::RIGHT_INPUT));
-    addInput(createInput<PJ301MPort>(Vec(33, 145), module, Segue::AMOUNT_INPUT));
+    addInput(createInput<PJ301MPort>(Vec(14, 238), module, Segue::LEFT_INPUT));
+    addInput(createInput<PJ301MPort>(Vec(78, 238), module, Segue::RIGHT_INPUT));
+    addInput(createInput<PJ301MPort>(Vec(46, 212), module, Segue::AMOUNT_INPUT));
 
 	//////OUTPUTS//////
-    addOutput(createOutput<PJ301MPort>(Vec(10, 285), module, Segue::LEFT_OUTPUT));
-    addOutput(createOutput<PJ301MPort>(Vec(55, 285), module, Segue::RIGHT_OUTPUT));
+    addOutput(createOutput<PJ301MPort>(Vec(29, 291), module, Segue::LEFT_OUTPUT));
+    addOutput(createOutput<PJ301MPort>(Vec(63, 291), module, Segue::RIGHT_OUTPUT));
 }
 
 Model *modelSegue = createModel<Segue, SegueWidget>("Segue");
