@@ -70,10 +70,22 @@ Four gate inputs make 16 gate outputs. That's Numberwang!
 Each of the four gate outputs represents a bit in a 4-bit number (1-16). Depending on the values of the incoming gates, the corresponding output gate on the matrix will be active. Try plugging in four LFOs at different frequencies and watch the patterns.
 ![Numberwang](./numberwang.png)
 
+### Segue
+This module is very similar to HetrickCV's Flip Pan. It pans two input signals by flipping their channels (i.e. the left input is panned right, the right input is panned left). This sounds simple, but it is very versatile.
+
+- Plug one signal in and monitor both outputs to use this as a traditional panner.
+- Plug two signals in and monitor only one output to use this as a crossfader.
+- Plug one signal in and monitor the opposite output to use this as a VCA.
+
+### 8-Bit Cipher
+This is a massive chunk of unpredictability, somewhat like a deluxe Turing Machine. [Original description from NLC.](https://www.nonlinearcircuits.com/modules/p/8bit-cipher)
+
+### Divine CMOS
+A complicated subharmonic generator, or clock divider, or weird sequencer. Essentially, send a signal into either input (audio or gates). The main OUT is a mix of four clock dividers, the gain of each is controlled by the knobs. With a predictable clock signal into only one of the inputs, you can treat this output as a stepped sequencer. The SLEW output is the same signal as OUT, except with a variable amount of slew controlled by the SLEW knob. The bottoms four outputs are dedicated clock dividers that are not affected by the gain controls.
+
+Here's where things get hairy: with two signals plugged in, the clock divider outputs are now the logical XOR of the divisions of the two incoming signals. Essentially, this is a 1-bit ring modulator. Just experiment and have fun. If you're using this for audio, be sure to run the output through a DC Blocker (or a high pass filter set to around 20 Hz) to remove any offset, as the outputs are all unipolar.
+
 ### Future Additions
-- 8-Bit Cipher
-- Divine CMOS
-- Segue
 - 1050 MixSeq
 - 32:1
 - Router
