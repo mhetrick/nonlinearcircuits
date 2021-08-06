@@ -145,7 +145,7 @@ struct Cipher : Module {
         for(int i = OOO_OUTPUT; i < 8; i++)
         {
             outputs[i].setVoltage(bitsOut[i] ? 5.0 : 0.0);
-            lights[OOO_LIGHT].setSmoothBrightness(bitsOut[i] ? 1.0f : 0.0f, args.sampleTime);
+            lights[i].setSmoothBrightness(bitsOut[i] ? 1.0f : 0.0f, args.sampleTime);
         }
 
         outputs[SERIAL_OUTPUT].setVoltage(serialBit ? 5.0 : 0.0);
@@ -169,17 +169,17 @@ struct CipherWidget : ModuleWidget {
 		addChild(createWidget<ScrewSilver>(Vec(RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
 		addChild(createWidget<ScrewSilver>(Vec(box.size.x - 2 * RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
 
-        const float row1Y = 50.0f;
-        const float row2Y = 80.5f;
-        const float row3Y = 153.0f;
-        const float row4Y = 225.0f;
-        const float row5Y = 265.0f;
+        float row1Y = 50.0f;
+        float row2Y = 80.75f;
+        float row3Y = 155.5f;
+        float row4Y = 231.0f;
+        float row5Y = 264.0f;
 
-        const float col1X = 31.25f;
-        const float col2X = 61.0f;
-        const float col3X = 134.0f;
-        const float col4X = 216.0f;
-        const float col5X = 245.0f;
+        float col1X = 31.5f;
+        float col2X = 61.75f;
+        float col3X = 137.0f;
+        float col4X = 214.5f;
+        float col5X = 244.25f;
 
         addOutput(createOutput<PJ301MPort>(Vec(col3X, row1Y), module, Cipher::OOO_OUTPUT));
         addOutput(createOutput<PJ301MPort>(Vec(col4X, row2Y), module, Cipher::OOX_OUTPUT));
@@ -192,6 +192,28 @@ struct CipherWidget : ModuleWidget {
 
         addOutput(createOutput<PJ301MPort>(Vec(col3X, row3Y), module, Cipher::SERIAL_OUTPUT));
 
+        row1Y = 91.0f;
+        row2Y = 113.0f;
+        row3Y = 166.0f;
+        row4Y = 219.0f;
+        row5Y = 241.0f;
+
+        col1X = 72.0f;
+        col2X = 94.0f;
+        col3X = 146.75f;
+        col4X = 200.25f;
+        col5X = 222.0f;
+
+        addChild(createLight<SmallLight<BlueLight>>(Vec(col3X, row1Y), module, Cipher::OOO_LIGHT));
+        addChild(createLight<SmallLight<BlueLight>>(Vec(col4X, row2Y), module, Cipher::OOX_LIGHT));
+        addChild(createLight<SmallLight<BlueLight>>(Vec(col5X, row3Y), module, Cipher::OXO_LIGHT));
+        addChild(createLight<SmallLight<BlueLight>>(Vec(col4X, row4Y), module, Cipher::OXX_LIGHT));
+        addChild(createLight<SmallLight<BlueLight>>(Vec(col3X, row5Y), module, Cipher::XOO_LIGHT));
+        addChild(createLight<SmallLight<BlueLight>>(Vec(col2X, row4Y), module, Cipher::XOX_LIGHT));
+        addChild(createLight<SmallLight<BlueLight>>(Vec(col1X, row3Y), module, Cipher::XXO_LIGHT));
+        addChild(createLight<SmallLight<BlueLight>>(Vec(col2X, row2Y), module, Cipher::XXX_LIGHT));
+
+        addChild(createLight<SmallLight<BlueLight>>(Vec(186, row3Y), module, Cipher::SERIAL_LIGHT));
 
 		////////LIGHTS/////////
         const float inJacksX = 7.0f;
@@ -206,7 +228,7 @@ struct CipherWidget : ModuleWidget {
             addOutput(createOutput<PJ301MPort>(mm2px(Vec(outJacksX + xOffset, bottomJacksY)), module, Cipher::CV1_OUTPUT + i));
         }
         
-        addChild(createLight<SmallLight<BlueLight>>(Vec(85.25, 187.25), module, Cipher::SERIAL_LIGHT));
+        
 	}
 };
 
