@@ -9,6 +9,8 @@ struct Segue : Module
 	{
 		AMOUNT_PARAM,
         SCALE_PARAM,
+		GAIN1_PARAM,
+		GAIN2_PARAM,
 		NUM_PARAMS
 	};
 	enum InputIds
@@ -30,6 +32,8 @@ struct Segue : Module
 		config(NUM_PARAMS, NUM_INPUTS, NUM_OUTPUTS);
 		configParam(Segue::AMOUNT_PARAM, 0.0, 5.0, 2.5, "");
 		configParam(Segue::SCALE_PARAM, -1.0, 1.0, 1.0, "");
+		configParam(Segue::GAIN1_PARAM, 0.0, 1.0, 1.0, "");
+		configParam(Segue::GAIN2_PARAM, 0.0, 1.0, 1.0, "");
 	}
 
     void process(const ProcessArgs &args) override;
@@ -44,8 +48,8 @@ struct Segue : Module
 
 void Segue::process(const ProcessArgs &args)
 {
-	float inL = inputs[LEFT_INPUT].getVoltage();
-	float inR = inputs[RIGHT_INPUT].getVoltage();
+	float inL = inputs[LEFT_INPUT].getVoltage() * params[GAIN1_PARAM].getValue();
+	float inR = inputs[RIGHT_INPUT].getVoltage() * params[GAIN2_PARAM].getValue();
 
     float pan = params[AMOUNT_PARAM].getValue() + (inputs[AMOUNT_INPUT].getVoltage() * params[SCALE_PARAM].getValue());
     pan = clamp(pan, 0.0f, 5.0f) * 0.2f;
@@ -75,17 +79,19 @@ SegueWidget::SegueWidget(Segue *module)
 	addChild(createWidget<ScrewSilver>(Vec(box.size.x - 30, 365)));
 
 	//////PARAMS//////
-	addParam(createParam<Davies1900hBlackKnob>(Vec(43, 116), module, Segue::AMOUNT_PARAM));
-    addParam(createParam<Trimpot>(Vec(48, 177), module, Segue::SCALE_PARAM));
+	addParam(createParam<Davies1900hWhiteKnob>(Vec(41, 116), module, Segue::AMOUNT_PARAM));
+    addParam(createParam<Trimpot>(Vec(52, 177), module, Segue::SCALE_PARAM));
+	addParam(createParam<Davies1900hWhiteKnob>(Vec(9, 53), module, Segue::GAIN1_PARAM));
+	addParam(createParam<Davies1900hWhiteKnob>(Vec(74, 53), module, Segue::GAIN2_PARAM));
 
 	//////INPUTS//////
-    addInput(createInput<PJ301MPort>(Vec(14, 238), module, Segue::LEFT_INPUT));
-    addInput(createInput<PJ301MPort>(Vec(78, 238), module, Segue::RIGHT_INPUT));
-    addInput(createInput<PJ301MPort>(Vec(46, 212), module, Segue::AMOUNT_INPUT));
+    addInput(createInput<PJ301MPort>(Vec(14, 252), module, Segue::LEFT_INPUT));
+    addInput(createInput<PJ301MPort>(Vec(81, 252), module, Segue::RIGHT_INPUT));
+    addInput(createInput<PJ301MPort>(Vec(48, 222), module, Segue::AMOUNT_INPUT));
 
 	//////OUTPUTS//////
-    addOutput(createOutput<PJ301MPort>(Vec(29, 291), module, Segue::LEFT_OUTPUT));
-    addOutput(createOutput<PJ301MPort>(Vec(63, 291), module, Segue::RIGHT_OUTPUT));
+    addOutput(createOutput<PJ301MPort>(Vec(31, 307), module, Segue::LEFT_OUTPUT));
+    addOutput(createOutput<PJ301MPort>(Vec(66, 307), module, Segue::RIGHT_OUTPUT));
 }
 
 Model *modelSegue = createModel<Segue, SegueWidget>("Segue");
