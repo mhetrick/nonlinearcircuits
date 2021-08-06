@@ -29,6 +29,15 @@
       ]
     },
     {
+      "slug": "DivineCMOS",
+      "name": "Divine CMOS",
+      "description": "Waveform and clock divider with multiple divison outputs, slew, and a mixer.",
+      "manualUrl": "https://github.com/mhetrick/nonlinearcircuits",
+      "tags": [
+        "Logic", "Hardware Clone"
+      ]
+    },
+    {
       "slug": "DoubleNeuron",
       "name": "Double Neuron",
       "description": "Two Neurons and Two Difference Rectifiers. Panel by Papernoise.",
