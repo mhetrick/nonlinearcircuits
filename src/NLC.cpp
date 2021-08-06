@@ -8,6 +8,7 @@ void init(rack::Plugin *p) {
 	pluginInstance = p;
 
 	p->addModel(model4Seq);
+	p->addModel(modelCipher);
 	p->addModel(modelBOOLs);
 	p->addModel(modelDivineCMOS);
 	p->addModel(modelDoubleNeuron);

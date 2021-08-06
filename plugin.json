@@ -20,6 +20,15 @@
       ]
     },
     {
+      "slug": "8BitCipher",
+      "name": "8-Bit Cipher",
+      "description": "Dual sequencer and clock divider. Panel by jk.",
+      "manualUrl": "https://github.com/mhetrick/nonlinearcircuits", 
+      "tags": [
+        "Sequencer", "Hardware Clone", "Clock Modulator"
+      ]
+    },
+    {
       "slug": "BOOLs",
       "name": "BOOLs",
       "description": "Four binary logic jumblers. Panel by Papernoise.",

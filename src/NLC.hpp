@@ -8,6 +8,7 @@ using namespace rack;
 extern Plugin *pluginInstance;
 
 extern Model *model4Seq;
+extern Model *modelCipher;
 extern Model *modelBOOLs;
 extern Model *modelDivineCMOS;
 extern Model *modelDoubleNeuron;
