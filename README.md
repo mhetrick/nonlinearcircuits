@@ -85,9 +85,15 @@ A complicated subharmonic generator, or clock divider, or weird sequencer. Essen
 
 Here's where things get hairy: with two signals plugged in, the clock divider outputs are now the logical XOR of the divisions of the two incoming signals. Essentially, this is a 1-bit ring modulator. Just experiment and have fun. If you're using this for audio, be sure to run the output through a DC Blocker (or a high pass filter set to around 20 Hz) to remove any offset, as the outputs are all unipolar.
 
+### Divide & Conquer
+This is a clock divider with more outputs than you could ask for. It includes powers of 2 from 2 to 256, along with 3, 5, and 7. On top of that, there are 1.5 (3/2), 2.5 (5/2), and 3.5 (7/2). On these dividers, the half divisions are calculated when the incoming clock goes low.
+
+The main clock input (on the bottom section) is normalled to the top three clock inputs. If nothing is plugged into the top three input jacks, they will receive the input connected to the main input.
+
+To achieve more divisions, you can plug this module into itself. For instance, to divide by 14, plug the /2 output into the /7 clock input and monitor the /7 output.
+
 ### Future Additions
 - 1050 MixSeq
 - 32:1
 - Router
-- Divide and Conquer
 

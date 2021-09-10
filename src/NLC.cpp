@@ -10,6 +10,7 @@ void init(rack::Plugin *p) {
 	p->addModel(model4Seq);
 	p->addModel(modelCipher);
 	p->addModel(modelBOOLs);
+	p->addModel(modelDivideConquer);
 	p->addModel(modelDivineCMOS);
 	p->addModel(modelDoubleNeuron);
 	p->addModel(modelGenie);
