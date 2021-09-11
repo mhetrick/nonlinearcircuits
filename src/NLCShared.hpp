@@ -11,7 +11,6 @@ float LERP(const float _amountOfA, const float _inA, const float _inB);
 struct NLCTrigger 
 {
 	bool state = true;
-    bool doubleTrig = false;
 
 	void reset() {
 		state = true;
@@ -22,7 +21,6 @@ struct NLCTrigger
 			// HIGH to LOW
 			if (in < 1.f) {
 				state = false;
-                if(doubleTrig) return true; //returns on any state change for .5 clock dividers
 			}
 		}
 		else {

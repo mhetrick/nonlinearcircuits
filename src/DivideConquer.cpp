@@ -57,21 +57,84 @@ struct DivideConquer : Module {
 	DivideConquer() 
     {
 		config(NUM_PARAMS, NUM_INPUTS, NUM_OUTPUTS, NUM_LIGHTS);
-
-        clockIn1.doubleTrig = false;
-        clockIn3.doubleTrig = true;
-        clockIn5.doubleTrig = true;
-        clockIn7.doubleTrig = true;
 	}
 
-	NLCTrigger clockIn1, clockIn3, clockIn5, clockIn7;
+	NLCTrigger clockIn1;
+
+    dsp::BooleanTrigger flipflop3div2, flipflop3;
+    dsp::BooleanTrigger flipflop5div2, flipflop5, flipflop5helper;
+    dsp::BooleanTrigger flipflop7div2, flipflop7, flipflop7helper;
+
     int stepCount1 = 0, stepCount3 = 0, stepCount5 = 0, stepCount7 = 0;
     double gateOutValue = 5.0;
     bool div2 = false, div4 = false, div8 = false, div16 = false;
     bool div32 = false, div64 = false, div128 = false, div256 = false;
     bool div3 = false, div3div2 = false;
-    bool div5 = false, div5div2 = false;
-    bool div7 = false, div7div2 = false;
+    bool div5 = false, div5div2 = false, div5helper = false;
+    bool div7 = false, div7div2 = false, div7helper = false;
+
+    void processClock3Row(float clock3)
+    {
+        bool clock3xor = (clock3 > 1.0f) != div3;
+	
+        //if xor is true, trigger div3div2 flipflop
+        if(flipflop3div2.process(clock3xor))
+        {
+            div3div2 = !div3div2;
+        }
+
+        //div3div2's output is high when div3div2's flipflop
+        //is low
+        
+        //when div3div2's flipflop goes high, trigger
+        //div3's flipflop
+        if(flipflop3.process(div3div2))
+        {
+            div3 = !div3;
+        }
+    }
+
+    void processClock5Row(float clock5)
+    {
+        bool clock5xor = (clock5 > 1.0) != div5;
+	
+        if(flipflop5helper.process(clock5xor))
+        {
+            div5helper = !div5helper;
+        }
+        
+        bool helperxor = div5helper != div5;
+        
+        if(flipflop5div2.process(helperxor))
+        {
+            div5div2 = !div5div2;
+        }
+        
+        if(flipflop5.process(div5div2))
+        {
+            div5 = !div5;
+        }
+    }
+
+    void processClock7Row(float clock7)
+    {
+        bool clock7xor = (clock7 > 1.0) != div7;
+	
+        if(flipflop7helper.process(clock7xor))
+        {
+            div7helper = !div7helper;
+        }
+        
+        if(flipflop7div2.process(div7helper))
+        {
+            div7div2 = !div7div2;
+        }
+        
+        if(flipflop7.process(div7div2))
+        {
+            div7 = !div7;
+        }
+    }
 
 	void process(const ProcessArgs& args) override 
 	{
@@ -80,6 +143,8 @@ struct DivideConquer : Module {
         double clock5 = inputs[CLOCK5_INPUT].isConnected() ? inputs[CLOCK5_INPUT].getVoltage() : mainClock;
         double clock7 = inputs[CLOCK7_INPUT].isConnected() ? inputs[CLOCK7_INPUT].getVoltage() : mainClock;
 
+
+        //yes, yes, this could be a for loop.
         if(clockIn1.process(mainClock))
         {
             div2 = !div2;
@@ -113,50 +178,9 @@ struct DivideConquer : Module {
             }
         }
         
-        if(clockIn3.process(clock3))
-        {
-            if(stepCount3 == 6) stepCount3 = 1;
-            else stepCount3++;
-            
-            if (stepCount3 % 3 == 0)
-            {
-                div3div2 = !div3div2;
-                if (stepCount3 % 6 == 0)
-                {
-                    div3 = !div3;
-                }
-            }
-        }
-        
-        if(clockIn5.process(clock5))
-        {
-            if(stepCount5 == 10) stepCount5 = 1;
-            else stepCount5++;
-            
-            if (stepCount5 % 5 == 0)
-            {
-                div5div2 = !div5div2;
-                if (stepCount5 % 10 == 0)
-                {
-                    div5 = !div5;
-                }
-            }
-        }
-        
-        if(clockIn7.process(clock7))
-        {
-            if(stepCount7 == 14) stepCount7 = 1;
-            else stepCount7++;
-            
-            if (stepCount7 % 7 == 0)
-            {
-                div7div2 = !div7div2;
-                if (stepCount7 % 14 == 0)
-                {
-                    div7 = !div7;
-                }
-            }
-        }
+        processClock3Row(clock3);
+        processClock5Row(clock5);
+        processClock7Row(clock7);
 
         outputs[DIV2_OUTPUT].setVoltage(div2 ? gateOutValue : 0.0);
         outputs[DIV4_OUTPUT].setVoltage(div4 ? gateOutValue : 0.0);
@@ -168,13 +192,13 @@ struct DivideConquer : Module {
         outputs[DIV256_OUTPUT].setVoltage(div256 ? gateOutValue : 0.0);
 
         outputs[DIV3_OUTPUT].setVoltage(div3 ? gateOutValue : 0.0);
-        outputs[DIV3DIV2_OUTPUT].setVoltage(div3div2 ? gateOutValue : 0.0);
+        outputs[DIV3DIV2_OUTPUT].setVoltage(!div3div2 ? gateOutValue : 0.0);
 
         outputs[DIV5_OUTPUT].setVoltage(div5 ? gateOutValue : 0.0);
         outputs[DIV5DIV2_OUTPUT].setVoltage(div5div2 ? gateOutValue : 0.0);
 
         outputs[DIV7_OUTPUT].setVoltage(div7 ? gateOutValue : 0.0);
-        outputs[DIV7DIV2_OUTPUT].setVoltage(div7div2 ? gateOutValue : 0.0);
+        outputs[DIV7DIV2_OUTPUT].setVoltage(!div7div2 ? gateOutValue : 0.0);
 
         lights[DIV2_LIGHT].setBrightness(div2 ? 1.0 : 0.0);
         lights[DIV4_LIGHT].setBrightness(div4 ? 1.0 : 0.0);
@@ -186,13 +210,13 @@ struct DivideConquer : Module {
         lights[DIV256_LIGHT].setBrightness(div256 ? 1.0 : 0.0);
 
         lights[DIV3_LIGHT].setBrightness(div3 ? 1.0 : 0.0);
-        lights[DIV3DIV2_LIGHT].setBrightness(div3div2 ? 1.0 : 0.0);
+        lights[DIV3DIV2_LIGHT].setBrightness(!div3div2 ? 1.0 : 0.0);
 
         lights[DIV5_LIGHT].setBrightness(div5 ? 1.0 : 0.0);
         lights[DIV5DIV2_LIGHT].setBrightness(div5div2 ? 1.0 : 0.0);
 
         lights[DIV7_LIGHT].setBrightness(div7 ? 1.0 : 0.0);
-        lights[DIV7DIV2_LIGHT].setBrightness(div7div2 ? 1.0 : 0.0);
+        lights[DIV7DIV2_LIGHT].setBrightness(!div7div2 ? 1.0 : 0.0);
 	}
 };
 
