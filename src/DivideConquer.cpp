@@ -58,6 +58,7 @@ struct DivideConquer : Module {
     {
 		config(NUM_PARAMS, NUM_INPUTS, NUM_OUTPUTS, NUM_LIGHTS);
 
+        clockIn1.doubleTrig = false;
         clockIn3.doubleTrig = true;
         clockIn5.doubleTrig = true;
         clockIn7.doubleTrig = true;
@@ -81,38 +82,28 @@ struct DivideConquer : Module {
 
         if(clockIn1.process(mainClock))
         {
-
-            if(stepCount1 == 256) stepCount1 = 1;
-            else stepCount1++;
-
-            if (stepCount1 % 2 == 0)
+            div2 = !div2;
+            if(!div2)
             {
-                div2 = !div2;
-
-                if (stepCount1 % 4 == 0)
+                div4 = !div4;
+                if(!div4)
                 {
-                    div4 = ! div4;
-
-                    if (stepCount1 % 8 == 0)
+                    div8 = !div8;
+                    if(!div8)
                     {
-                        div8 = !div8;
-
-                        if (stepCount1 % 16 == 0)
+                        div16 = !div16;
+                        if(!div16)
                         {
-                            div16 = ! div16;
-                            if (stepCount1 % 32 == 0)
+                            div32 = !div32;
+                            if(!div32)
                             {
-                                div32 = ! div32;
-                                if (stepCount1 % 64 == 0)
+                                div64 = !div64;
+                                if(!div64)
                                 {
-                                    div64 = ! div64;
-                                    if (stepCount1 % 128 == 0)
+                                    div128 = !div128;
+                                    if(!div128)
                                     {
-                                        div128 = ! div128;
-                                        if (stepCount1 % 256 == 0)
-                                        {
-                                            div256 = ! div256;
-                                        }
+                                        div256 = !div256;
                                     }
                                 }
                             }
@@ -253,11 +244,11 @@ struct DivideConquerWidget : ModuleWidget {
 		addOutput(createOutput<PJ301MPort>(Vec(col3X, row6Y), module, DivideConquer::DIV256_OUTPUT));
 
 		////////LIGHTS/////////
-        int light1x = 40;
-        int light2x = 75;
-        int downOffset1 = 20;
-        int downOffset2 = 21;
-        int upOffset = -1.75;
+        float light1x = 40;
+        float light2x = 75;
+        float downOffset1 = 20;
+        float downOffset2 = 21;
+        float upOffset = -1.75;
 
         addChild(createLight<SmallLight<BlueLight>>(Vec(light1x, row5Y + downOffset1), module, DivideConquer::DIV8_LIGHT));
         addChild(createLight<SmallLight<BlueLight>>(Vec(light1x, row6Y + downOffset1), module, DivideConquer::DIV64_LIGHT));
