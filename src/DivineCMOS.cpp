@@ -61,54 +61,20 @@ struct DivineCMOS : Module {
 	{
 		if(clockIn1.process(inputs[CLOCK1_INPUT].getVoltage()))
 		{
-            if(stepCount1 == 16) stepCount1 = 1;
-            else stepCount1++;
-
-            if (stepCount1 % 2 == 0)
+            for (int i = 0; i < 4; i++)
             {
-                divBools1[0] = !divBools1[0];
-
-                if (stepCount1 % 4 == 0)
-                {
-                    divBools1[1] = ! divBools1[1];
-
-                    if (stepCount1 % 8 == 0)
-                    {
-                        divBools1[2] = !divBools1[2];
-
-                        if (stepCount1 % 16 == 0)
-                        {
-                            divBools1[3] = ! divBools1[3];
-                        }
-                    }
-                }
-            } 
+                divBools1[i] = !divBools1[i];
+                if(divBools1[i]) break;
+            }
 		}
 
         if(clockIn2.process(inputs[CLOCK2_INPUT].getVoltage()))
 		{
-            if(stepCount2 == 16) stepCount2 = 1;
-            else stepCount2++;
-
-            if (stepCount2 % 2 == 0)
+            for (int i = 0; i < 4; i++)
             {
-                divBools2[0] = !divBools2[0];
-
-                if (stepCount2 % 4 == 0)
-                {
-                    divBools2[1] = ! divBools2[1];
-
-                    if (stepCount2 % 8 == 0)
-                    {
-                        divBools2[2] = !divBools2[2];
-
-                        if (stepCount2 % 16 == 0)
-                        {
-                            divBools2[3] = ! divBools2[3];
-                        }
-                    }
-                }
-            } 
+                divBools2[i] = !divBools2[i];
+                if(divBools2[i]) break;
+            }
 		}
 
         float totalMix = 0.0f;
