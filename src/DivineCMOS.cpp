@@ -49,8 +49,6 @@ struct DivineCMOS : Module {
     bool divBools2[4] = {false, false, false, false};
     bool outBools[4] = {false, false, false, false};
     float outMix[4] = {false, false, false, false};
-    int stepCount1 = 0;
-    int stepCount2 = 0;
 
 	NLCTrigger clockIn1, clockIn2;
 
