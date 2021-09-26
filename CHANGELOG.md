@@ -1,3 +1,6 @@
+### 2.0.0
+- Build compatible with Rack 2.
+
 ### 1.4.1
 - Fix Divide & Conquer by replacing digital shortcuts with analog models.
 - Divine CMOS's clock divider was running twice as slow as it should have. Hopefully no one reads this! That would be very embarassing ;)
