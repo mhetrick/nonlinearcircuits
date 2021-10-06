@@ -1,5 +1,7 @@
 ### 2.0.0
 - Build compatible with Rack 2.
+- Fixed missing param labels on Segue.
+- Fix 4Seq's clock divider also working poorly.
 
 ### 1.4.1
 - Fix Divide & Conquer by replacing digital shortcuts with analog models.
