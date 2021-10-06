@@ -30,7 +30,7 @@ jobs:
         - {
             name: Windows,
             os: windows-latest,
-            arch: lin,
+            arch: win,
             prepare-os: export CC=gcc
           }
     steps:
