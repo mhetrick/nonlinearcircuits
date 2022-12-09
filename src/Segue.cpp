@@ -30,10 +30,10 @@ struct Segue : Module
 	Segue()
 	{
 		config(NUM_PARAMS, NUM_INPUTS, NUM_OUTPUTS);
-		configParam(Segue::AMOUNT_PARAM, 0.0, 5.0, 2.5, "");
-		configParam(Segue::SCALE_PARAM, -1.0, 1.0, 1.0, "");
-		configParam(Segue::GAIN1_PARAM, 0.0, 1.0, 1.0, "");
-		configParam(Segue::GAIN2_PARAM, 0.0, 1.0, 1.0, "");
+		configParam(Segue::AMOUNT_PARAM, 0.0, 5.0, 2.5, "Initial Pan Position");
+		configParam(Segue::SCALE_PARAM, -1.0, 1.0, 1.0, "Pan CV Depth");
+		configParam(Segue::GAIN1_PARAM, 0.0, 1.0, 1.0, "Gain X");
+		configParam(Segue::GAIN2_PARAM, 0.0, 1.0, 1.0, "Gain Y");
 	}
 
     void process(const ProcessArgs &args) override;

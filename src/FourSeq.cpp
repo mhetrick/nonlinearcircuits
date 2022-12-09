@@ -46,7 +46,6 @@ struct FourSeq : Module {
 	float steps[4] = {0.0f, 0.0f, 0.0f, 0.0f};
 
     int xStep = 0;
-    int stepCount = 0;
 
 	NLCTrigger clockIn;
 
@@ -62,27 +61,10 @@ struct FourSeq : Module {
             if(xStep > 3) xStep = 0;
             else if (xStep < 0) xStep = 3;
 
-            if(stepCount == 16) stepCount = 1;
-            else stepCount++;
-
-            if (stepCount % 2 == 0)
+            for(int i = 0; i < 4; i++)
             {
-                divBools[0] = !divBools[0];
-
-                if (stepCount % 4 == 0)
-                {
-                    divBools[1] = ! divBools[1];
-
-                    if (stepCount % 8 == 0)
-                    {
-                        divBools[2] = !divBools[2];
-
-                        if (stepCount % 16 == 0)
-                        {
-                            divBools[3] = ! divBools[3];
-                        }
-                    }
-                }
+                divBools[i] = !divBools[i];
+                if(divBools[i]) break;
             }
             
 		}
