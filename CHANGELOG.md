@@ -1,3 +1,7 @@
+### 2.0.1
+- CMake build system support for developers.
+- Add Apple Silicon support to build script.
+
 ### 2.0.0
 - Build compatible with Rack 2.
 - Fixed missing param labels on Segue.

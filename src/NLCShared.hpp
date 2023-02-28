@@ -1,7 +1,6 @@
 #pragma once
 
 #include "rack.hpp"
-#include "engine/Engine.hpp"
 
 
 float LERP(const float _amountOfA, const float _inA, const float _inB);
@@ -33,7 +32,7 @@ struct NLCTrigger
 		return false;
 	}
 
-	bool isHigh() {
+	bool isHigh() const {
 		return state;
 	}
 };
