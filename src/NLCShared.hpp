@@ -52,7 +52,7 @@ public:
         lastInput = _in;
     }
     
-    float process()
+    float process() const
     {
         float rectifiedInput = rack::math::clamp(lastInput + sense, 0.0f, 10.0f);
 
@@ -97,8 +97,8 @@ public:
         negativeOutput = diff < 0.0f ? diff : 0.0f;
     }
 
-    float getPositiveOutput(){return positiveOutput;}
-    float getNegativeOutput(){return negativeOutput;}
+    float getPositiveOutput() const {return positiveOutput;}
+    float getNegativeOutput() const {return negativeOutput;}
 
 private:
     float lastPositiveInput = 0.0f;

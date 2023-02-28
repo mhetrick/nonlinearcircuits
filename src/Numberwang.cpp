@@ -27,7 +27,7 @@ struct Numberwang : Module {
 	}
 
     NLCTrigger clockIn;
-    float outs[16];
+    float outs[16]{};
 
     void numberwangProcess()
     {
@@ -62,7 +62,7 @@ struct Numberwang : Module {
         for (int i = 0; i < 16; i++)
         {   
             outputs[i].setVoltage(outs[i]);
-            lights[i].setSmoothBrightness(outs[i] * 0.2, args.sampleTime);
+            lights[i].setSmoothBrightness(outs[i] * 0.2f, args.sampleTime);
         }
 	}
 };

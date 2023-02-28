@@ -51,7 +51,7 @@ struct Cipher : Module {
 	bool bits[8] = {true, false, false, false, false, false, false, false};
     bool bitsOut[8] = {true, false, false, false, false, false, false, false};
     bool serialBit = false;
-    float cv1Value, cv2Value, cv3Value, cv4Value;
+    float cv1Value = 0.0f, cv2Value = 0.0f, cv3Value = 0.0f, cv4Value = 0.0f;
 
 	NLCTrigger clockIn;
 
@@ -219,11 +219,11 @@ struct CipherWidget : ModuleWidget {
         const float inJacksX = 7.0f;
         const float outJacksX = 56.75f;
         const float bottomJacksY = 106.0f;
-        int spacing = 10.0f;
+        float spacing = 10.0f;
 
         for (int i = 0; i < 4; i++)
         {
-            int xOffset = i * spacing;
+            float xOffset = i * spacing;
             addInput(createInput<PJ301MPort>(mm2px(Vec(inJacksX + xOffset, bottomJacksY)), module, Cipher::CLOCK_INPUT + i));
             addOutput(createOutput<PJ301MPort>(mm2px(Vec(outJacksX + xOffset, bottomJacksY)), module, Cipher::CV1_OUTPUT + i));
         }

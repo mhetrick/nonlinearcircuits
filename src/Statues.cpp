@@ -21,7 +21,7 @@ struct Statues : Module {
 		NUM_LIGHTS = NUM_OUTPUTS*2
 	};
 
-    float outs[8];
+    float outs[8]{};
 
 	Statues() {
 		config(NUM_PARAMS, NUM_INPUTS, NUM_OUTPUTS, NUM_LIGHTS);

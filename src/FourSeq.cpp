@@ -113,11 +113,11 @@ struct FourSeqWidget : ModuleWidget {
         const float divJacksY = 96.0f;
         float lightX = 4.5f;
         float lightY = 108.0f;
-        int spacing = 10.0f;
+        float spacing = 10.0f;
 
         for (int i = 0; i < 4; i++)
         {
-            int xOffset = i * spacing;
+            float xOffset = i * spacing;
             addOutput(createOutput<PJ301MPort>(mm2px(Vec(divJacksX + xOffset, divJacksY)), module, FourSeq::OUT1_OUTPUT + i));
             addChild(createLight<SmallLight<BlueLight>>(mm2px(Vec(lightX + xOffset, lightY)), module, FourSeq::OUT1_LIGHT + i));
         }

@@ -41,12 +41,12 @@ struct SquidAxon : Module {
 	float nonlinearFeedback = 0.0f;
 	NLCTrigger clockIn;
 
-	float squidDiode(const float _input)
+	static float squidDiode(const float _input)
 	{
 		static float diodeScalar = 0.0432477f * 28.0f * 10.0f;
 		float sign = _input > 0.0f ? 1.0f : -1.0f;
 
-		const float diodeIn = std::abs(_input * 0.1f) - 0.667;
+		const float diodeIn = std::fabs(_input * 0.1f) - 0.667f;
 		const float diodeStage2 = diodeIn + std::abs(diodeIn);
 		const float diodeStage3 = diodeStage2 * diodeStage2 * sign;
 
@@ -122,7 +122,7 @@ struct SquidAxonWidget : ModuleWidget {
 		const float jackX4 = jackX3 + jackSpace;
 
 		const float inputHeight = 78.7f;
-		const float outputHeight = inputHeight + 15.8;
+		const float outputHeight = inputHeight + 15.8f;
 
 		addInput(createInput<PJ301MPort>(mm2px(Vec(jackX1, inputHeight)), module, SquidAxon::CLOCK_INPUT));
 		addInput(createInput<PJ301MPort>(mm2px(Vec(jackX2, inputHeight)), module, SquidAxon::IN1_INPUT));

@@ -138,11 +138,11 @@ struct DivineCMOSWidget : ModuleWidget {
         const float divJacksY = 102.75f;
         float lightX = 4.5f;
         float lightY = 113.0f;
-        int spacing = 10.0f;
+        float spacing = 10.0f;
 
         for (int i = 0; i < 4; i++)
         {
-            int xOffset = i * spacing;
+            float xOffset = i * spacing;
             addOutput(createOutput<PJ301MPort>(mm2px(Vec(divJacksX + xOffset, divJacksY)), module, DivineCMOS::OUT1_OUTPUT + i));
             addChild(createLight<SmallLight<BlueLight>>(mm2px(Vec(lightX + xOffset, lightY)), module, DivineCMOS::OUT1_LIGHT + i));
         }

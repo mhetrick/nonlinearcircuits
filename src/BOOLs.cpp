@@ -27,7 +27,7 @@ bool boolsXOR(bool _in1, bool _in2)
 
 bool boolsXNOR(bool _in1, bool _in2)
 {
-	return !(_in1 != _in2);
+	return _in1 == _in2;
 }
 
 struct BOOLs : Module {
@@ -121,7 +121,7 @@ struct BOOLs : Module {
 		}
 	}
 
-	LogicMode getLogicMode()
+	LogicMode getLogicMode() const
 	{
 		return currentMode;
 	}
@@ -259,8 +259,8 @@ struct BOOLsWidget : ModuleWidget {
 		addOutput(createOutput<PJ301MPort>(mm2px(Vec(outJacks, bottomJacksHeight)), module, BOOLs::STEP_OUTPUT));
 
 		////////LIGHTS/////////
-		const float lightX = outJacks + 9.5;
-		const float lightOffset = -0.10;
+		const float lightX = outJacks + 9.5f;
+		const float lightOffset = -0.10f;
 		addChild(createLight<SmallLight<GreenLight>>(mm2px(Vec(lightX, jack1 + lightOffset)), module, BOOLs::OUT1_LIGHT));
 		addChild(createLight<SmallLight<GreenLight>>(mm2px(Vec(lightX, jack2 + lightOffset)), module, BOOLs::OUT2_LIGHT));
 		addChild(createLight<SmallLight<GreenLight>>(mm2px(Vec(lightX, jack3 + lightOffset)), module, BOOLs::OUT3_LIGHT));

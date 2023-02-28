@@ -103,7 +103,7 @@ struct DoubleNeuronWidget : ModuleWidget {
 		const float panelWidth = 5.08*12;
 
 		const float neuron1x = 9.5f;
-		const float neuron2x = panelWidth - 21.5;
+		const float neuron2x = panelWidth - 21.5f;
 		const float senseHeight = 11.0f;
 		const float responseHeight = 34.6f;
 
@@ -119,9 +119,9 @@ struct DoubleNeuronWidget : ModuleWidget {
 
 		const float neuronRow1Height = panelHeight - 72.5f;
 		const float neuronRow2Height = panelHeight - 60.5f;
-		const float diffRectInNegHeight = panelHeight - 46.3;
-		const float diffRectInPosHeight = panelHeight - 33.0;
-		const float diffRectOutHeight = panelHeight - 21.5;
+		const float diffRectInNegHeight = panelHeight - 46.3f;
+		const float diffRectInPosHeight = panelHeight - 33.0f;
+		const float diffRectOutHeight = panelHeight - 21.5f;
 
 		addInput(createInput<PJ301MPort>(mm2px(Vec(jackX1, neuronRow1Height)), module, DoubleNeuron::NEURON1IN1_INPUT));
 		addInput(createInput<PJ301MPort>(mm2px(Vec(jackX2, neuronRow1Height)), module, DoubleNeuron::NEURON1IN2_INPUT));
