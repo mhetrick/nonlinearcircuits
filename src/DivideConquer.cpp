@@ -57,6 +57,29 @@ struct DivideConquer : Module {
 	DivideConquer() 
     {
 		config(NUM_PARAMS, NUM_INPUTS, NUM_OUTPUTS, NUM_LIGHTS);
+
+        configInput(CLOCK1_INPUT, "Clock 1");
+        configInput(CLOCK3_INPUT, "Clock 3");
+        configInput(CLOCK5_INPUT, "Clock 5");
+        configInput(CLOCK7_INPUT, "Clock 7");
+
+        configOutput(DIV2_OUTPUT, "Divide by 2");
+        configOutput(DIV4_OUTPUT, "Divide by 4");
+        configOutput(DIV8_OUTPUT, "Divide by 8");
+        configOutput(DIV16_OUTPUT, "Divide by 16");
+        configOutput(DIV32_OUTPUT, "Divide by 32");
+        configOutput(DIV64_OUTPUT, "Divide by 64");
+        configOutput(DIV128_OUTPUT, "Divide by 128");
+        configOutput(DIV256_OUTPUT, "Divide by 256");
+
+        configOutput(DIV3_OUTPUT, "Divide by 3");
+        configOutput(DIV3DIV2_OUTPUT, "Divide by 3/2");
+
+        configOutput(DIV5_OUTPUT, "Divide by 5");
+        configOutput(DIV5DIV2_OUTPUT, "Divide by 5/2");
+
+        configOutput(DIV7_OUTPUT, "Divide by 7");
+        configOutput(DIV7DIV2_OUTPUT, "Divide by 7/2");
 	}
 
 	NLCTrigger clockIn1;
@@ -148,25 +171,25 @@ struct DivideConquer : Module {
         if(clockIn1.process(mainClock))
         {
             div2 = !div2;
-            if(!div2)
+            if(div2)
             {
                 div4 = !div4;
-                if(!div4)
+                if(div4)
                 {
                     div8 = !div8;
-                    if(!div8)
+                    if(div8)
                     {
                         div16 = !div16;
-                        if(!div16)
+                        if(div16)
                         {
                             div32 = !div32;
-                            if(!div32)
+                            if(div32)
                             {
                                 div64 = !div64;
-                                if(!div64)
+                                if(div64)
                                 {
                                     div128 = !div128;
-                                    if(!div128)
+                                    if(div128)
                                     {
                                         div256 = !div256;
                                     }
