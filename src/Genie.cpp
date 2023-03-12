@@ -59,7 +59,29 @@ struct Genie : Module {
         configParam(Genie::NEURON1IN_PARAM, 0.0, 1.0, 0.0, "In Gain 1");
         configParam(Genie::NEURON2IN_PARAM, 0.0, 1.0, 0.0, "In Gain 2");
         configParam(Genie::NEURON3IN_PARAM, 0.0, 1.0, 0.0, "In Gain 3");
-	}
+
+        configInput(NEURON1IN1_INPUT, "Neuron 1, 1");
+        configInput(NEURON1IN2_INPUT, "Neuron 1, 2");
+
+        configInput(NEURON2IN1_INPUT, "Neuron 2, 1");
+        configInput(NEURON2IN2_INPUT, "Neuron 2, 2");
+
+        configInput(NEURON3IN1_INPUT, "Neuron 3, 1");
+        configInput(NEURON3IN2_INPUT, "Neuron 3, 2");
+
+        configInput(NEURON12IN1_INPUT, "Neurons 1 & 2, 1");
+        configInput(NEURON12IN2_INPUT, "Neurons 1 & 2, 2");
+
+        configInput(NEURON23IN1_INPUT, "Neurons 3 & 4, 1");
+        configInput(NEURON23IN2_INPUT, "Neurons 3 & 4, 2");
+
+        configOutput(NEURON1_OUTPUT, "Neuron 1");
+        configOutput(NEURON2_OUTPUT, "Neuron 2");
+        configOutput(NEURON3_OUTPUT, "Neuron 3");
+
+        configOutput(DIFFRECT_NEG_OUTPUT, "Diff-Rect, Negative");
+        configOutput(DIFFRECT_POS_OUTPUT, "Diff-Rect, Positive");
+    }
 
 	NLCNeuron neuron1, neuron2, neuron3;
 	NLCDiffRect diffrect;

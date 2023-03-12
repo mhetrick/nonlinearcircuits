@@ -40,7 +40,18 @@ struct FourSeq : Module {
         configParam(FourSeq::STEP2_PARAM, 0.0, 5.0, 0.0, "Step x1/y2");
         configParam(FourSeq::STEP3_PARAM, 0.0, 5.0, 0.0, "Step x2/y1");
         configParam(FourSeq::STEP4_PARAM, 0.0, 5.0, 0.0, "Step x3/y0");
-	}
+
+        configInput(CLOCK_INPUT, "Clock");
+        configInput(DIR_INPUT, "Direction");
+
+        configOutput(OUT1_OUTPUT, "1");
+        configOutput(OUT2_OUTPUT, "2");
+        configOutput(OUT3_OUTPUT, "3");
+        configOutput(OUT4_OUTPUT, "4");
+
+        configOutput(X_OUTPUT, "X");
+        configOutput(Y_OUTPUT, "Y");
+    }
 
 	bool divBools[4] = {false, false, false, false};
 	float steps[4] = {0.0f, 0.0f, 0.0f, 0.0f};

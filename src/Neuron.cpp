@@ -37,7 +37,22 @@ struct Neuron : Module {
 		configParam(Neuron::NEURON1SENSE_PARAM, 0.0, 5.0, 0.0, "Sense 1");
 
 		configParam(Neuron::NEURON1RESPONSE_PARAM, 1.0, 10.0, 1.0, "Response 1");
-	}
+
+        configInput(NEURONIN1_INPUT, "Neuron, 1");
+        configInput(NEURONIN2_INPUT, "Neuron, 2");
+        configInput(NEURONIN3_INPUT, "Neuron, 3");
+
+        configInput(DIFFRECT1NEG1_INPUT, "Diff-Rect, Negative 1");
+        configInput(DIFFRECT1NEG2_INPUT, "Diff-Rect, Negative 2");
+        configInput(DIFFRECT1POS1_INPUT, "Diff-Rect, Positive 1");
+        configInput(DIFFRECT1POS2_INPUT, "Diff-Rect, Positive 2");
+
+
+        configOutput(NEURON1_OUTPUT, "Neuron");
+
+        configOutput(DIFFRECT1NEG_OUTPUT, "Diff-Rect, Negative");
+        configOutput(DIFFRECT1POS_OUTPUT, "Diff-Rect, Positive");
+    }
 
 	NLCNeuron neuron1, neuron2;
 	NLCDiffRect diffrect1, diffrect2;

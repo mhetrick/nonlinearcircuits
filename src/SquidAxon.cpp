@@ -33,7 +33,18 @@ struct SquidAxon : Module {
 
 		configParam(SquidAxon::NLFEEDBACK_PARAM, 0.0, 4.0, 0.0, "Nonlinear Feedback");
 		configParam(SquidAxon::IN3FEEDBACK_PARAM, 0.0, 1.0, 0.0, "In 3 + Feedback");
-	}
+
+        configInput(IN1_INPUT, "1");
+        configInput(IN2_INPUT, "2");
+        configInput(IN3_INPUT, "3/Feedback");
+
+        configInput(CLOCK_INPUT, "Clock");
+
+        configOutput(OUT1_OUTPUT, "1");
+        configOutput(OUT2_OUTPUT, "2");
+        configOutput(OUT3_OUTPUT, "3");
+        configOutput(OUT4_OUTPUT, "4");
+    }
 
 	int stage = 0;
 	float outs[4] = {0.0f, 0.0f, 0.0f, 0.0f};
