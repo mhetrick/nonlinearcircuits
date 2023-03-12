@@ -1,6 +1,8 @@
 ### 2.0.1
 - CMake build system support for developers.
 - Add Apple Silicon support to build script.
+- Add input and output port labels.
+- Fix phase of Divide and Conquer even clocks.
 
 ### 2.0.0
 - Build compatible with Rack 2.

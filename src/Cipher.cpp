@@ -44,8 +44,29 @@ struct Cipher : Module {
 		NUM_LIGHTS
 	};
 
-	Cipher() {
+	Cipher()
+    {
 		config(NUM_PARAMS, NUM_INPUTS, NUM_OUTPUTS, NUM_LIGHTS);
+
+        configInput(CLOCK_INPUT, "Clock");
+        configInput(DATA1_INPUT, "Data 1");
+        configInput(DATA2_INPUT, "Data 2");
+        configInput(STROBE_INPUT, "Strobe");
+
+        configOutput(SERIAL_OUTPUT, "Super Serial");
+        configOutput(CV1_OUTPUT, "CV 1");
+        configOutput(CV2_OUTPUT, "CV 2");
+        configOutput(CV3_OUTPUT, "CV 3");
+        configOutput(CV4_OUTPUT, "CV 4");
+
+        configOutput(OOO_OUTPUT, "OOO Output");
+        configOutput(OOX_OUTPUT, "OOX Output");
+        configOutput(OXO_OUTPUT, "OXO Output");
+        configOutput(OXX_OUTPUT, "OXX Output");
+        configOutput(XOO_OUTPUT, "XOO Output");
+        configOutput(XOX_OUTPUT, "XOX Output");
+        configOutput(XXO_OUTPUT, "XXO Output");
+        configOutput(XXX_OUTPUT, "XXX Output");
 	}
 
 	bool bits[8] = {true, false, false, false, false, false, false, false};

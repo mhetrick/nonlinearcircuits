@@ -77,6 +77,20 @@ struct BOOLs : Module {
 		config(NUM_PARAMS, NUM_INPUTS, NUM_OUTPUTS, NUM_LIGHTS);
 
 		configParam(BOOLs::SLEW_PARAM, 0.0, 1.0, 0.0, "Slew");
+
+        configInput(IN1_INPUT, "1");
+        configInput(IN2_INPUT, "2");
+        configInput(IN3_INPUT, "3");
+        configInput(IN4_INPUT, "4");
+        configInput(SAMPLE_INPUT, "Sample");
+
+        configOutput(OUT1_OUTPUT, "1");
+        configOutput(OUT2_OUTPUT, "2");
+        configOutput(OUT3_OUTPUT, "3");
+        configOutput(OUT4_OUTPUT, "4");
+
+        configOutput(SLEW_OUTPUT, "Slew");
+        configOutput(STEP_OUTPUT, "Step");
 	}
 
 	bool ins[4] = {false, false, false, false};

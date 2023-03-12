@@ -43,6 +43,17 @@ struct DivineCMOS : Module {
         configParam(DivineCMOS::DIV8_PARAM, 0.0, 5.0, 0.0, "Div 8 Gain");
         configParam(DivineCMOS::DIV16_PARAM, 0.0, 5.0, 0.0, "Div 16 Gain");
         configParam(DivineCMOS::SLEW_PARAM, 0.0, 1.0, 0.0, "Slew");
+
+        configInput(CLOCK1_INPUT, "Clock 1");
+        configInput(CLOCK2_INPUT, "Clock 2");
+
+        configOutput(OUT1_OUTPUT, "1");
+        configOutput(OUT2_OUTPUT, "2");
+        configOutput(OUT3_OUTPUT, "3");
+        configOutput(OUT4_OUTPUT, "4");
+
+        configOutput(MAIN_OUTPUT, "Main");
+        configOutput(SLEW_OUTPUT, "Slew");
 	}
 
 	bool divBools1[4] = {false, false, false, false};

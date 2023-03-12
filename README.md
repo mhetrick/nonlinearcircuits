@@ -25,14 +25,14 @@ The Diff-Rect (Difference Rectifier) is another creative mixer. The two "+" inpu
 
 If this seems complicated, just experiment! These modules were designed for fun, not for rigorous analysis.
 
-![Double Neuron](./neuron.png)
+![Double Neuron](./images/neuron.png)
 
 ### Squid Axon
 This is a three channel mixer connected to a shift register of sorts. Unlike most shift registers, OUT 1 holds its value until OUT 4 has received its value. There are two feedback controls. OUT 4 is normalled to IN 3, so if nothing is connected to IN 3, it is a feedback input. The other feedback control is nonlinear and always available. This feedback path runs through a diode simulator, so it behaves much differently than the other feedback control.
 
 To use: plug any signal into the CLOCK input. Whenever this signals goes above 1V, a clock will fire. Plug any other signals into IN 1 and IN 2. Keep IN 3 unplugged if you want to use the regular FEEDBACK control.
 
-![Squid Axon](./squid.png)
+![Squid Axon](./images/squid.png)
 
 ### BOOLs
 This is a four channel logic jumbler. The most common way to use this would be to plug 4 gates into the 4 inputs and derive logical combinations on the outputs. However, the inputs accept any signal (audio, LFOs, envelopes, you name it) and will decide that they are active if their value is above 1 volt.
@@ -43,32 +43,32 @@ Finally, if a cable is plugged into the SAMPLE input, the four output gates will
 
 Right-click on the panel to select the active logic mode: OR, AND, XOR, NOR, NAND, XNOR
 
-![BOOLs](./bools.png)
+![BOOLs](./images/bools.png)
 
 ### Let's Splosh
 This is a 4-input, 16-output master of signal jumbling. Essentially, four inputs are used in 8 different Diff-Rects (see the description under the Neuron above). The left half of the module contains the positive outputs, while the right half is negative. Try throwing in four LFOs of different frequencies as a starter patch. It's a lot of fun!
 
-![Let's Splosh](./splosh.png)
+![Let's Splosh](./images/splosh.png)
 
 ### 4Seq
 This is a simple sequencer with a deceiving amount of depth. There are two sequences: X and Y. Y is always the opposite step of X and counting in the opposite direction (so if X is step 0, Y is step 3; if X is step 1, Y is step 2). There is a gate input that reverses the count direction while the gate is above 1V. Finally, the bottom section is a clock divider that divides the incoming clock. Try plugging the clock divider's outputs into the direction input!
 
-![4Seq](./4seq.png)
+![4Seq](./images/4seq.png)
 
 ### GENiE
 If you thought the Double Neuron was crazy, this is essentially a triple Neuron pre-patched with a feedback network. The outputs of the three neurons are normalled to each other's inputs (as indicated on the panel). Those inputs have an additional IN control on top to control the gain. Because of the extreme amount of feedback, changing VCV's sampling rate can wildly alter the sound of this.
 
-![GENiE](./genie.png)
+![GENiE](./images/genie.png)
 
 ### Statues
 This is a 1-in 8-out switch with two major twists. First, the output is determined by the state of three gate inputs. These gate inputs essentially create a 3-bit integer (1 through 8) to choose the output. Second, when an output becomes inactive, it holds its previous value. This can be a lot more useful than a switch where a modulation output is suddenly dropped to zero!
 
-![Statues](./statues.png)
+![Statues](./images/statues.png)
 
 ### Numberwang
 Four gate inputs make 16 gate outputs. That's Numberwang!
 Each of the four gate outputs represents a bit in a 4-bit number (1-16). Depending on the values of the incoming gates, the corresponding output gate on the matrix will be active. Try plugging in four LFOs at different frequencies and watch the patterns.
-![Numberwang](./numberwang.png)
+![Numberwang](./images/numberwang.png)
 
 ### Segue
 This module is very similar to HetrickCV's Flip Pan. It pans two input signals by flipping their channels (i.e. the left input is panned right, the right input is panned left). This sounds simple, but it is very versatile.
