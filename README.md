@@ -92,8 +92,11 @@ The main clock input (on the bottom section) is normalled to the top three clock
 
 To achieve more divisions, you can plug this module into itself. For instance, to divide by 14, plug the /2 output into the /7 clock input and monitor the /7 output.
 
+
+### Router
+This is a four-channel signal toggler. The knobs set values from -10 to +10 volts. If the signals present at the CV inputs are lower than the set voltage, then the corresponding channel will be active.
+
 ### Future Additions
 - 1050 MixSeq
 - 32:1
-- Router
 

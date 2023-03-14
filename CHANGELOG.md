@@ -1,3 +1,6 @@
+### 2.1.0
+- Add Router
+
 ### 2.0.1
 - CMake build system support for developers.
 - Add Apple Silicon support to build script.
