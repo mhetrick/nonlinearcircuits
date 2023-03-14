@@ -104,7 +104,7 @@
       "name": "Router",
       "description": "Simple switch. If the CV input is below the knob voltage setting, the output is active. Panel by jk.",
       "tags": [
-        "Switch", "Hardware Clone"
+        "Switch", "Mixer", "Quad", "Hardware Clone"
       ]
     },
     {
