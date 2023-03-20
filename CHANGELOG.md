@@ -1,3 +1,6 @@
+### 2.1.1
+- Fix Router SVG not being found on Linux.
+
 ### 2.1.0
 - Add Router
 
