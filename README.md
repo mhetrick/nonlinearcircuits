@@ -11,6 +11,7 @@ Recommended viewing: [Interview with Nonlinear Circuits by Music Thing Modular](
 - Double Neuron, Let's Splosh!, and BOOLs Panels: [Papernoise](https://www.papernoise.net/) (Hannes Pasqualini)
 - Squid Axon panel: Jason Wehmhoener
 - 4Seq, GENiE, Neuron, Statues, Numberwang panels: jk
+- Sloth Torpor DSP engine: [Don Cross](https://github.com/cosinekitty/sloth)
 
 ## Modules
 
