@@ -117,6 +117,16 @@
       ]
     },
     {
+      "slug": "SlothTorpor",
+      "name": "Sloth Torpor",
+      "description": "Slow chaotic oscillator. DSP engine by Don Cross.",
+      "manualUrl": "https://github.com/mhetrick/nonlinearcircuits",
+      "tags": [
+        "Hardware Clone",
+        "Low-frequency oscillator"
+      ]
+    },
+    {
       "slug": "SquidAxon",
       "name": "Squid Axon",
       "description": "Mixer, Shift Register, and Feedback. Panel by Jason Wehmhoener.",
