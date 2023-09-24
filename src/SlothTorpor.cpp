@@ -44,7 +44,7 @@ struct SlothTorporModule : Module
         configOutput(X_OUTPUT, "Small");
         configOutput(Y_OUTPUT, "Big");
 
-        configParam(CHAOS_KNOB_PARAM, 0.0f, 1.0f, 0.5f, "Chaos");
+        configParam(CHAOS_KNOB_PARAM, 0.0f, 1.0f, 0.5f, "Balance");
 
         outputs[X_OUTPUT].setChannels(1);
         outputs[Y_OUTPUT].setChannels(1);
