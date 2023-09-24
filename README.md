@@ -97,6 +97,22 @@ To achieve more divisions, you can plug this module into itself. For instance, t
 ### Router
 This is a four-channel signal toggler. The knobs set values from -10 to +10 volts. If the signals present at the CV inputs are lower than the set voltage, then the corresponding channel will be active.
 
+### Sloth Torpor
+
+This is a software emulation of the Torpor variant of the NLC module
+[Sloth Chaos](https://www.nonlinearcircuits.com/modules/p/4hp-sloth-chaos).
+Sloth Torpor is a chaotic oscillator that emits two slowly
+changing signals that can be used for modulation or control voltages.
+
+The behavior of this circuit is unpredictable over time,
+but more orderly than random. It is often used as a low
+frequency control voltage in cases where an LFO would be
+too predictable, but a random signal would be too erratic.
+
+Here is an outline of the
+[circuit analysis and implementation notes](https://github.com/cosinekitty/sloth/blob/main/README.md)
+for anyone who is curious about the technical details of this software emulation.
+
 ### Future Additions
 - 1050 MixSeq
 - 32:1
