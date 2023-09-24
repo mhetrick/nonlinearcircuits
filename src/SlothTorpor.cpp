@@ -69,7 +69,7 @@ struct SlothTorporModule : Module
         circuit.setKnobPosition(params[CHAOS_KNOB_PARAM].getValue());
         circuit.update(args.sampleRate);
         outputs[X_OUTPUT].setVoltage(circuit.xVoltage(), 0);
-        outputs[Y_OUTPUT].setVoltage(circuit.xVoltage(), 1);
+        outputs[Y_OUTPUT].setVoltage(circuit.yVoltage(), 0);
     }
 };
 
