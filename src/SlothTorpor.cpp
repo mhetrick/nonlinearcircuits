@@ -80,6 +80,13 @@ struct SlothTorporWidget : ModuleWidget
     {
         setModule(module);
         setPanel(createPanel(asset::plugin(pluginInstance, "res/SlothTorpor.svg")));
+
+        const float knobHeight = 18.3f;
+        addParam(createParam<Davies1900hBlackKnob>(mm2px(Vec(3.8f, knobHeight)), module, SlothTorporModule::CHAOS_KNOB_PARAM));
+
+        const float outputHeight = 95.0f;
+        addOutput(createOutput<PJ301MPort>(mm2px(Vec(1.5f,  outputHeight)), module, SlothTorporModule::Y_OUTPUT));
+        addOutput(createOutput<PJ301MPort>(mm2px(Vec(10.5f, outputHeight)), module, SlothTorporModule::X_OUTPUT));
     }
 };
 
