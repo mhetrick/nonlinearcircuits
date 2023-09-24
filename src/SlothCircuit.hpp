@@ -33,7 +33,7 @@ namespace Analog
 
         // Capacitor values in farads.
         const double C1 = 2.0e-6;
-        const double C2 = 1.0e-6;
+        const double C2 = 1.42e-6;    // schematic says 1uF, but this value acts more "slothy"
         const double C3 = 50.0e-6;
 
         // Resistor values in ohms.
