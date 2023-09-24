@@ -33,7 +33,8 @@ struct SlothTorporModule : Module
 
     enum LightIds
     {
-        INDICATOR_LIGHT,
+        INDICATOR_LIGHT_RED,
+        INDICATOR_LIGHT_GREEN,
         LIGHTS_LEN
     };
 
@@ -70,12 +71,25 @@ struct SlothTorporModule : Module
         circuit.update(args.sampleRate);
         outputs[X_OUTPUT].setVoltage(circuit.xVoltage(), 0);
         outputs[Y_OUTPUT].setVoltage(circuit.yVoltage(), 0);
+        float z = (circuit.zVoltage() >= 0.0) ? 0.8f : 0.0f;
+        lights[INDICATOR_LIGHT_RED].setBrightness(1-z);
+        lights[INDICATOR_LIGHT_GREEN].setBrightness(z);
     }
 };
 
 
+struct RedGreenLightWidget : GrayModuleLightWidget {
+    RedGreenLightWidget()
+    {
+        addBaseColor(nvgRGB(0xff, 0x00, 0x00));
+        addBaseColor(nvgRGB(0x00, 0xff, 0x00));
+    }
+};
+
 struct SlothTorporWidget : ModuleWidget
 {
+    RedGreenLightWidget *indicatorLight{};
+
     explicit SlothTorporWidget(SlothTorporModule* module)
     {
         setModule(module);
@@ -90,6 +104,9 @@ struct SlothTorporWidget : ModuleWidget
         const float outputHeight = 95.0f;
         addOutput(createOutput<PJ301MPort>(mm2px(Vec(1.5f,  outputHeight)), module, SlothTorporModule::Y_OUTPUT));
         addOutput(createOutput<PJ301MPort>(mm2px(Vec(10.5f, outputHeight)), module, SlothTorporModule::X_OUTPUT));
+
+        indicatorLight = createLightCentered<LargeLight<RedGreenLightWidget>>(mm2px(Vec(10.2f, 55.0f)), module, SlothTorporModule::INDICATOR_LIGHT_RED);
+        addChild(indicatorLight);
     }
 };
 
