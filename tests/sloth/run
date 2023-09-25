@@ -1,0 +1,4 @@
+#!/bin/bash
+g++ -O3 -Wall -Werror -o circuit_test -I ../../src circuit_test.cpp || exit 1
+./circuit_test || exit 1
+exit 0

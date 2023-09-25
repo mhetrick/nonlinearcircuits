@@ -1,0 +1,9 @@
+name: Sloth Circuit Tests
+on: [push]
+jobs:
+  SlothTest:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Sloth circuit simulator tests
+      run: cd tests/sloth && ./run
