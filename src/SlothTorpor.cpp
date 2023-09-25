@@ -15,7 +15,7 @@ struct SlothTorporModule : Module
 
     enum ParamIds
     {
-        CHAOS_KNOB_PARAM,
+        BALANCE_KNOB_PARAM,
         PARAMS_LEN
     };
 
@@ -45,7 +45,7 @@ struct SlothTorporModule : Module
         configOutput(X_OUTPUT, "Small");
         configOutput(Y_OUTPUT, "Big");
 
-        configParam(CHAOS_KNOB_PARAM, 0.0f, 1.0f, 0.5f, "Balance");
+        configParam(BALANCE_KNOB_PARAM, 0.0f, 1.0f, 0.5f, "Balance");
 
         outputs[X_OUTPUT].setChannels(1);
         outputs[Y_OUTPUT].setChannels(1);
@@ -67,7 +67,7 @@ struct SlothTorporModule : Module
 
     void process(const ProcessArgs& args) override
     {
-        circuit.setKnobPosition(params[CHAOS_KNOB_PARAM].getValue());
+        circuit.setKnobPosition(params[BALANCE_KNOB_PARAM].getValue());
         circuit.update(args.sampleRate);
         outputs[X_OUTPUT].setVoltage(circuit.xVoltage(), 0);
         outputs[Y_OUTPUT].setVoltage(circuit.yVoltage(), 0);
@@ -99,7 +99,7 @@ struct SlothTorporWidget : ModuleWidget
         addChild(createWidget<ScrewSilver>(Vec(RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
 
         const float knobHeight = 18.3f;
-        addParam(createParam<Davies1900hWhiteKnob>(mm2px(Vec(3.8f, knobHeight)), module, SlothTorporModule::CHAOS_KNOB_PARAM));
+        addParam(createParam<Davies1900hWhiteKnob>(mm2px(Vec(3.8f, knobHeight)), module, SlothTorporModule::BALANCE_KNOB_PARAM));
 
         const float outputHeight = 95.0f;
         addOutput(createOutput<PJ301MPort>(mm2px(Vec(1.5f,  outputHeight)), module, SlothTorporModule::Y_OUTPUT));

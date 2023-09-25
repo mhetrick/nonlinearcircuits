@@ -28,9 +28,6 @@ namespace Analog
         double y1{};    // voltage at the output of op-amp U4
         double z1{};    // voltage at the output of op-amp U2
 
-        // The iteration safety limit for the convergence solver.
-        const int iterationLimit = 5;
-
         // Capacitor values in farads.
         const double C1 = 2.0e-6;
         const double C2 = 1.42e-6;    // schematic says 1uF, but this value acts more "slothy"
@@ -63,6 +60,9 @@ namespace Analog
         }
 
     public:
+        // The iteration safety limit for the convergence solver.
+        const int iterationLimit = 5;
+
         TorporSlothCircuit()
         {
             initialize();
@@ -109,7 +109,7 @@ namespace Analog
             return z1;
         }
 
-        int update(float sampleRateHz)
+        int update(float sampleRateHz)      // returns the number of iterations needed for convergence [1..iterationLimit]
         {
             // Start with crude estimates that the voltage variables remain constant over the time interval.
             double xm = x1;

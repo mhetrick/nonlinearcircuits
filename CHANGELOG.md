@@ -1,3 +1,6 @@
+### 2.2.0
+- Add Sloth Torpor.
+
 ### 2.1.1
 - Fix Router SVG not being found on Linux.
 
