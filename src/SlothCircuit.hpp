@@ -36,6 +36,13 @@ namespace Analog
         double y1{};    // voltage at the output of op-amp U4
         double z1{};    // voltage at the output of op-amp U2
 
+        // Node voltage increments. We remember these across samples
+        // to form an initial guess about how the voltage will change
+        // in the next sample. This improves efficiency by converging faster.
+        double dx{};
+        double dw{};
+        double dy{};
+
         // Capacitor values in farads.
         const double C1 = 2.0e-6;
         const double C2 = 1.42e-6;    // schematic says 1uF, but this value acts more "slothy"
@@ -79,9 +86,8 @@ namespace Analog
         void initialize()
         {
             w1 = w0;
-            x1 = 0.0;
-            y1 = 0.0;
-            z1 = 0.0;
+            x1 = y1 = z1 = 0;
+            dx = dw = dy = 0;
         }
 
         void setKnobPosition(double fraction)
@@ -117,28 +123,33 @@ namespace Analog
 
         int update(float sampleRateHz)      // returns the number of iterations needed for convergence [1..iterationLimit]
         {
-            // Start with crude estimates that the voltage variables remain constant over the time interval.
-            double xm = x1;
-            double wm = w1;
-            double zm = z1;
-            double Qm = Q(zm);
-
             double dt = timeDilation / sampleRateHz;
 
-            double ex = 0.0;
-            double ew = 0.0;
-            double ey = 0.0;
+            // Form an initial guess about the mean voltage during the time interval `dt`.
+            // Use linear extrapolation to guess that the voltages will keep changing
+            // at the same rate they did in the previous sample.
+            double xm = x1 + dx/2;
+            double wm = w1 + dw/2;
+            double ym = y1 + dy/2;
+            double zm = -R4*(ym/R5 + U/R8);
+            double Qm = Q(zm);
 
             // Iterate until convergence.
             const double tolerance = 1.0e-12;        // one picovolt
             const double toleranceSquared = tolerance * tolerance;
 
+            double ex, ew, ey;
             for (int iter = 1; true; ++iter)
             {
+                // Remember the previous delta voltages, so we can tell whether we have converged next time.
+                ex = dx;
+                ew = dw;
+                ey = dy;
+
                 // Update the finite changes of the voltage variables after the time interval.
-                double dx = -dt/C1 * (zm/R1 + Qm/R2 + wm/K);
-                double dw = dt/C3*(xm/R6-(1/R6 + 1/K + 1/R7)*wm);
-                double dy = (-dt/(R7*C2)) * wm;
+                dx = -dt/C1 * (zm/R1 + Qm/R2 + wm/K);
+                dw = dt/C3*(xm/R6-(1/R6 + 1/K + 1/R7)*wm);
+                dy = (-dt/(R7*C2)) * wm;
 
                 double x2 = x1 + dx;
                 double w2 = w1 + dw;
@@ -147,24 +158,21 @@ namespace Analog
                 // Assume z changes instantaneously because there is no capacitor the U2 feedback loop.
                 double z2 = -R4*(y2/R5 + U/R8);
 
-                if (iter > 1)
+                // Has the solver converged?
+                // Calculate how much the deltas have changed since last time.
+                double ddx = dx - ex;
+                double ddw = dw - ew;
+                double ddy = dy - ey;
+                double variance = ddx*ddx + ddw*ddw + ddy*ddy;
+                if (variance < toleranceSquared || iter >= iterationLimit)
                 {
-                    // Has the solver converged?
-                    // Calculate how much the deltas have changed since last time.
-                    double ddx = dx - ex;
-                    double ddw = dw - ew;
-                    double ddy = dy - ey;
-                    double variance = ddx*ddx + ddw*ddw + ddy*ddy;
-                    if (variance < toleranceSquared || iter >= iterationLimit)
-                    {
-                        // The solution has converged, or we have hit the iteration safety limit.
-                        // Update the circuit state voltages and return.
-                        x1 = x2;
-                        w1 = w2;
-                        y1 = y2;
-                        z1 = z2;
-                        return iter;
-                    }
+                    // The solution has converged, or we have hit the iteration safety limit.
+                    // Update the circuit state voltages and return.
+                    x1 = x2;
+                    w1 = w2;
+                    y1 = y2;
+                    z1 = z2;
+                    return iter;
                 }
 
                 // We approximate the mean value over the time interval as the average
@@ -184,11 +192,6 @@ namespace Analog
                     double alpha = z1 / (z1 - z2);
                     Qm = alpha*Q(z1) + (1-alpha)*Q(z2);
                 }
-
-                // Remember the previous delta voltages, so we can tell whether we have converged next time.
-                ex = dx;
-                ew = dw;
-                ey = dy;
             }
         }
     };
