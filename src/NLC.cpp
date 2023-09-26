@@ -19,6 +19,8 @@ void init(rack::Plugin *p) {
 	p->addModel(modelNumberwang);
 	p->addModel(modelRouter);
 	p->addModel(modelSegue);
+	p->addModel(modelSlothApathy);
+	p->addModel(modelSlothInertia);
 	p->addModel(modelSlothTorpor);
 	p->addModel(modelSquidAxon);
 	p->addModel(modelStatues);

@@ -127,6 +127,26 @@
       ]
     },
     {
+      "slug": "SlothApathy",
+      "name": "Sloth Apathy",
+      "description": "Very slow chaotic oscillator. DSP engine by Don Cross.",
+      "manualUrl": "https://github.com/mhetrick/nonlinearcircuits",
+      "tags": [
+        "Hardware Clone",
+        "Low-frequency oscillator"
+      ]
+    },
+    {
+      "slug": "SlothInertia",
+      "name": "Sloth Inertia",
+      "description": "Extremely slow chaotic oscillator. DSP engine by Don Cross.",
+      "manualUrl": "https://github.com/mhetrick/nonlinearcircuits",
+      "tags": [
+        "Hardware Clone",
+        "Low-frequency oscillator"
+      ]
+    },
+    {
       "slug": "SquidAxon",
       "name": "Squid Axon",
       "description": "Mixer, Shift Register, and Feedback. Panel by Jason Wehmhoener.",

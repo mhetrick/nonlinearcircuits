@@ -87,13 +87,15 @@ struct SlothModule : Module
 };
 
 
-struct RedGreenLightWidget : GrayModuleLightWidget {
+struct RedGreenLightWidget : GrayModuleLightWidget
+{
     RedGreenLightWidget()
     {
         addBaseColor(nvgRGB(0xff, 0x00, 0x00));
         addBaseColor(nvgRGB(0x00, 0xff, 0x00));
     }
 };
+
 
 template <typename circuit_t>
 struct SlothWidget : ModuleWidget
@@ -123,6 +125,9 @@ struct SlothWidget : ModuleWidget
 };
 
 
+//-------------------------------------------------------------------------------------------------
+// Torpor
+
 using SlothTorporModule = SlothModule<Analog::TorporSlothCircuit>;
 
 struct SlothTorporWidget : SlothWidget<Analog::TorporSlothCircuit>
@@ -134,3 +139,37 @@ public:
 };
 
 Model* modelSlothTorpor = createModel<SlothTorporModule, SlothTorporWidget>("SlothTorpor");
+
+
+//-------------------------------------------------------------------------------------------------
+// Apathy
+
+using SlothApathyModule = SlothModule<Analog::ApathySlothCircuit>;
+
+struct SlothApathyWidget : SlothWidget<Analog::ApathySlothCircuit>
+{
+public:
+    explicit SlothApathyWidget(SlothApathyModule* module)
+        : SlothWidget<Analog::ApathySlothCircuit>(module, "res/SlothApathy.svg")
+        {}
+};
+
+Model* modelSlothApathy = createModel<SlothApathyModule, SlothApathyWidget>("SlothApathy");
+
+
+//-------------------------------------------------------------------------------------------------
+// Inertia
+
+using SlothInertiaModule = SlothModule<Analog::InertiaSlothCircuit>;
+
+struct SlothInertiaWidget : SlothWidget<Analog::InertiaSlothCircuit>
+{
+public:
+    explicit SlothInertiaWidget(SlothInertiaModule* module)
+        : SlothWidget<Analog::InertiaSlothCircuit>(module, "res/SlothInertia.svg")
+        {}
+};
+
+Model* modelSlothInertia = createModel<SlothInertiaModule, SlothInertiaWidget>("SlothInertia");
+
+//-------------------------------------------------------------------------------------------------

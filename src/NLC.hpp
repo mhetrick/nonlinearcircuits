@@ -19,6 +19,8 @@ extern Model *modelNeuron;
 extern Model *modelNumberwang;
 extern Model *modelRouter;
 extern Model *modelSegue;
+extern Model *modelSlothApathy;
+extern Model *modelSlothInertia;
 extern Model *modelSlothTorpor;
 extern Model *modelSquidAxon;
 extern Model *modelStatues;
