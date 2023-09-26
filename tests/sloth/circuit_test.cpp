@@ -3,28 +3,17 @@
 #include "TimeInSeconds.hpp"
 
 
-static bool PerformanceAndStability();
-static bool ButterflyEffect();
-
-int main()
-{
-    return (
-        PerformanceAndStability() &&
-        ButterflyEffect()
-    ) ? 0 : 1;
-}
-
 inline bool CheckVoltage(double v, const char *name, int sample)
 {
     if (!std::isfinite(v))
     {
-        printf("FAILURE - Non-finite value for %s in sample %d", name, sample);
+        printf("FAILURE - Non-finite value for %s in sample %d\n", name, sample);
         return false;
     }
 
-    if (v < -10.0 || v > +10.0)
+    if (v < Analog::QNEG || v > Analog::QPOS)
     {
-        printf("FAILURE - %s = %lg V is out of bounds in sample %d", name, v, sample);
+        printf("FAILURE - %s = %lg V is out of bounds in sample %d\n", name, v, sample);
         return false;
     }
 
@@ -32,9 +21,10 @@ inline bool CheckVoltage(double v, const char *name, int sample)
 }
 
 
-static bool PerformanceAndStability()
+template <typename circuit_t>
+bool PerformanceAndStability(const char *name)
 {
-    Analog::TorporSlothCircuit circuit;
+    circuit_t circuit;
     circuit.setControlVoltage(+0.1);
     circuit.setKnobPosition(0.5);
 
@@ -42,7 +32,7 @@ static bool PerformanceAndStability()
     const int SIMULATION_SECONDS = 3600;
     const int SIMULATION_SAMPLES = SIMULATION_SECONDS * SAMPLE_RATE;
 
-    printf("PerformanceAndStability: Simulating %d seconds of sloth...\n", SIMULATION_SECONDS);
+    printf("PerformanceAndStability(%s): Simulating %d seconds of sloth...\n", name, SIMULATION_SECONDS);
     long iterSum = 0;
     int maxIter = 0;
     double startTime = TimeInSeconds();
@@ -51,7 +41,7 @@ static bool PerformanceAndStability()
         int iter = circuit.update(SAMPLE_RATE);
         if (iter < 1 || iter >= circuit.iterationLimit)
         {
-            printf("PerformanceAndStability: SIMULATION FAILURE at sample %d: unexpected iteration count %d\n", sample, iter);
+            printf("PerformanceAndStability(%s): SIMULATION FAILURE at sample %d: unexpected iteration count %d\n", name, sample, iter);
             return false;
         }
 
@@ -63,21 +53,23 @@ static bool PerformanceAndStability()
         maxIter = std::max(maxIter, iter);
     }
     double elapsedSeconds = TimeInSeconds() - startTime;
-    printf("PerformanceAndStability: Elapsed time = %0.3lf seconds, ratio = %0.6lg, CPU overhead = %lg percent.\n",
+    printf("PerformanceAndStability(%s): Elapsed time = %0.3lf seconds, ratio = %0.6lg, CPU overhead = %lg percent.\n",
+        name,
         elapsedSeconds,
         SIMULATION_SECONDS / elapsedSeconds,
         100.0 * (elapsedSeconds / SIMULATION_SECONDS)
     );
 
     double meanIter = static_cast<double>(iterSum) / SIMULATION_SAMPLES;
-    printf("PerformanceAndStability: Mean iter = %0.16lf, max iter = %d.\n", meanIter, maxIter);
+    printf("PerformanceAndStability(%s): Mean iter = %0.16lf, max iter = %d.\n", name, meanIter, maxIter);
 
-    printf("PerformanceAndStability: PASS\n");
+    printf("PerformanceAndStability(%s): PASS\n", name);
     return true;
 }
 
 
-static bool ButterflyEffect()
+template <typename circuit_t>
+bool ButterflyEffect(const char *name)
 {
     // The hallmark of a chaotic system is that small changes in its
     // inputs will initially have little effect on its output, but
@@ -87,7 +79,7 @@ static bool ButterflyEffect()
     // 2. a circuit with a slight change in CV input
     // 3. a circuit with a slight change in knob setting
 
-    printf("ButterflyEffect: starting\n");
+    printf("ButterflyEffect(%s): starting\n", name);
 
     Analog::TorporSlothCircuit circuit1;
     circuit1.setControlVoltage(+0.1000);
@@ -144,29 +136,42 @@ static bool ButterflyEffect()
         {
             diverge2 = true;
             time2 = static_cast<double>(sample) / SAMPLE_RATE;
-            printf("ButterflyEffect: Circuit 2 diverged at sample %d, time2 = %0.3lf seconds\n", sample, time2);
+            printf("ButterflyEffect(%s): Circuit 2 diverged at sample %d, time2 = %0.3lf seconds\n", name, sample, time2);
         }
 
         if (!diverge3 && dist3 > divergenceThreshold)
         {
             diverge3 = true;
             time3 = static_cast<double>(sample) / SAMPLE_RATE;
-            printf("ButterflyEffect: Circuit 3 diverged at sample %d, time3 = %0.3lf seconds\n", sample, time3);
+            printf("ButterflyEffect(%s): Circuit 3 diverged at sample %d, time3 = %0.3lf seconds\n", name, sample, time3);
         }
     }
 
     if (time2 < 96.7 || time2 > 96.8)
     {
-        printf("ButterflyEffect: UNEXPECTED DIVERGENCE for time3 = %0.3lf seconds\n", time3);
+        printf("ButterflyEffect(%s): UNEXPECTED DIVERGENCE for time3 = %0.3lf seconds\n", name, time3);
         return false;
     }
 
     if (time3 < 82.2 || time3 > 82.3)
     {
-        printf("ButterflyEffect: UNEXPECTED DIVERGENCE for time2 = %0.3lf seconds\n", time2);
+        printf("ButterflyEffect(%s): UNEXPECTED DIVERGENCE for time2 = %0.3lf seconds\n", name, time2);
         return false;
     }
 
-    printf("ButterflyEffect: PASS\n");
+    printf("ButterflyEffect(%s): PASS\n", name);
     return true;
+}
+
+
+int main()
+{
+    using namespace Analog;
+
+    return (
+        PerformanceAndStability<TorporSlothCircuit>("Torpor") &&
+        PerformanceAndStability<ApathySlothCircuit>("Apathy") &&
+        PerformanceAndStability<InertiaSlothCircuit>("Inertia") &&
+        ButterflyEffect<TorporSlothCircuit>("Torpor")
+    ) ? 0 : 1;
 }

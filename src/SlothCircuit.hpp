@@ -15,9 +15,17 @@
 
 namespace Analog
 {
-    class TorporSlothCircuit
+    // Op-amp saturation voltages.
+    // I measured these from my breadboard build of Sloth on the comparator U1.
+    const double QNEG = -10.64;
+    const double QPOS = +11.38;
+
+    class SlothCircuit
     {
     private:
+        const double timeDilation;      // The time dilation factor creates variants that run at different speeds.
+        const double w0;                // Initial charge voltage of C3, which affects initial trajectory.
+
         // Inputs
         double K{};     // the total resistance R3 (fixed) + R9 (variable)
         double U{};     // control voltage fed into the circuit via R8
@@ -47,11 +55,6 @@ namespace Analog
         const double VNEG = -12.0;
         const double VPOS = +12.0;
 
-        // Op-amp saturation voltages.
-        // I measured these from my breadboard build of Sloth on the comparator U1.
-        const double QNEG = -10.64;
-        const double QPOS = +11.38;
-
         double Q(double z)
         {
             // The comparator U1 output responds immediately to the voltage z.
@@ -59,21 +62,24 @@ namespace Analog
             return (z < 0.0) ? QPOS : QNEG;
         }
 
-    public:
-        // The iteration safety limit for the convergence solver.
-        const int iterationLimit = 5;
-
-        TorporSlothCircuit()
+    protected:
+        SlothCircuit(double _timeDilation, double _w0)
+            : timeDilation(_timeDilation)
+            , w0(_w0)
         {
             initialize();
             setKnobPosition(0.0);
             setControlVoltage(0.0);
         }
 
+    public:
+        // The iteration safety limit for the convergence solver.
+        const int iterationLimit = 5;
+
         void initialize()
         {
+            w1 = w0;
             x1 = 0.0;
-            w1 = 0.0;
             y1 = 0.0;
             z1 = 0.0;
         }
@@ -117,7 +123,7 @@ namespace Analog
             double zm = z1;
             double Qm = Q(zm);
 
-            double dt = 1.0 / sampleRateHz;
+            double dt = timeDilation / sampleRateHz;
 
             double ex = 0.0;
             double ew = 0.0;
@@ -185,5 +191,32 @@ namespace Analog
                 ey = dy;
             }
         }
+    };
+
+
+    class TorporSlothCircuit : public SlothCircuit
+    {
+    public:
+        TorporSlothCircuit()
+            : SlothCircuit(1.0, 0.0)
+            {}
+    };
+
+
+    class ApathySlothCircuit : public SlothCircuit
+    {
+    public:
+        ApathySlothCircuit()
+            : SlothCircuit(0.27391343022607395, +0.017)
+            {}
+    };
+
+
+    class InertiaSlothCircuit : public SlothCircuit
+    {
+    public:
+        InertiaSlothCircuit()
+            : SlothCircuit(0.009697118406631193, -0.023)
+            {}
     };
 }
