@@ -83,6 +83,57 @@ struct TripleSlothModule : Module
         configOutput(TORPOR_Z_OUTPUT, "Torpor Z");
         configOutput(NEGATIVE_ZSUM_OUTPUT, "Z−");
         configOutput(POSITIVE_ZSUM_OUTPUT, "Z+");
+
+        for (int oid = APATHY_X_OUTPUT; oid < OUTPUTS_LEN; ++oid)
+            outputs[oid].setChannels(1);
+    }
+
+    void initialize()
+    {
+        circuit.initialize();
+    }
+
+    void onReset(const ResetEvent& e) override
+    {
+        Module::onReset(e);
+        initialize();
+    }
+
+    void process(const ProcessArgs& args) override
+    {
+        using namespace TripleSlothTypes;
+
+        circuit.apathy.setKnobPosition(params[APATHY_KNOB_PARAM].getValue());
+        circuit.torpor.setKnobPosition(params[TORPOR_KNOB_PARAM].getValue());
+        circuit.apathy.setControlVoltage(inputs[APATHY_CV_INPUT].getVoltageSum());
+        circuit.torpor.setControlVoltage(inputs[TORPOR_CV_INPUT].getVoltageSum());
+
+        circuit.update(args.sampleRate);
+
+        outputs[APATHY_X_OUTPUT].setVoltage(circuit.apathy.xVoltage(), 0);
+        outputs[APATHY_Y_OUTPUT].setVoltage(circuit.apathy.yVoltage(), 0);
+        outputs[APATHY_Z_OUTPUT].setVoltage(circuit.apathy.zVoltage(), 0);
+
+        outputs[INERTIA_X_OUTPUT].setVoltage(circuit.inertia.xVoltage(), 0);
+        outputs[INERTIA_Y_OUTPUT].setVoltage(circuit.inertia.yVoltage(), 0);
+        outputs[INERTIA_Z_OUTPUT].setVoltage(circuit.inertia.zVoltage(), 0);
+
+        outputs[TORPOR_X_OUTPUT].setVoltage(circuit.torpor.xVoltage(), 0);
+        outputs[TORPOR_Y_OUTPUT].setVoltage(circuit.torpor.yVoltage(), 0);
+        outputs[TORPOR_Z_OUTPUT].setVoltage(circuit.torpor.zVoltage(), 0);
+
+        float zsum = circuit.zsum();
+        outputs[NEGATIVE_ZSUM_OUTPUT].setVoltage(std::min(0.0f, zsum));
+        outputs[POSITIVE_ZSUM_OUTPUT].setVoltage(std::max(0.0f, zsum));
+
+        lights[APATHY_LIGHT_RED].setBrightness(SlothLedBrightness(-circuit.apathy.yVoltage()));
+        lights[APATHY_LIGHT_GREEN].setBrightness(SlothLedBrightness(+circuit.apathy.yVoltage()));
+
+        lights[INERTIA_LIGHT_RED].setBrightness(SlothLedBrightness(-circuit.inertia.yVoltage()));
+        lights[INERTIA_LIGHT_GREEN].setBrightness(SlothLedBrightness(+circuit.inertia.yVoltage()));
+
+        lights[TORPOR_LIGHT_RED].setBrightness(SlothLedBrightness(-circuit.torpor.yVoltage()));
+        lights[TORPOR_LIGHT_GREEN].setBrightness(SlothLedBrightness(+circuit.torpor.yVoltage()));
     }
 };
 

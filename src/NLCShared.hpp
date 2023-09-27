@@ -116,3 +116,11 @@ struct SlothRedGreenLightWidget : rack::GrayModuleLightWidget
         addBaseColor(nvgRGB(0x00, 0xff, 0x00));
     }
 };
+
+
+inline float SlothLedBrightness(float v)
+{
+    // Turn to full brightness at 2.0 V.
+    // Act like a true diode by lighting up only on positive voltages.
+    return std::max(0.0f, std::min(1.0f, v / 2.0f));
+}

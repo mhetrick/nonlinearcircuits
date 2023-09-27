@@ -64,20 +64,12 @@ struct SlothModule : Module
     void initialize()
     {
         circuit.initialize();
-        circuit.setControlVoltage(+0.1);
     }
 
     void onReset(const ResetEvent& e) override
     {
         Module::onReset(e);
         initialize();
-    }
-
-    static inline float led(float v)
-    {
-        // Turn to full brightness at 2.0 V.
-        // Act like a true diode by lighting up only on positive voltages.
-        return std::max(0.0f, std::min(1.0f, v / 2.0f));
     }
 
     void process(const ProcessArgs& args) override
@@ -88,8 +80,8 @@ struct SlothModule : Module
         circuit.update(args.sampleRate);
         outputs[X_OUTPUT].setVoltage(circuit.xVoltage(), 0);
         outputs[Y_OUTPUT].setVoltage(circuit.yVoltage(), 0);
-        lights[INDICATOR_LIGHT_RED].setBrightness(led(-circuit.yVoltage()));
-        lights[INDICATOR_LIGHT_GREEN].setBrightness(led(circuit.yVoltage()));
+        lights[INDICATOR_LIGHT_RED].setBrightness(SlothLedBrightness(-circuit.yVoltage()));
+        lights[INDICATOR_LIGHT_GREEN].setBrightness(SlothLedBrightness(+circuit.yVoltage()));
     }
 };
 
