@@ -111,6 +111,16 @@ Here is an outline of the [circuit analysis and implementation notes](https://gi
 
 ![Torpor](./images/SlothTorpor.png) ![Apathy](./images/SlothApathy.png) ![Inertia](./images/SlothInertia.png)
 
+### Triple Sloth
+
+Triple Sloth is an emulation of the [Triple Sloth hardware module](https://www.nonlinearcircuits.com/modules/p/triple-sloth). Triple Sloth is a combination of the three individual Sloth modules: Torpor, Apathy, and Inertia. It also adds CV inputs to Torpor and Apathy to subtly affect their chaotic trajectories. Inertia does not have a knob or a CV input. It does what it wants!
+
+The "Z" output is the same as the "Y" output in the single Sloth modules, only inverted.
+
+In addition, Triple Sloth provides "+" and "&minus;" outputs that combine the Z outputs from Apathy, Inertia, and Torpor. The formula for the combined voltage is 1.5*(Torpor Z) &minus; ((Apathy Z) + (Inertia Z)). When the combined Z output is positive, the "+" output sends that voltage, otherwise it sends 0V. When the combined Z output is negative, the "&minus;" output sends that voltage, otherwise it sends 0V.
+
+![Triple Sloth](./images/TripleSloth.png)
+
 ### Future Additions
 - 1050 MixSeq
 - 32:1

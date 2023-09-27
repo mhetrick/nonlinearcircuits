@@ -247,7 +247,7 @@ namespace Analog
 
         double zsum() const
         {
-            return (apathy.zVoltage() + inertia.zVoltage())/4 - torpor.zVoltage()/2;
+            return 1.5*torpor.zVoltage() - (apathy.zVoltage() + inertia.zVoltage());
         }
     };
 }
