@@ -66,6 +66,9 @@ struct TripleSlothModule : Module
 
         config(PARAMS_LEN, INPUTS_LEN, OUTPUTS_LEN, LIGHTS_LEN);
 
+        configParam(APATHY_KNOB_PARAM, 0.0f, 1.0f, 0.5f, "Apathy balance");
+        configParam(TORPOR_KNOB_PARAM, 0.0f, 1.0f, 0.5f, "Torpor balance");
+
         configInput(APATHY_CV_INPUT, "Apathy CV");
         configInput(TORPOR_CV_INPUT, "Torpor CV");
 
@@ -78,7 +81,7 @@ struct TripleSlothModule : Module
         configOutput(TORPOR_X_OUTPUT, "Torpor X");
         configOutput(TORPOR_Y_OUTPUT, "Torpor Y");
         configOutput(TORPOR_Z_OUTPUT, "Torpor Z");
-        configOutput(NEGATIVE_ZSUM_OUTPUT, "Z-");
+        configOutput(NEGATIVE_ZSUM_OUTPUT, "Z−");
         configOutput(POSITIVE_ZSUM_OUTPUT, "Z+");
     }
 };
@@ -98,6 +101,13 @@ struct TripleSlothWidget : ModuleWidget
         addChild(createWidget<ScrewSilver>(Vec(box.size.x - 2 * RACK_GRID_WIDTH, 0)));
         addChild(createWidget<ScrewSilver>(Vec(RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
         addChild(createWidget<ScrewSilver>(Vec(box.size.x - 2 * RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
+
+        addParam(createParamCentered<Davies1900hWhiteKnob>(mm2px(Vec(X1, Y_KNOB)), module, APATHY_KNOB_PARAM));
+        addParam(createParamCentered<Davies1900hWhiteKnob>(mm2px(Vec(X3, Y_KNOB)), module, TORPOR_KNOB_PARAM));
+
+        addChild(createLightCentered<LargeLight<SlothRedGreenLightWidget>>(mm2px(Vec(X1, Y_LED)), module, APATHY_LIGHT_RED));
+        addChild(createLightCentered<LargeLight<SlothRedGreenLightWidget>>(mm2px(Vec(X2, Y_LED)), module, INERTIA_LIGHT_RED));
+        addChild(createLightCentered<LargeLight<SlothRedGreenLightWidget>>(mm2px(Vec(X3, Y_LED)), module, TORPOR_LIGHT_RED));
 
         addInput(createInputCentered<PJ301MPort>(mm2px(Vec(X1, Y_CVIN)), module, APATHY_CV_INPUT));
         addInput(createInputCentered<PJ301MPort>(mm2px(Vec(X3, Y_CVIN)), module, TORPOR_CV_INPUT));

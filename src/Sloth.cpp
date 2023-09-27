@@ -96,8 +96,6 @@ struct SlothModule : Module
 template <typename circuit_t>
 struct SlothWidget : ModuleWidget
 {
-    SlothRedGreenLightWidget *indicatorLight{};
-
     SlothWidget(SlothModule<circuit_t>* module, const char *panelSvgFileName)
     {
         using namespace SlothTypes;
@@ -115,8 +113,7 @@ struct SlothWidget : ModuleWidget
         addOutput(createOutput<PJ301MPort>(mm2px(Vec(1.5f,  outputHeight)), module, Y_OUTPUT));
         addOutput(createOutput<PJ301MPort>(mm2px(Vec(10.5f, outputHeight)), module, X_OUTPUT));
 
-        indicatorLight = createLightCentered<LargeLight<SlothRedGreenLightWidget>>(mm2px(Vec(10.2f, 55.0f)), module, INDICATOR_LIGHT_RED);
-        addChild(indicatorLight);
+        addChild(createLightCentered<LargeLight<SlothRedGreenLightWidget>>(mm2px(Vec(10.2f, 55.0f)), module, INDICATOR_LIGHT_RED));
     }
 };
 
