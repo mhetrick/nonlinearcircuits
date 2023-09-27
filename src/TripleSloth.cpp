@@ -6,9 +6,9 @@
 
 
 */
-
 #include "NLC.hpp"
 #include "SlothCircuit.hpp"
+#include "TripleSlothPanelCoords.hpp"
 
 
 namespace TripleSlothTypes
@@ -66,6 +66,9 @@ struct TripleSlothModule : Module
 
         config(PARAMS_LEN, INPUTS_LEN, OUTPUTS_LEN, LIGHTS_LEN);
 
+        configInput(APATHY_CV_INPUT, "Apathy CV");
+        configInput(TORPOR_CV_INPUT, "Torpor CV");
+
         configOutput(APATHY_X_OUTPUT, "Apathy X");
         configOutput(APATHY_Y_OUTPUT, "Apathy Y");
         configOutput(APATHY_Z_OUTPUT, "Apathy Z");
@@ -75,8 +78,8 @@ struct TripleSlothModule : Module
         configOutput(TORPOR_X_OUTPUT, "Torpor X");
         configOutput(TORPOR_Y_OUTPUT, "Torpor Y");
         configOutput(TORPOR_Z_OUTPUT, "Torpor Z");
-        configOutput(NEGATIVE_ZSUM_OUTPUT, "Z+");
-        configOutput(POSITIVE_ZSUM_OUTPUT, "Z-");
+        configOutput(NEGATIVE_ZSUM_OUTPUT, "Z-");
+        configOutput(POSITIVE_ZSUM_OUTPUT, "Z+");
     }
 };
 
@@ -86,6 +89,7 @@ struct TripleSlothWidget : ModuleWidget
     explicit TripleSlothWidget(TripleSlothModule *module)
     {
         using namespace TripleSlothTypes;
+        using namespace TripleSlothPanel;
 
         setModule(module);
         setPanel(createPanel(asset::plugin(pluginInstance, "res/TripleSloth.svg")));
@@ -94,6 +98,24 @@ struct TripleSlothWidget : ModuleWidget
         addChild(createWidget<ScrewSilver>(Vec(box.size.x - 2 * RACK_GRID_WIDTH, 0)));
         addChild(createWidget<ScrewSilver>(Vec(RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
         addChild(createWidget<ScrewSilver>(Vec(box.size.x - 2 * RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
+
+        addInput(createInputCentered<PJ301MPort>(mm2px(Vec(X1, Y_CVIN)), module, APATHY_CV_INPUT));
+        addInput(createInputCentered<PJ301MPort>(mm2px(Vec(X3, Y_CVIN)), module, TORPOR_CV_INPUT));
+
+        addOutput(createOutputCentered<PJ301MPort>(mm2px(Vec(X1, Y_OUT0)), module, APATHY_X_OUTPUT));
+        addOutput(createOutputCentered<PJ301MPort>(mm2px(Vec(X1, Y_OUT1)), module, APATHY_Y_OUTPUT));
+        addOutput(createOutputCentered<PJ301MPort>(mm2px(Vec(X1, Y_OUT2)), module, APATHY_Z_OUTPUT));
+
+        addOutput(createOutputCentered<PJ301MPort>(mm2px(Vec(X2, Y_OUT0)), module, INERTIA_X_OUTPUT));
+        addOutput(createOutputCentered<PJ301MPort>(mm2px(Vec(X2, Y_OUT1)), module, INERTIA_Y_OUTPUT));
+        addOutput(createOutputCentered<PJ301MPort>(mm2px(Vec(X2, Y_OUT2)), module, INERTIA_Z_OUTPUT));
+
+        addOutput(createOutputCentered<PJ301MPort>(mm2px(Vec(X3, Y_OUT0)), module, TORPOR_X_OUTPUT));
+        addOutput(createOutputCentered<PJ301MPort>(mm2px(Vec(X3, Y_OUT1)), module, TORPOR_Y_OUTPUT));
+        addOutput(createOutputCentered<PJ301MPort>(mm2px(Vec(X3, Y_OUT2)), module, TORPOR_Z_OUTPUT));
+
+        addOutput(createOutputCentered<PJ301MPort>(mm2px(Vec(XN, Y_OUT3)), module, NEGATIVE_ZSUM_OUTPUT));
+        addOutput(createOutputCentered<PJ301MPort>(mm2px(Vec(XP, Y_OUT3)), module, POSITIVE_ZSUM_OUTPUT));
     }
 };
 
