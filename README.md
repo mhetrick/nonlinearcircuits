@@ -105,6 +105,8 @@ The behavior of these circuits is unpredictable over time, but more orderly than
 
 The knobs do not alter the frequencies, but can affect how much time the signals spend traveling around one strange attractor rather than the other. Do not expect immediate or obvious results from adjusting the knobs. These are subtle controls for your deep space journey.
 
+The light indicates which of the two strange attractors is being orbited. It turns green when orbiting the upper lobe (the "big" voltage is positive), red around the lower lobe (the "big" voltage is negative). It gets darker near 0V.
+
 Here is an outline of the [circuit analysis and implementation notes](https://github.com/cosinekitty/sloth/blob/main/README.md) of Sloth Torpor, for anyone who is curious about the technical details. Apathy and Inertia are very similar, just with different numeric parameters to make them operate at different speeds.
 
 ![Torpor](./images/SlothTorpor.png) ![Apathy](./images/SlothApathy.png) ![Inertia](./images/SlothInertia.png)
