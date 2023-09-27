@@ -200,6 +200,7 @@ bool TripleSloth()
     PrintVoltages("Torpor ", circuit.torpor);
     PrintVoltages("Apathy ", circuit.apathy);
     PrintVoltages("Inertia", circuit.inertia);
+    printf("zsum = %9.6lf\n", circuit.zsum());
 
     printf("TripleSloth: PASS\n");
     return true;

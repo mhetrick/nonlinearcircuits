@@ -244,5 +244,10 @@ namespace Analog
             apathy.update(sampleRateHz);
             inertia.update(sampleRateHz);
         }
+
+        double zsum() const
+        {
+            return torpor.zVoltage()/2 - (apathy.zVoltage() + inertia.zVoltage())/4;
+        }
     };
 }
