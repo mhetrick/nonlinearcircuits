@@ -24,6 +24,13 @@
         <path id="text_xright" d="M39.1628 66.0428H38.8357L38.2853 65.0584L37.7179 66.0428H37.4249L38.1272 64.8584L37.473 63.7763H37.7815L38.2946 64.6429L38.8124 63.7763H39.1085L38.4543 64.8491Z" style="fill:#af5a20;stroke:#90491a;stroke-width:0.05;stroke-linejoin:bevel" />
         <path id="text_yright" d="M38.2915 79.9308 38.8822 78.7851H39.1938L38.4388 80.1695V81.0516H38.1489V80.185L37.3939 78.7851H37.7086Z" style="fill:#af5a20;stroke:#90491a;stroke-width:0.05;stroke-linejoin:bevel" />
         <path id="text_zright" d="M39.0853 96.0604H37.5009V95.8356L38.7302 94.0512H37.5334V93.7939H39.0543V94.0187L37.8249 95.8031H39.0853Z" style="fill:#af5a20;stroke:#90491a;stroke-width:0.05;stroke-linejoin:bevel" />
+        <g id="text_neg" style="stroke:#af5a20;stroke-width:0.3;stroke-linejoin:bevel">
+            <line x1="6.62" y1="110.25" x2="9.02" y2="110.25" />
+        </g>
+        <g id="text_pos" style="stroke:#af5a20;stroke-width:0.3;stroke-linejoin:bevel">
+            <line x1="31.62" y1="110.25" x2="34.02" y2="110.25" />
+            <line x1="32.82" y1="109.05" x2="32.82" y2="111.45" />
+        </g>
         <g id="nlc_logo" transform="scale(0.25) translate(6.09,135)" style="fill:#5c3114;stroke:#5c3114;">
             <polyline points="87 351.05 87 339.53 94.75 351.05 94.75 339.53" style="fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.56px" />
             <polyline points="94.75 339.53 94.75 351.05 102.49 351.05" style="fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.56px" />
