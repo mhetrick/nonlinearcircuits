@@ -162,6 +162,16 @@
       "tags": [
         "Logic", "Hardware Clone"
       ]
+    },
+    {
+      "slug": "TripleSloth",
+      "name": "Triple Sloth",
+      "description": "Three combined slow chaotic oscillators. DSP engine by Don Cross.",
+      "manualUrl": "https://github.com/mhetrick/nonlinearcircuits",
+      "tags": [
+        "Hardware Clone",
+        "Low-frequency oscillator"
+      ]
     }
   ]
 }

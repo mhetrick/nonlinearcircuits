@@ -106,3 +106,13 @@ private:
     float positiveOutput = 0.0f;
     float negativeOutput = 0.0f;
 };
+
+
+struct SlothRedGreenLightWidget : rack::GrayModuleLightWidget
+{
+    SlothRedGreenLightWidget()
+    {
+        addBaseColor(nvgRGB(0xff, 0x00, 0x00));
+        addBaseColor(nvgRGB(0x00, 0xff, 0x00));
+    }
+};

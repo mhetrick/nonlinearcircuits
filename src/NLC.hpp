@@ -24,3 +24,4 @@ extern Model *modelSlothInertia;
 extern Model *modelSlothTorpor;
 extern Model *modelSquidAxon;
 extern Model *modelStatues;
+extern Model *modelTripleSloth;
