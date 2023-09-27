@@ -3,21 +3,31 @@
 #include "TimeInSeconds.hpp"
 
 
-inline bool CheckVoltage(double v, const char *name, int sample)
+inline bool CheckVoltage(double v, const char *module, const char *name, int sample)
 {
     if (!std::isfinite(v))
     {
-        printf("FAILURE - Non-finite value for %s in sample %d\n", name, sample);
+        printf("FAILURE - Non-finite value for %s %s in sample %d\n", module, name, sample);
         return false;
     }
 
     if (v < Analog::QNEG || v > Analog::QPOS)
     {
-        printf("FAILURE - %s = %lg V is out of bounds in sample %d\n", name, v, sample);
+        printf("FAILURE - %s %s = %lg V is out of bounds in sample %d\n", module, name, v, sample);
         return false;
     }
 
     return true;
+}
+
+
+bool CheckVoltages(const char *module, const Analog::SlothCircuit& circuit, int sample)
+{
+    return (
+        CheckVoltage(circuit.xVoltage(), module, "x", sample) &&
+        CheckVoltage(circuit.yVoltage(), module, "y", sample) &&
+        CheckVoltage(circuit.zVoltage(), module, "z", sample)
+    );
 }
 
 
@@ -45,10 +55,7 @@ bool PerformanceAndStability(const char *name)
             return false;
         }
 
-        if (!CheckVoltage(circuit.xVoltage(), "x", sample)) return false;
-        if (!CheckVoltage(circuit.yVoltage(), "y", sample)) return false;
-        if (!CheckVoltage(circuit.zVoltage(), "z", sample)) return false;
-
+        if (!CheckVoltages(name, circuit, sample)) return false;
         iterSum += iter;
         maxIter = std::max(maxIter, iter);
     }
@@ -115,19 +122,19 @@ bool ButterflyEffect(const char *name)
         circuit3.update(SAMPLE_RATE);
 
         double x1 = circuit1.xVoltage();
-        if (!CheckVoltage(x1, "x1", sample)) return false;
+        if (!CheckVoltage(x1, "circuit1", "x", sample)) return false;
         double y1 = circuit1.yVoltage();
-        if (!CheckVoltage(y1, "y1", sample)) return false;
+        if (!CheckVoltage(y1, "circuit1", "y", sample)) return false;
 
         double x2 = circuit2.xVoltage();
-        if (!CheckVoltage(x2, "x2", sample)) return false;
+        if (!CheckVoltage(x2, "circuit2", "x", sample)) return false;
         double y2 = circuit2.yVoltage();
-        if (!CheckVoltage(y2, "y2", sample)) return false;
+        if (!CheckVoltage(y2, "circuit2", "y", sample)) return false;
 
         double x3 = circuit3.xVoltage();
-        if (!CheckVoltage(x3, "x3", sample)) return false;
+        if (!CheckVoltage(x3, "circuit3", "x", sample)) return false;
         double y3 = circuit3.yVoltage();
-        if (!CheckVoltage(y3, "y3", sample)) return false;
+        if (!CheckVoltage(y3, "circuit3", "y", sample)) return false;
 
         double dist2 = std::hypot(x2-x1, y2-y1);
         double dist3 = std::hypot(x3-x1, y3-y1);
@@ -164,6 +171,41 @@ bool ButterflyEffect(const char *name)
 }
 
 
+void PrintVoltages(const char *name, const Analog::SlothCircuit& circuit)
+{
+    printf("%s x = %9.6lf, y = %9.6lf, z = %9.6lf\n",
+        name, circuit.xVoltage(), circuit.yVoltage(), circuit.zVoltage());
+}
+
+
+bool TripleSloth()
+{
+    const int SAMPLE_RATE = 44100;
+    const int SIMULATION_SECONDS = 10;
+    const int SIMULATION_SAMPLES = SIMULATION_SECONDS * SAMPLE_RATE;
+
+    printf("TripleSloth: starting\n");
+
+    Analog::TripleSlothCircuit circuit;
+
+    circuit.initialize();
+    for (int sample = 0; sample < SIMULATION_SAMPLES; ++sample)
+    {
+        circuit.update(SAMPLE_RATE);
+        if (!CheckVoltages("Torpor",  circuit.torpor,  sample)) return false;
+        if (!CheckVoltages("Apathy",  circuit.apathy,  sample)) return false;
+        if (!CheckVoltages("Inertia", circuit.inertia, sample)) return false;
+    }
+
+    PrintVoltages("Torpor ", circuit.torpor);
+    PrintVoltages("Apathy ", circuit.apathy);
+    PrintVoltages("Inertia", circuit.inertia);
+
+    printf("TripleSloth: PASS\n");
+    return true;
+}
+
+
 int main()
 {
     using namespace Analog;
@@ -172,6 +214,7 @@ int main()
         PerformanceAndStability<TorporSlothCircuit>("Torpor") &&
         PerformanceAndStability<ApathySlothCircuit>("Apathy") &&
         PerformanceAndStability<InertiaSlothCircuit>("Inertia") &&
-        ButterflyEffect<TorporSlothCircuit>("Torpor")
+        ButterflyEffect<TorporSlothCircuit>("Torpor") &&
+        TripleSloth()
     ) ? 0 : 1;
 }

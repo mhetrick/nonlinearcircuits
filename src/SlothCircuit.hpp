@@ -222,4 +222,27 @@ namespace Analog
             : SlothCircuit(0.009697118406631193, -0.023)
             {}
     };
+
+
+    class TripleSlothCircuit
+    {
+    public:
+        TorporSlothCircuit  torpor;
+        ApathySlothCircuit  apathy;
+        InertiaSlothCircuit inertia;
+
+        void initialize()
+        {
+            torpor.initialize();
+            apathy.initialize();
+            inertia.initialize();
+        }
+
+        void update(float sampleRateHz)
+        {
+            torpor.update(sampleRateHz);
+            apathy.update(sampleRateHz);
+            inertia.update(sampleRateHz);
+        }
+    };
 }
