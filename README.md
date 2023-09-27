@@ -97,21 +97,17 @@ To achieve more divisions, you can plug this module into itself. For instance, t
 ### Router
 This is a four-channel signal toggler. The knobs set values from -10 to +10 volts. If the signals present at the CV inputs are lower than the set voltage, then the corresponding channel will be active.
 
-### Sloth Torpor
+### Sloth : Torpor, Apathy, and Inertia
 
-This is a software emulation of the Torpor variant of the NLC module
-[Sloth Chaos](https://www.nonlinearcircuits.com/modules/p/4hp-sloth-chaos).
-Sloth Torpor is a chaotic oscillator that emits two slowly
-changing signals that can be used for modulation or control voltages.
+Sloth Torpor, Sloth Apathy, and Sloth Inertia are software emulations of [Sloth Chaos](https://www.nonlinearcircuits.com/modules/p/4hp-sloth-chaos). They are chaotic oscillators that emit two slowly changing signals that can be used for modulation or control voltages. Torpor takes about 15-30 seconds to travel around 2 strange attractors. Apathy takes 60-90 seconds and Inertia takes 30-40 minutes.
 
-The behavior of this circuit is unpredictable over time,
-but more orderly than random. It is often used as a low
-frequency control voltage in cases where an LFO would be
-too predictable, but a random signal would be too erratic.
+The behavior of these circuits is unpredictable over time, but more orderly than random. They are often used for low frequency control voltages in cases where an LFO would be too predictable, but a random signal would be too erratic.
 
-Here is an outline of the
-[circuit analysis and implementation notes](https://github.com/cosinekitty/sloth/blob/main/README.md)
-for anyone who is curious about the technical details of this software emulation.
+The knobs do not alter the frequencies, but can affect how much time the signals spend traveling around one strange attractor rather than the other. Do not expect immediate or obvious results from adjusting the knobs. These are subtle controls for your deep space journey.
+
+Here is an outline of the [circuit analysis and implementation notes](https://github.com/cosinekitty/sloth/blob/main/README.md) of Sloth Torpor, for anyone who is curious about the technical details. Apathy and Inertia are very similar, just with different numeric parameters to make them operate at different speeds.
+
+![Torpor](./images/SlothTorpor.png) ![Apathy](./images/SlothApathy.png) ![Inertia](./images/SlothInertia.png)
 
 ### Future Additions
 - 1050 MixSeq
