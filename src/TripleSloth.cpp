@@ -8,7 +8,7 @@
 */
 #include "NLC.hpp"
 #include "SlothCircuit.hpp"
-#include "TripleSlothPanelCoords.hpp"
+#include "SlothPanelCoords.hpp"
 
 
 namespace TripleSlothTypes
@@ -92,7 +92,7 @@ struct TripleSlothWidget : ModuleWidget
     explicit TripleSlothWidget(TripleSlothModule *module)
     {
         using namespace TripleSlothTypes;
-        using namespace TripleSlothPanel;
+        using namespace SlothPanel;
 
         setModule(module);
         setPanel(createPanel(asset::plugin(pluginInstance, "res/TripleSloth.svg")));

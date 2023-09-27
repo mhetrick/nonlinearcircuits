@@ -7,6 +7,7 @@
 
 #include "NLC.hpp"
 #include "SlothCircuit.hpp"
+#include "SlothPanelCoords.hpp"
 
 
 namespace SlothTypes
@@ -99,6 +100,9 @@ struct SlothWidget : ModuleWidget
     SlothWidget(SlothModule<circuit_t>* module, const char *panelSvgFileName)
     {
         using namespace SlothTypes;
+        using namespace SlothPanel;
+
+        const float xc = 10.16f;
 
         setModule(module);
         setPanel(createPanel(asset::plugin(pluginInstance, panelSvgFileName)));
@@ -106,14 +110,12 @@ struct SlothWidget : ModuleWidget
         addChild(createWidget<ScrewSilver>(Vec(RACK_GRID_WIDTH, 0)));
         addChild(createWidget<ScrewSilver>(Vec(RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
 
-        const float knobHeight = 18.3f;
-        addParam(createParam<Davies1900hWhiteKnob>(mm2px(Vec(3.8f, knobHeight)), module, BALANCE_KNOB_PARAM));
+        addParam(createParamCentered<Davies1900hWhiteKnob>(mm2px(Vec(xc, Y_KNOB)), module, BALANCE_KNOB_PARAM));
 
-        const float outputHeight = 95.0f;
-        addOutput(createOutput<PJ301MPort>(mm2px(Vec(1.5f,  outputHeight)), module, Y_OUTPUT));
-        addOutput(createOutput<PJ301MPort>(mm2px(Vec(10.5f, outputHeight)), module, X_OUTPUT));
+        addOutput(createOutputCentered<PJ301MPort>(mm2px(Vec(xc - 4.5f, Y_OUT2)), module, Y_OUTPUT));
+        addOutput(createOutputCentered<PJ301MPort>(mm2px(Vec(xc + 4.5f, Y_OUT2)), module, X_OUTPUT));
 
-        addChild(createLightCentered<LargeLight<SlothRedGreenLightWidget>>(mm2px(Vec(10.2f, 55.0f)), module, INDICATOR_LIGHT_RED));
+        addChild(createLightCentered<LargeLight<SlothRedGreenLightWidget>>(mm2px(Vec(xc, Y_LED)), module, INDICATOR_LIGHT_RED));
     }
 };
 

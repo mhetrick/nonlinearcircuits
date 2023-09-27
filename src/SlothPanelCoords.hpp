@@ -1,6 +1,6 @@
-/* Screen measurements for the TripleSloth.svg panel. */
+/* Screen measurements for the Sloth and Triple Sloth panels. */
 
-namespace TripleSlothPanel
+namespace SlothPanel
 {
     const float X1     =    8.34f;
     const float X2     =   20.32f;
