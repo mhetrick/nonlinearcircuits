@@ -1,5 +1,9 @@
 ### 2.2.0
 - Add Sloth Torpor.
+- Add Sloth Apathy.
+- Add Sloth Intertia.
+- Add Triple Sloth.
+Many thanks to Don Cross for these excellent analog models!
 
 ### 2.1.1
 - Fix Router SVG not being found on Linux.
