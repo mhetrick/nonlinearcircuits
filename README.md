@@ -97,21 +97,35 @@ To achieve more divisions, you can plug this module into itself. For instance, t
 ### Router
 This is a four-channel signal toggler. The knobs set values from -10 to +10 volts. If the signals present at the CV inputs are lower than the set voltage, then the corresponding channel will be active.
 
-### Sloth Torpor
+### Sloth : Torpor, Apathy, and Inertia
 
-This is a software emulation of the Torpor variant of the NLC module
-[Sloth Chaos](https://www.nonlinearcircuits.com/modules/p/4hp-sloth-chaos).
-Sloth Torpor is a chaotic oscillator that emits two slowly
-changing signals that can be used for modulation or control voltages.
+Sloth Torpor, Sloth Apathy, and Sloth Inertia are software emulations of [Sloth Chaos](https://www.nonlinearcircuits.com/modules/p/4hp-sloth-chaos). They are chaotic oscillators that emit two slowly changing signals that can be used for modulation or control voltages. Torpor takes about 15-30 seconds to travel around 2 strange attractors. Apathy takes 60-90 seconds and Inertia takes 30-40 minutes.
 
-The behavior of this circuit is unpredictable over time,
-but more orderly than random. It is often used as a low
-frequency control voltage in cases where an LFO would be
-too predictable, but a random signal would be too erratic.
+The behavior of these circuits is unpredictable over time, but more orderly than random. They are often used for low frequency control voltages in cases where an LFO would be too predictable, but a random signal would be too erratic.
 
-Here is an outline of the
-[circuit analysis and implementation notes](https://github.com/cosinekitty/sloth/blob/main/README.md)
-for anyone who is curious about the technical details of this software emulation.
+The knobs do not alter the frequencies, but can affect how much time the signals spend traveling around one strange attractor rather than the other. Do not expect immediate or obvious results from adjusting the knobs. These are subtle controls for your deep space journey.
+
+The light indicates which of the two strange attractors is being orbited. It turns green when orbiting the upper lobe (the "big" voltage is positive), red around the lower lobe (the "big" voltage is negative). It gets darker near 0V.
+
+Here is an outline of the [circuit analysis and implementation notes](https://github.com/cosinekitty/sloth/blob/main/README.md) of Sloth Torpor, for anyone who is curious about the technical details. Apathy and Inertia are very similar, just with different numeric parameters to make them operate at different speeds.
+
+![Torpor](./images/SlothTorpor.png) ![Apathy](./images/SlothApathy.png) ![Inertia](./images/SlothInertia.png)
+
+### Triple Sloth
+
+Triple Sloth is an emulation of the [Triple Sloth hardware module](https://www.nonlinearcircuits.com/modules/p/triple-sloth). Triple Sloth is a combination of the three individual Sloth modules: Torpor, Apathy, and Inertia. It also adds CV inputs to Torpor and Apathy to subtly affect their chaotic trajectories. Inertia does not have a knob or a CV input. It does what it wants!
+
+The "Z" output is the same as the "Y" output in the single Sloth modules, only inverted.
+
+In addition, Triple Sloth provides "+" and "&minus;" outputs that combine the Z outputs from Apathy ($V_a$), Inertia ($V_i$), and Torpor ($V_t$). The formula for the combined voltage is
+
+$$
+V_c = 0.7 \left[ V_t - \left( V_a + V_i \right) \right]
+$$
+
+When the combined voltage $V_c$ is positive, the "+" output sends that voltage, otherwise it sends 0V. When $V_c$ is negative, the "&minus;" output sends that voltage, otherwise it sends 0V.
+
+![Triple Sloth](./images/TripleSloth.png)
 
 ### Future Additions
 - 1050 MixSeq

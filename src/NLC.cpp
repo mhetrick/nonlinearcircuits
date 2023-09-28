@@ -19,9 +19,12 @@ void init(rack::Plugin *p) {
 	p->addModel(modelNumberwang);
 	p->addModel(modelRouter);
 	p->addModel(modelSegue);
+	p->addModel(modelSlothApathy);
+	p->addModel(modelSlothInertia);
 	p->addModel(modelSlothTorpor);
 	p->addModel(modelSquidAxon);
 	p->addModel(modelStatues);
+	p->addModel(modelTripleSloth);
 	// Any other pluginInstance initialization may go here.
 	// As an alternative, consider lazy-loading assets and lookup tables within this file or the individual module files to reduce startup times of Rack.
 }

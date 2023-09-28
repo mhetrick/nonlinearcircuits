@@ -1,5 +1,5 @@
 name: Sloth Circuit Tests
-on: [push]
+on: [push, pull_request]
 jobs:
   SlothTest:
     runs-on: ubuntu-latest
