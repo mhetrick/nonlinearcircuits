@@ -1,7 +1,7 @@
 {
   "slug": "NonlinearCircuits",
   "name": "Nonlinear Circuits",
-  "version": "2.0.0",
+  "version": "2.2.0",
   "license": "CC0-1.0",
   "author": "Michael Hetrick",
   "authorEmail": "",
@@ -100,12 +100,50 @@
       ]
     },
     {
+      "slug": "Router",
+      "name": "Router",
+      "description": "Simple switch. If the CV input is below the knob voltage setting, the output is active. Panel by jk.",
+      "tags": [
+        "Switch", "Mixer", "Quad", "Hardware Clone"
+      ]
+    },
+    {
       "slug": "Segue",
       "name": "Segue",
       "description": "Stereo channel-flipping panner, crossfader, or VCA",
       "manualUrl": "https://github.com/mhetrick/nonlinearcircuits",      
       "tags": [
         "Mixer", "Hardware Clone"
+      ]
+    },
+    {
+      "slug": "SlothTorpor",
+      "name": "Sloth Torpor",
+      "description": "Slow chaotic oscillator. DSP engine by Don Cross.",
+      "manualUrl": "https://github.com/mhetrick/nonlinearcircuits",
+      "tags": [
+        "Hardware Clone",
+        "Low-frequency oscillator"
+      ]
+    },
+    {
+      "slug": "SlothApathy",
+      "name": "Sloth Apathy",
+      "description": "Very slow chaotic oscillator. DSP engine by Don Cross.",
+      "manualUrl": "https://github.com/mhetrick/nonlinearcircuits",
+      "tags": [
+        "Hardware Clone",
+        "Low-frequency oscillator"
+      ]
+    },
+    {
+      "slug": "SlothInertia",
+      "name": "Sloth Inertia",
+      "description": "Extremely slow chaotic oscillator. DSP engine by Don Cross.",
+      "manualUrl": "https://github.com/mhetrick/nonlinearcircuits",
+      "tags": [
+        "Hardware Clone",
+        "Low-frequency oscillator"
       ]
     },
     {
@@ -123,6 +161,16 @@
       "description": "1->8 Signal switch using binary inputs. Panel by jk.",
       "tags": [
         "Logic", "Hardware Clone"
+      ]
+    },
+    {
+      "slug": "TripleSloth",
+      "name": "Triple Sloth",
+      "description": "Three combined slow chaotic oscillators. DSP engine by Don Cross.",
+      "manualUrl": "https://github.com/mhetrick/nonlinearcircuits",
+      "tags": [
+        "Hardware Clone",
+        "Low-frequency oscillator"
       ]
     }
   ]

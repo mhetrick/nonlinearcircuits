@@ -22,12 +22,20 @@ struct Numberwang : Module {
 		NUM_LIGHTS = NUM_OUTPUTS
 	};
 
-	Numberwang() {
+	Numberwang()
+    {
 		config(NUM_PARAMS, NUM_INPUTS, NUM_OUTPUTS, NUM_LIGHTS);
+
+        configInput(SYNC_INPUT, "Sync");
+        configInput(XOOO_INPUT, "XOOO");
+        configInput(OXOO_INPUT, "OXOO");
+        configInput(OOXO_INPUT, "OOXO");
+        configInput(OOOX_INPUT, "OOOX");
+
 	}
 
     NLCTrigger clockIn;
-    float outs[16];
+    float outs[16]{};
 
     void numberwangProcess()
     {
@@ -62,7 +70,7 @@ struct Numberwang : Module {
         for (int i = 0; i < 16; i++)
         {   
             outputs[i].setVoltage(outs[i]);
-            lights[i].setSmoothBrightness(outs[i] * 0.2, args.sampleTime);
+            lights[i].setSmoothBrightness(outs[i] * 0.2f, args.sampleTime);
         }
 	}
 };

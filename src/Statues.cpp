@@ -21,10 +21,16 @@ struct Statues : Module {
 		NUM_LIGHTS = NUM_OUTPUTS*2
 	};
 
-    float outs[8];
+    float outs[8]{};
 
-	Statues() {
+	Statues()
+    {
 		config(NUM_PARAMS, NUM_INPUTS, NUM_OUTPUTS, NUM_LIGHTS);
+
+        configInput(IN_INPUT, "Main");
+        configInput(XOO_INPUT, "XOO");
+        configInput(OXO_INPUT, "OXO");
+        configInput(OOX_INPUT, "OOX");
 
         for (int i = 0; i < 8; i++)
         {

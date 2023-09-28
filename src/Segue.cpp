@@ -34,6 +34,13 @@ struct Segue : Module
 		configParam(Segue::SCALE_PARAM, -1.0, 1.0, 1.0, "Pan CV Depth");
 		configParam(Segue::GAIN1_PARAM, 0.0, 1.0, 1.0, "Gain X");
 		configParam(Segue::GAIN2_PARAM, 0.0, 1.0, 1.0, "Gain Y");
+
+        configInput(LEFT_INPUT, "X");
+        configInput(RIGHT_INPUT, "Y");
+        configInput(AMOUNT_INPUT, "Pan CV");
+
+        configOutput(LEFT_OUTPUT, "1");
+        configOutput(RIGHT_OUTPUT, "2");
 	}
 
     void process(const ProcessArgs &args) override;

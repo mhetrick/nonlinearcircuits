@@ -27,7 +27,7 @@ bool boolsXOR(bool _in1, bool _in2)
 
 bool boolsXNOR(bool _in1, bool _in2)
 {
-	return !(_in1 != _in2);
+	return _in1 == _in2;
 }
 
 struct BOOLs : Module {
@@ -77,6 +77,20 @@ struct BOOLs : Module {
 		config(NUM_PARAMS, NUM_INPUTS, NUM_OUTPUTS, NUM_LIGHTS);
 
 		configParam(BOOLs::SLEW_PARAM, 0.0, 1.0, 0.0, "Slew");
+
+        configInput(IN1_INPUT, "1");
+        configInput(IN2_INPUT, "2");
+        configInput(IN3_INPUT, "3");
+        configInput(IN4_INPUT, "4");
+        configInput(SAMPLE_INPUT, "Sample");
+
+        configOutput(OUT1_OUTPUT, "1");
+        configOutput(OUT2_OUTPUT, "2");
+        configOutput(OUT3_OUTPUT, "3");
+        configOutput(OUT4_OUTPUT, "4");
+
+        configOutput(SLEW_OUTPUT, "Slew");
+        configOutput(STEP_OUTPUT, "Step");
 	}
 
 	bool ins[4] = {false, false, false, false};
@@ -121,7 +135,7 @@ struct BOOLs : Module {
 		}
 	}
 
-	LogicMode getLogicMode()
+	LogicMode getLogicMode() const
 	{
 		return currentMode;
 	}
@@ -259,8 +273,8 @@ struct BOOLsWidget : ModuleWidget {
 		addOutput(createOutput<PJ301MPort>(mm2px(Vec(outJacks, bottomJacksHeight)), module, BOOLs::STEP_OUTPUT));
 
 		////////LIGHTS/////////
-		const float lightX = outJacks + 9.5;
-		const float lightOffset = -0.10;
+		const float lightX = outJacks + 9.5f;
+		const float lightOffset = -0.10f;
 		addChild(createLight<SmallLight<GreenLight>>(mm2px(Vec(lightX, jack1 + lightOffset)), module, BOOLs::OUT1_LIGHT));
 		addChild(createLight<SmallLight<GreenLight>>(mm2px(Vec(lightX, jack2 + lightOffset)), module, BOOLs::OUT2_LIGHT));
 		addChild(createLight<SmallLight<GreenLight>>(mm2px(Vec(lightX, jack3 + lightOffset)), module, BOOLs::OUT3_LIGHT));

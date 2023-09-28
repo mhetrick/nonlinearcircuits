@@ -53,7 +53,33 @@ struct DoubleNeuron : Module {
 
 		configParam(DoubleNeuron::NEURON1RESPONSE_PARAM, 1.0, 10.0, 1.0, "Response 1");
 		configParam(DoubleNeuron::NEURON2RESPONSE_PARAM, 1.0, 10.0, 1.0, "Response 2");
-	}
+
+        configInput(NEURON1IN1_INPUT, "Neuron 1, 1");
+        configInput(NEURON1IN2_INPUT, "Neuron 1, 2");
+        configInput(NEURON1IN3_INPUT, "Neuron 1, 3");
+
+        configInput(NEURON2IN1_INPUT, "Neuron 2, 1");
+        configInput(NEURON2IN2_INPUT, "Neuron 2, 2");
+        configInput(NEURON2IN3_INPUT, "Neuron 2, 3");
+
+        configInput(DIFFRECT1NEG1_INPUT, "Diff-Rect 1, Negative 1");
+        configInput(DIFFRECT1NEG2_INPUT, "Diff-Rect 1, Negative 2");
+        configInput(DIFFRECT1POS1_INPUT, "Diff-Rect 1, Positive 1");
+        configInput(DIFFRECT1POS2_INPUT, "Diff-Rect 1, Positive 2");
+
+        configInput(DIFFRECT2NEG1_INPUT, "Diff-Rect 2, Negative 1");
+        configInput(DIFFRECT2NEG2_INPUT, "Diff-Rect 2, Negative 2");
+        configInput(DIFFRECT2POS1_INPUT, "Diff-Rect 2, Positive 1");
+        configInput(DIFFRECT2POS2_INPUT, "Diff-Rect 2, Positive 2");
+
+        configOutput(NEURON1_OUTPUT, "Neuron 1");
+        configOutput(NEURON2_OUTPUT, "Neuron 2");
+
+        configOutput(DIFFRECT1NEG_OUTPUT, "Diff-Rect 1, Negative");
+        configOutput(DIFFRECT1POS_OUTPUT, "Diff-Rect 1, Positive");
+        configOutput(DIFFRECT2NEG_OUTPUT, "Diff-Rect 2, Negative");
+        configOutput(DIFFRECT2POS_OUTPUT, "Diff-Rect 2, Positive");
+    }
 
 	NLCNeuron neuron1, neuron2;
 	NLCDiffRect diffrect1, diffrect2;
@@ -103,7 +129,7 @@ struct DoubleNeuronWidget : ModuleWidget {
 		const float panelWidth = 5.08*12;
 
 		const float neuron1x = 9.5f;
-		const float neuron2x = panelWidth - 21.5;
+		const float neuron2x = panelWidth - 21.5f;
 		const float senseHeight = 11.0f;
 		const float responseHeight = 34.6f;
 
@@ -119,9 +145,9 @@ struct DoubleNeuronWidget : ModuleWidget {
 
 		const float neuronRow1Height = panelHeight - 72.5f;
 		const float neuronRow2Height = panelHeight - 60.5f;
-		const float diffRectInNegHeight = panelHeight - 46.3;
-		const float diffRectInPosHeight = panelHeight - 33.0;
-		const float diffRectOutHeight = panelHeight - 21.5;
+		const float diffRectInNegHeight = panelHeight - 46.3f;
+		const float diffRectInPosHeight = panelHeight - 33.0f;
+		const float diffRectOutHeight = panelHeight - 21.5f;
 
 		addInput(createInput<PJ301MPort>(mm2px(Vec(jackX1, neuronRow1Height)), module, DoubleNeuron::NEURON1IN1_INPUT));
 		addInput(createInput<PJ301MPort>(mm2px(Vec(jackX2, neuronRow1Height)), module, DoubleNeuron::NEURON1IN2_INPUT));

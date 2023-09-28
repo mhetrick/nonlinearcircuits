@@ -43,6 +43,17 @@ struct DivineCMOS : Module {
         configParam(DivineCMOS::DIV8_PARAM, 0.0, 5.0, 0.0, "Div 8 Gain");
         configParam(DivineCMOS::DIV16_PARAM, 0.0, 5.0, 0.0, "Div 16 Gain");
         configParam(DivineCMOS::SLEW_PARAM, 0.0, 1.0, 0.0, "Slew");
+
+        configInput(CLOCK1_INPUT, "Clock 1");
+        configInput(CLOCK2_INPUT, "Clock 2");
+
+        configOutput(OUT1_OUTPUT, "1");
+        configOutput(OUT2_OUTPUT, "2");
+        configOutput(OUT3_OUTPUT, "3");
+        configOutput(OUT4_OUTPUT, "4");
+
+        configOutput(MAIN_OUTPUT, "Main");
+        configOutput(SLEW_OUTPUT, "Slew");
 	}
 
 	bool divBools1[4] = {false, false, false, false};
@@ -138,11 +149,11 @@ struct DivineCMOSWidget : ModuleWidget {
         const float divJacksY = 102.75f;
         float lightX = 4.5f;
         float lightY = 113.0f;
-        int spacing = 10.0f;
+        float spacing = 10.0f;
 
         for (int i = 0; i < 4; i++)
         {
-            int xOffset = i * spacing;
+            float xOffset = i * spacing;
             addOutput(createOutput<PJ301MPort>(mm2px(Vec(divJacksX + xOffset, divJacksY)), module, DivineCMOS::OUT1_OUTPUT + i));
             addChild(createLight<SmallLight<BlueLight>>(mm2px(Vec(lightX + xOffset, lightY)), module, DivineCMOS::OUT1_LIGHT + i));
         }

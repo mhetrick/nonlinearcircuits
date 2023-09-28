@@ -57,6 +57,29 @@ struct DivideConquer : Module {
 	DivideConquer() 
     {
 		config(NUM_PARAMS, NUM_INPUTS, NUM_OUTPUTS, NUM_LIGHTS);
+
+        configInput(CLOCK1_INPUT, "Clock 1");
+        configInput(CLOCK3_INPUT, "Clock 3");
+        configInput(CLOCK5_INPUT, "Clock 5");
+        configInput(CLOCK7_INPUT, "Clock 7");
+
+        configOutput(DIV2_OUTPUT, "Divide by 2");
+        configOutput(DIV4_OUTPUT, "Divide by 4");
+        configOutput(DIV8_OUTPUT, "Divide by 8");
+        configOutput(DIV16_OUTPUT, "Divide by 16");
+        configOutput(DIV32_OUTPUT, "Divide by 32");
+        configOutput(DIV64_OUTPUT, "Divide by 64");
+        configOutput(DIV128_OUTPUT, "Divide by 128");
+        configOutput(DIV256_OUTPUT, "Divide by 256");
+
+        configOutput(DIV3_OUTPUT, "Divide by 3");
+        configOutput(DIV3DIV2_OUTPUT, "Divide by 3/2");
+
+        configOutput(DIV5_OUTPUT, "Divide by 5");
+        configOutput(DIV5DIV2_OUTPUT, "Divide by 5/2");
+
+        configOutput(DIV7_OUTPUT, "Divide by 7");
+        configOutput(DIV7DIV2_OUTPUT, "Divide by 7/2");
 	}
 
 	NLCTrigger clockIn1;
@@ -66,7 +89,7 @@ struct DivideConquer : Module {
     dsp::BooleanTrigger flipflop7div2, flipflop7, flipflop7helper;
 
     int stepCount1 = 0, stepCount3 = 0, stepCount5 = 0, stepCount7 = 0;
-    double gateOutValue = 5.0;
+    float gateOutValue = 5.0f;
     bool div2 = false, div4 = false, div8 = false, div16 = false;
     bool div32 = false, div64 = false, div128 = false, div256 = false;
     bool div3 = false, div3div2 = false;
@@ -138,35 +161,35 @@ struct DivideConquer : Module {
 
 	void process(const ProcessArgs& args) override 
 	{
-        double mainClock = inputs[CLOCK1_INPUT].getVoltage();
-        double clock3 = inputs[CLOCK3_INPUT].isConnected() ? inputs[CLOCK3_INPUT].getVoltage() : mainClock;
-        double clock5 = inputs[CLOCK5_INPUT].isConnected() ? inputs[CLOCK5_INPUT].getVoltage() : mainClock;
-        double clock7 = inputs[CLOCK7_INPUT].isConnected() ? inputs[CLOCK7_INPUT].getVoltage() : mainClock;
+        float mainClock = inputs[CLOCK1_INPUT].getVoltage();
+        float clock3 = inputs[CLOCK3_INPUT].getNormalVoltage(mainClock);
+        float clock5 = inputs[CLOCK5_INPUT].getNormalVoltage(mainClock);
+        float clock7 = inputs[CLOCK7_INPUT].getNormalVoltage(mainClock);
 
 
         //yes, yes, this could be a for loop.
         if(clockIn1.process(mainClock))
         {
             div2 = !div2;
-            if(!div2)
+            if(div2)
             {
                 div4 = !div4;
-                if(!div4)
+                if(div4)
                 {
                     div8 = !div8;
-                    if(!div8)
+                    if(div8)
                     {
                         div16 = !div16;
-                        if(!div16)
+                        if(div16)
                         {
                             div32 = !div32;
-                            if(!div32)
+                            if(div32)
                             {
                                 div64 = !div64;
-                                if(!div64)
+                                if(div64)
                                 {
                                     div128 = !div128;
-                                    if(!div128)
+                                    if(div128)
                                     {
                                         div256 = !div256;
                                     }
@@ -182,23 +205,23 @@ struct DivideConquer : Module {
         processClock5Row(clock5);
         processClock7Row(clock7);
 
-        outputs[DIV2_OUTPUT].setVoltage(div2 ? gateOutValue : 0.0);
-        outputs[DIV4_OUTPUT].setVoltage(div4 ? gateOutValue : 0.0);
-        outputs[DIV8_OUTPUT].setVoltage(div8 ? gateOutValue : 0.0);
-        outputs[DIV16_OUTPUT].setVoltage(div16 ? gateOutValue : 0.0);
-        outputs[DIV32_OUTPUT].setVoltage(div32 ? gateOutValue : 0.0);
-        outputs[DIV64_OUTPUT].setVoltage(div64 ? gateOutValue : 0.0);
-        outputs[DIV128_OUTPUT].setVoltage(div128 ? gateOutValue : 0.0);
-        outputs[DIV256_OUTPUT].setVoltage(div256 ? gateOutValue : 0.0);
+        outputs[DIV2_OUTPUT].setVoltage(div2 ? gateOutValue : 0.0f);
+        outputs[DIV4_OUTPUT].setVoltage(div4 ? gateOutValue : 0.0f);
+        outputs[DIV8_OUTPUT].setVoltage(div8 ? gateOutValue : 0.0f);
+        outputs[DIV16_OUTPUT].setVoltage(div16 ? gateOutValue : 0.0f);
+        outputs[DIV32_OUTPUT].setVoltage(div32 ? gateOutValue : 0.0f);
+        outputs[DIV64_OUTPUT].setVoltage(div64 ? gateOutValue : 0.0f);
+        outputs[DIV128_OUTPUT].setVoltage(div128 ? gateOutValue : 0.0f);
+        outputs[DIV256_OUTPUT].setVoltage(div256 ? gateOutValue : 0.0f);
 
-        outputs[DIV3_OUTPUT].setVoltage(div3 ? gateOutValue : 0.0);
-        outputs[DIV3DIV2_OUTPUT].setVoltage(!div3div2 ? gateOutValue : 0.0);
+        outputs[DIV3_OUTPUT].setVoltage(div3 ? gateOutValue : 0.0f);
+        outputs[DIV3DIV2_OUTPUT].setVoltage(!div3div2 ? gateOutValue : 0.0f);
 
-        outputs[DIV5_OUTPUT].setVoltage(div5 ? gateOutValue : 0.0);
-        outputs[DIV5DIV2_OUTPUT].setVoltage(div5div2 ? gateOutValue : 0.0);
+        outputs[DIV5_OUTPUT].setVoltage(div5 ? gateOutValue : 0.0f);
+        outputs[DIV5DIV2_OUTPUT].setVoltage(div5div2 ? gateOutValue : 0.0f);
 
-        outputs[DIV7_OUTPUT].setVoltage(div7 ? gateOutValue : 0.0);
-        outputs[DIV7DIV2_OUTPUT].setVoltage(!div7div2 ? gateOutValue : 0.0);
+        outputs[DIV7_OUTPUT].setVoltage(div7 ? gateOutValue : 0.0f);
+        outputs[DIV7DIV2_OUTPUT].setVoltage(!div7div2 ? gateOutValue : 0.0f);
 
         lights[DIV2_LIGHT].setBrightness(div2 ? 1.0 : 0.0);
         lights[DIV4_LIGHT].setBrightness(div4 ? 1.0 : 0.0);

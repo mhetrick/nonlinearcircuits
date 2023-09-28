@@ -40,7 +40,18 @@ struct FourSeq : Module {
         configParam(FourSeq::STEP2_PARAM, 0.0, 5.0, 0.0, "Step x1/y2");
         configParam(FourSeq::STEP3_PARAM, 0.0, 5.0, 0.0, "Step x2/y1");
         configParam(FourSeq::STEP4_PARAM, 0.0, 5.0, 0.0, "Step x3/y0");
-	}
+
+        configInput(CLOCK_INPUT, "Clock");
+        configInput(DIR_INPUT, "Direction");
+
+        configOutput(OUT1_OUTPUT, "1");
+        configOutput(OUT2_OUTPUT, "2");
+        configOutput(OUT3_OUTPUT, "3");
+        configOutput(OUT4_OUTPUT, "4");
+
+        configOutput(X_OUTPUT, "X");
+        configOutput(Y_OUTPUT, "Y");
+    }
 
 	bool divBools[4] = {false, false, false, false};
 	float steps[4] = {0.0f, 0.0f, 0.0f, 0.0f};
@@ -113,11 +124,11 @@ struct FourSeqWidget : ModuleWidget {
         const float divJacksY = 96.0f;
         float lightX = 4.5f;
         float lightY = 108.0f;
-        int spacing = 10.0f;
+        float spacing = 10.0f;
 
         for (int i = 0; i < 4; i++)
         {
-            int xOffset = i * spacing;
+            float xOffset = i * spacing;
             addOutput(createOutput<PJ301MPort>(mm2px(Vec(divJacksX + xOffset, divJacksY)), module, FourSeq::OUT1_OUTPUT + i));
             addChild(createLight<SmallLight<BlueLight>>(mm2px(Vec(lightX + xOffset, lightY)), module, FourSeq::OUT1_LIGHT + i));
         }

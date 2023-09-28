@@ -11,6 +11,7 @@ Recommended viewing: [Interview with Nonlinear Circuits by Music Thing Modular](
 - Double Neuron, Let's Splosh!, and BOOLs Panels: [Papernoise](https://www.papernoise.net/) (Hannes Pasqualini)
 - Squid Axon panel: Jason Wehmhoener
 - 4Seq, GENiE, Neuron, Statues, Numberwang panels: jk
+- Sloth Torpor DSP engine: [Don Cross](https://github.com/cosinekitty/sloth)
 
 ## Modules
 
@@ -25,14 +26,14 @@ The Diff-Rect (Difference Rectifier) is another creative mixer. The two "+" inpu
 
 If this seems complicated, just experiment! These modules were designed for fun, not for rigorous analysis.
 
-![Double Neuron](./neuron.png)
+![Double Neuron](./images/neuron.png)
 
 ### Squid Axon
 This is a three channel mixer connected to a shift register of sorts. Unlike most shift registers, OUT 1 holds its value until OUT 4 has received its value. There are two feedback controls. OUT 4 is normalled to IN 3, so if nothing is connected to IN 3, it is a feedback input. The other feedback control is nonlinear and always available. This feedback path runs through a diode simulator, so it behaves much differently than the other feedback control.
 
 To use: plug any signal into the CLOCK input. Whenever this signals goes above 1V, a clock will fire. Plug any other signals into IN 1 and IN 2. Keep IN 3 unplugged if you want to use the regular FEEDBACK control.
 
-![Squid Axon](./squid.png)
+![Squid Axon](./images/squid.png)
 
 ### BOOLs
 This is a four channel logic jumbler. The most common way to use this would be to plug 4 gates into the 4 inputs and derive logical combinations on the outputs. However, the inputs accept any signal (audio, LFOs, envelopes, you name it) and will decide that they are active if their value is above 1 volt.
@@ -43,32 +44,32 @@ Finally, if a cable is plugged into the SAMPLE input, the four output gates will
 
 Right-click on the panel to select the active logic mode: OR, AND, XOR, NOR, NAND, XNOR
 
-![BOOLs](./bools.png)
+![BOOLs](./images/bools.png)
 
 ### Let's Splosh
 This is a 4-input, 16-output master of signal jumbling. Essentially, four inputs are used in 8 different Diff-Rects (see the description under the Neuron above). The left half of the module contains the positive outputs, while the right half is negative. Try throwing in four LFOs of different frequencies as a starter patch. It's a lot of fun!
 
-![Let's Splosh](./splosh.png)
+![Let's Splosh](./images/splosh.png)
 
 ### 4Seq
 This is a simple sequencer with a deceiving amount of depth. There are two sequences: X and Y. Y is always the opposite step of X and counting in the opposite direction (so if X is step 0, Y is step 3; if X is step 1, Y is step 2). There is a gate input that reverses the count direction while the gate is above 1V. Finally, the bottom section is a clock divider that divides the incoming clock. Try plugging the clock divider's outputs into the direction input!
 
-![4Seq](./4seq.png)
+![4Seq](./images/4seq.png)
 
 ### GENiE
 If you thought the Double Neuron was crazy, this is essentially a triple Neuron pre-patched with a feedback network. The outputs of the three neurons are normalled to each other's inputs (as indicated on the panel). Those inputs have an additional IN control on top to control the gain. Because of the extreme amount of feedback, changing VCV's sampling rate can wildly alter the sound of this.
 
-![GENiE](./genie.png)
+![GENiE](./images/genie.png)
 
 ### Statues
 This is a 1-in 8-out switch with two major twists. First, the output is determined by the state of three gate inputs. These gate inputs essentially create a 3-bit integer (1 through 8) to choose the output. Second, when an output becomes inactive, it holds its previous value. This can be a lot more useful than a switch where a modulation output is suddenly dropped to zero!
 
-![Statues](./statues.png)
+![Statues](./images/statues.png)
 
 ### Numberwang
 Four gate inputs make 16 gate outputs. That's Numberwang!
 Each of the four gate outputs represents a bit in a 4-bit number (1-16). Depending on the values of the incoming gates, the corresponding output gate on the matrix will be active. Try plugging in four LFOs at different frequencies and watch the patterns.
-![Numberwang](./numberwang.png)
+![Numberwang](./images/numberwang.png)
 
 ### Segue
 This module is very similar to HetrickCV's Flip Pan. It pans two input signals by flipping their channels (i.e. the left input is panned right, the right input is panned left). This sounds simple, but it is very versatile.
@@ -92,8 +93,41 @@ The main clock input (on the bottom section) is normalled to the top three clock
 
 To achieve more divisions, you can plug this module into itself. For instance, to divide by 14, plug the /2 output into the /7 clock input and monitor the /7 output.
 
+
+### Router
+This is a four-channel signal toggler. The knobs set values from -10 to +10 volts. If the signals present at the CV inputs are lower than the set voltage, then the corresponding channel will be active.
+
+### Sloth : Torpor, Apathy, and Inertia
+
+Sloth Torpor, Sloth Apathy, and Sloth Inertia are software emulations of [Sloth Chaos](https://www.nonlinearcircuits.com/modules/p/4hp-sloth-chaos). They are chaotic oscillators that emit two slowly changing signals that can be used for modulation or control voltages. Torpor takes about 15-30 seconds to travel around 2 strange attractors. Apathy takes 60-90 seconds and Inertia takes 30-40 minutes.
+
+The behavior of these circuits is unpredictable over time, but more orderly than random. They are often used for low frequency control voltages in cases where an LFO would be too predictable, but a random signal would be too erratic.
+
+The knobs do not alter the frequencies, but can affect how much time the signals spend traveling around one strange attractor rather than the other. Do not expect immediate or obvious results from adjusting the knobs. These are subtle controls for your deep space journey.
+
+The light indicates which of the two strange attractors is being orbited. It turns green when orbiting the upper lobe (the "big" voltage is positive), red around the lower lobe (the "big" voltage is negative). It gets darker near 0V.
+
+Here is an outline of the [circuit analysis and implementation notes](https://github.com/cosinekitty/sloth/blob/main/README.md) of Sloth Torpor, for anyone who is curious about the technical details. Apathy and Inertia are very similar, just with different numeric parameters to make them operate at different speeds.
+
+![Torpor](./images/SlothTorpor.png) ![Apathy](./images/SlothApathy.png) ![Inertia](./images/SlothInertia.png)
+
+### Triple Sloth
+
+Triple Sloth is an emulation of the [Triple Sloth hardware module](https://www.nonlinearcircuits.com/modules/p/triple-sloth). Triple Sloth is a combination of the three individual Sloth modules: Torpor, Apathy, and Inertia. It also adds CV inputs to Torpor and Apathy to subtly affect their chaotic trajectories. Inertia does not have a knob or a CV input. It does what it wants!
+
+The "Z" output is the same as the "Y" output in the single Sloth modules, only inverted.
+
+In addition, Triple Sloth provides "+" and "&minus;" outputs that combine the Z outputs from Apathy ($V_a$), Inertia ($V_i$), and Torpor ($V_t$). The formula for the combined voltage is
+
+$$
+V_c = 0.7 \left[ V_t - \left( V_a + V_i \right) \right]
+$$
+
+When the combined voltage $V_c$ is positive, the "+" output sends that voltage, otherwise it sends 0V. When $V_c$ is negative, the "&minus;" output sends that voltage, otherwise it sends 0V.
+
+![Triple Sloth](./images/TripleSloth.png)
+
 ### Future Additions
 - 1050 MixSeq
 - 32:1
-- Router
 

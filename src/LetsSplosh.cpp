@@ -44,8 +44,14 @@ struct LetsSplosh : Module {
 		NUM_LIGHTS = NUM_OUTPUTS
 	};
 
-	LetsSplosh() {
+	LetsSplosh()
+    {
 		config(NUM_PARAMS, NUM_INPUTS, NUM_OUTPUTS, NUM_LIGHTS);
+
+        configInput(SPLOSH1_INPUT, "Splosh 1 - Custard");
+        configInput(SPLOSH2_INPUT, "Splosh 2 - Treacle");
+        configInput(SPLOSH3_INPUT, "Splosh 3 - Natto");
+        configInput(SPLOSH4_INPUT, "Splosh 4 - Batter");
 	}
 
 	//NLCDiffRect CT_NB, CN_TB, CB_TN, CTN_B, CTB_N, CNB_T, TNB_C, CTNB;

@@ -1,7 +1,6 @@
 #pragma once
 
 #include "rack.hpp"
-#include "engine/Engine.hpp"
 
 
 float LERP(const float _amountOfA, const float _inA, const float _inB);
@@ -33,7 +32,7 @@ struct NLCTrigger
 		return false;
 	}
 
-	bool isHigh() {
+	bool isHigh() const {
 		return state;
 	}
 };
@@ -53,7 +52,7 @@ public:
         lastInput = _in;
     }
     
-    float process()
+    float process() const
     {
         float rectifiedInput = rack::math::clamp(lastInput + sense, 0.0f, 10.0f);
 
@@ -98,8 +97,8 @@ public:
         negativeOutput = diff < 0.0f ? diff : 0.0f;
     }
 
-    float getPositiveOutput(){return positiveOutput;}
-    float getNegativeOutput(){return negativeOutput;}
+    float getPositiveOutput() const {return positiveOutput;}
+    float getNegativeOutput() const {return negativeOutput;}
 
 private:
     float lastPositiveInput = 0.0f;
@@ -107,3 +106,21 @@ private:
     float positiveOutput = 0.0f;
     float negativeOutput = 0.0f;
 };
+
+
+struct SlothRedGreenLightWidget : rack::GrayModuleLightWidget
+{
+    SlothRedGreenLightWidget()
+    {
+        addBaseColor(nvgRGB(0xff, 0x00, 0x00));
+        addBaseColor(nvgRGB(0x00, 0xff, 0x00));
+    }
+};
+
+
+inline float SlothLedBrightness(float v)
+{
+    // Turn to full brightness at 2.0 V.
+    // Act like a true diode by lighting up only on positive voltages.
+    return std::max(0.0f, std::min(1.0f, v / 2.0f));
+}
