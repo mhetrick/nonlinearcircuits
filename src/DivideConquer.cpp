@@ -247,7 +247,7 @@ struct DivideConquer : Module {
 struct DivideConquerWidget : ModuleWidget {
 	DivideConquerWidget(DivideConquer* module) {
 		setModule(module);
-		setPanel(APP->window->loadSvg(asset::plugin(pluginInstance, "res/NLC - DIVIDE & CONQUER.svg")));
+		setPanel(APP->window->loadSvg(asset::plugin(pluginInstance, "res/DivideConquer.svg")));
 
 		addChild(createWidget<ScrewSilver>(Vec(RACK_GRID_WIDTH, 0)));
 		addChild(createWidget<ScrewSilver>(Vec(box.size.x - 2 * RACK_GRID_WIDTH, 0)));
