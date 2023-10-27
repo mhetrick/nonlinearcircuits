@@ -169,7 +169,7 @@ struct Genie : Module {
 struct GenieWidget : ModuleWidget {
 	GenieWidget(Genie* module) {
 		setModule(module);
-		setPanel(APP->window->loadSvg(asset::plugin(pluginInstance, "res/NLC - GENiE.svg")));
+		setPanel(APP->window->loadSvg(asset::plugin(pluginInstance, "res/GENiE.svg")));
 
 		addChild(createWidget<ScrewSilver>(Vec(RACK_GRID_WIDTH, 0)));
 		addChild(createWidget<ScrewSilver>(Vec(box.size.x - 2 * RACK_GRID_WIDTH, 0)));

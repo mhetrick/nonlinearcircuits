@@ -183,7 +183,7 @@ struct Cipher : Module {
 struct CipherWidget : ModuleWidget {
 	CipherWidget(Cipher* module) {
 		setModule(module);
-		setPanel(APP->window->loadSvg(asset::plugin(pluginInstance, "res/NLC - 8 BIT CIPHER.svg")));
+		setPanel(APP->window->loadSvg(asset::plugin(pluginInstance, "res/8BitCipher.svg")));
 
 		addChild(createWidget<ScrewSilver>(Vec(RACK_GRID_WIDTH, 0)));
 		addChild(createWidget<ScrewSilver>(Vec(box.size.x - 2 * RACK_GRID_WIDTH, 0)));

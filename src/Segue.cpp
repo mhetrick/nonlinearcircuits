@@ -76,7 +76,7 @@ SegueWidget::SegueWidget(Segue *module)
 	{
 		auto *panel = new SvgPanel();
 		panel->box.size = box.size;
-		panel->setBackground(APP->window->loadSvg(asset::plugin(pluginInstance, "res/NLC - SEGUE.svg")));
+		panel->setBackground(APP->window->loadSvg(asset::plugin(pluginInstance, "res/Segue.svg")));
 		addChild(panel);
 	}
 
