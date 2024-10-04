@@ -51,6 +51,9 @@ This is a 4-input, 16-output master of signal jumbling. Essentially, four inputs
 
 ![Let's Splosh](./images/splosh.png)
 
+### Splish
+This is a 3-input, 4HP variation of Let's Splosh. It has 8 outputs instead of 16.
+
 ### 4Seq
 This is a simple sequencer with a deceiving amount of depth. There are two sequences: X and Y. Y is always the opposite step of X and counting in the opposite direction (so if X is step 0, Y is step 3; if X is step 1, Y is step 2). There is a gate input that reverses the count direction while the gate is above 1V. Finally, the bottom section is a clock divider that divides the incoming clock. Try plugging the clock divider's outputs into the direction input!
 
