@@ -147,6 +147,15 @@
       ]
     },
     {
+      "slug": "Splish",
+      "name": "Splish",
+      "description": "Three input variation of Let's Splosh.",
+      "manualUrl": "https://github.com/mhetrick/nonlinearcircuits#lets-splosh",
+      "tags": [
+        "Mixer", "Noise", "Utility", "Random", "Hardware Clone", "Quad"
+      ]
+    },
+    {
       "slug": "SquidAxon",
       "name": "Squid Axon",
       "description": "Mixer, Shift Register, and Feedback. Panel by Jason Wehmhoener.",

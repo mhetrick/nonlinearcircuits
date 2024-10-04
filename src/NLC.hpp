@@ -22,6 +22,7 @@ extern Model *modelSegue;
 extern Model *modelSlothApathy;
 extern Model *modelSlothInertia;
 extern Model *modelSlothTorpor;
+extern Model *modelSplish;
 extern Model *modelSquidAxon;
 extern Model *modelStatues;
 extern Model *modelTripleSloth;
