@@ -1,3 +1,9 @@
+### 2.3.1
+- Fix Splish lights.
+
+### 2.3.0
+- Add Splish.
+
 ### 2.2.0
 - Add Sloth Torpor.
 - Add Sloth Apathy.
