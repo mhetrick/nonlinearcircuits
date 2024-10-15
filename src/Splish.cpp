@@ -68,10 +68,9 @@ struct Splish : Module {
             outputs[i*2 + 1].setVoltage(diffRects[i].getNegativeOutput());
         }
 
-        for (int i = 0; i < NUM_LIGHTS; i++)    
-        {
-            lights[i].setBrightness(inputs[i].getVoltage());
-        }
+        lights[0].setBrightness(outputs[ONE_POS_OUT].getVoltage() * 0.2f);
+        lights[1].setBrightness(outputs[TWO_POS_OUT].getVoltage() * 0.2f);
+        lights[2].setBrightness(outputs[THREE_POS_OUT].getVoltage() * 0.2f);
 	}
 };
 
