@@ -128,8 +128,8 @@ struct DivineCMOSWidget : ModuleWidget {
         const float leftSteps = 4.5f;
         const float rightSteps = 24.0f;
 		addParam(createParam<Davies1900hWhiteKnob>(mm2px(Vec(leftSteps, 17.5f)), module, DivineCMOS::DIV2_PARAM));
-        addParam(createParam<Davies1900hWhiteKnob>(mm2px(Vec(rightSteps, 25.0f)), module, DivineCMOS::DIV4_PARAM));
-        addParam(createParam<Davies1900hWhiteKnob>(mm2px(Vec(leftSteps, 35.0f)), module, DivineCMOS::DIV8_PARAM));
+        addParam(createParam<Davies1900hWhiteKnob>(mm2px(Vec(leftSteps, 35.0f)), module, DivineCMOS::DIV4_PARAM));
+        addParam(createParam<Davies1900hWhiteKnob>(mm2px(Vec(rightSteps, 25.0f)), module, DivineCMOS::DIV8_PARAM));
         addParam(createParam<Davies1900hWhiteKnob>(mm2px(Vec(rightSteps, 42.5f)), module, DivineCMOS::DIV16_PARAM));
 
         addParam(createParam<Davies1900hWhiteKnob>(Vec(14, 173), module, DivineCMOS::SLEW_PARAM));
