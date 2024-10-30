@@ -1,3 +1,6 @@
+### 2.3.2
+- Fix for swapped /4 and /8 knobs on Divine CMOS.
+
 ### 2.3.1
 - Fix Splish lights.
 
