@@ -85,7 +85,7 @@ using PurpleLight = TPurpleLight<>;
 struct SplishWidget : ModuleWidget {
 	SplishWidget(Splish* module) {
 		setModule(module);
-		setPanel(APP->window->loadSvg(asset::plugin(pluginInstance, "res/Splish.svg")));
+	    setPanel(createPanel(asset::plugin(pluginInstance, "res/SplishLight.svg"), asset::plugin(pluginInstance, "res/Splish.svg")));
 
 		addChild(createWidget<ScrewSilver>(Vec(RACK_GRID_WIDTH, 0)));
 		addChild(createWidget<ScrewSilver>(Vec(RACK_GRID_WIDTH, RACK_GRID_HEIGHT - RACK_GRID_WIDTH)));
