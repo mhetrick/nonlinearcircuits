@@ -1,4 +1,6 @@
-### 2.3.3 (in progress)
+### 2.4.0 (in progress)
+- Add Beat Freqs (in progress)
+- Add De-Escalate
 - Add light panel to Splish.
 
 ### 2.3.2

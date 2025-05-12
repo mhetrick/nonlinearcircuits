@@ -10,6 +10,7 @@ extern Plugin *pluginInstance;
 extern Model *model4Seq;
 extern Model *modelCipher;
 extern Model *modelBOOLs;
+extern Model *modelDeEscalate;
 extern Model *modelDivideConquer;
 extern Model *modelDivineCMOS;
 extern Model *modelDoubleNeuron;

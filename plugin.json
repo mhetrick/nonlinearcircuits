@@ -39,6 +39,15 @@
       ]
     },
     {
+      "slug": "DeEscalate",
+      "name": "De-Escalate",
+      "description": "Seven simple attenuators.",
+      "manualUrl": "https://github.com/mhetrick/nonlinearcircuits",
+      "tags": [
+        "Attenuator", "Hardware Clone"
+      ]
+    },
+    {
       "slug": "DivideConquer",
       "name": "Divide & Conquer",
       "description": "More clock dividers than you will ever need.",
