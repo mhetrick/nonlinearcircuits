@@ -10,6 +10,7 @@ float LERP(const float _amountOfA, const float _inA, const float _inB);
 struct NLCTrigger 
 {
 	bool state = true;
+    bool doubleTrigger = false;
 
 	void reset() {
 		state = true;
@@ -18,13 +19,18 @@ struct NLCTrigger
 	bool process(float in) {
 		if (state) {
 			// HIGH to LOW
-			if (in < 1.f) {
+			if (in < 1.f) 
+            {
 				state = false;
+                if(doubleTrigger)
+                    return true;
 			}
 		}
-		else {
+		else 
+        {
 			// LOW to HIGH
-			if (in >= 1.f) {
+			if (in >= 1.f) 
+            {
 				state = true;
 				return true;
 			}

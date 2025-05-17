@@ -30,6 +30,15 @@
       ]
     },
     {
+      "slug": "BeatFreqs",
+      "name": "Beat Freqs",
+      "description": "Four beat frequency indicators, used to generate 16 gates.",
+      "manualUrl": "https://github.com/mhetrick/nonlinearcircuits",
+      "tags": [
+        "Logic", "Hardware Clone", "Quad"
+      ]
+    },
+    {
       "slug": "BOOLs",
       "name": "BOOLs",
       "description": "Four binary logic jumblers. Panel by Papernoise.",

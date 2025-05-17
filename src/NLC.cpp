@@ -4,11 +4,13 @@
 // The pluginInstance-wide instance of the Plugin class
 Plugin *pluginInstance;
 
-void init(rack::Plugin *p) {
+void init(rack::Plugin *p) 
+{
 	pluginInstance = p;
 
 	p->addModel(model4Seq);
 	p->addModel(modelCipher);
+	p->addModel(modelBeatFreqs);
 	p->addModel(modelBOOLs);
 	p->addModel(modelDeEscalate);
 	p->addModel(modelDivideConquer);
