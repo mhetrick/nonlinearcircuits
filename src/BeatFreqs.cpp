@@ -75,6 +75,21 @@ struct BeatFreqs : Module
         {G_LO, G_LO, G_LO, G_LO, G_LO, G_LO, G_LO, G_LO, G_HI, G_HI, G_LO, G_LO, G_LO, G_LO, G_LO, G_LO},
         {G_LO, G_LO, G_LO, G_LO, G_LO, G_LO, G_LO, G_LO, G_LO, G_LO, G_LO, G_LO, G_HI, G_HI, G_LO, G_LO}
     };
+    std::vector<std::vector<float>> group3 = 
+    {
+        {G_LO, G_LO, G_LO, G_LO, G_LO, G_LO, G_LO, G_LO, G_HI, G_LO, G_HI, G_LO, G_LO, G_LO, G_LO, G_LO},
+        {G_HI, G_LO, G_HI, G_LO, G_LO, G_LO, G_LO, G_LO, G_LO, G_LO, G_LO, G_LO, G_LO, G_LO, G_LO, G_LO},
+        {G_LO, G_LO, G_LO, G_LO, G_LO, G_LO, G_LO, G_LO, G_LO, G_HI, G_LO, G_HI, G_LO, G_LO, G_LO, G_LO},
+        {G_LO, G_HI, G_LO, G_HI, G_LO, G_LO, G_LO, G_LO, G_LO, G_LO, G_LO, G_LO, G_LO, G_LO, G_LO, G_LO}
+    };
+    std::vector<std::vector<float>> group4 = 
+    {
+        {G_LO, G_LO, G_LO, G_LO, G_LO, G_LO, G_LO, G_LO, G_HI, G_LO, G_LO, G_LO, G_HI, G_LO, G_LO, G_LO},
+        {G_LO, G_LO, G_LO, G_LO, G_LO, G_LO, G_LO, G_LO, G_LO, G_HI, G_LO, G_LO, G_LO, G_HI, G_LO, G_LO},
+        {G_LO, G_LO, G_LO, G_LO, G_LO, G_LO, G_LO, G_LO, G_LO, G_LO, G_HI, G_LO, G_LO, G_LO, G_HI, G_LO},
+        {G_LO, G_LO, G_LO, G_LO, G_LO, G_LO, G_LO, G_LO, G_LO, G_LO, G_LO, G_HI, G_LO, G_LO, G_LO, G_HI}
+    };
+    
 
 	void process(const ProcessArgs& args) override 
 	{
@@ -96,10 +111,13 @@ struct BeatFreqs : Module
         {
             outputs[GROUP1_OUT + i].setVoltage(group1[i][counter]);
             outputs[GROUP2_OUT + i].setVoltage(group2[i][counter]);
-            
+            outputs[GROUP3_OUT + i].setVoltage(group3[i][counter]);
+            outputs[GROUP4_OUT + i].setVoltage(group4[i][counter]);
             
             lights[GROUP1_LIGHT + i].setBrightness(group1[i][counter]);
             lights[GROUP2_LIGHT + i].setBrightness(group2[i][counter]);
+            lights[GROUP3_LIGHT + i].setBrightness(group3[i][counter]);
+            lights[GROUP4_LIGHT + i].setBrightness(group4[i][counter]);
         }
         
 	}
