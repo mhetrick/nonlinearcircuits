@@ -9,3 +9,4 @@ plugin.dll
 dep/
 cmake-build*
 .vscode/
+*.code-workspace
